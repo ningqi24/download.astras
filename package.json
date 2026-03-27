@@ -1,0 +1,9 @@
+{
+  "name": "astras-sbs",
+  "version": "1.0.0",
+  "description": "AstraEditor Download Site",
+  "main": "generate-release-json.js",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

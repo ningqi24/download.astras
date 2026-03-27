@@ -1,5 +1,5 @@
-import fs from 'fs/promises';
-import fetch from 'node-fetch';
+const fs = require('fs/promises');
+const fetch = require('node-fetch');
 
 const OWNER = 'astraeditor';
 const REPO = 'desktop';

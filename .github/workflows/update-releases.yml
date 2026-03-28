@@ -33,19 +33,19 @@ jobs:
       - name: Generate releases.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node generate-release-json.js
+        run: |
+          node generate-release-json.js
+          cp public/releases.json /tmp/releases.json
 
       - name: Commit and push if changed
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-          git stash push -m "temp changes" -- public/releases.json
-
           git config pull.rebase true
           git pull origin ${{ github.ref_name }}
 
-          git stash pop
+          cp /tmp/releases.json public/releases.json
 
           git add public/releases.json
 

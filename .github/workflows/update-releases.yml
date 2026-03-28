@@ -2,17 +2,17 @@ name: Update Releases JSON
 
 on:
   schedule:
-    - cron: '0 */6 * * *'      # 每6小时运行一次
-  workflow_dispatch:            # 支持手动触发
+    - cron: '0 */6 * * *'  
+  workflow_dispatch:        
   release:
-    types: [published]          # 当有发布被发布时触发
+    types: [published]      
 
 permissions:
-  contents: write               # 允许推送代码
+  contents: write           
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true      # 同一分支的新运行会取消旧的
+  cancel-in-progress: true  
 
 jobs:
   update:
@@ -25,7 +25,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'    # 使用 Node.js 20，原生支持 fetch
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Generate releases.json
         env:
@@ -38,18 +41,13 @@ jobs:
           git config user.email "actions@github.com"
           git add public/releases.json
 
-          # 检查是否有变更
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-
-          # 拉取远程最新提交，并基于它重新应用本地变更
           git fetch origin ${{ github.ref_name }}
           git rebase origin/${{ github.ref_name }}
 
-          # 提交变更
           git commit -m "Auto update releases.json $(date +'%Y-%m-%d %H:%M:%S')"
 
-          # 推送至触发分支
           git push origin HEAD:${{ github.ref_name }}

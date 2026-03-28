@@ -39,12 +39,25 @@ async function main() {
     };
 
     if (release) {
+      const sourceAssets = [
+        {
+          name: `${release.tag_name}-source.tar.gz`,
+          size: 0,
+          original_url: `https://github.com/${OWNER}/${REPO}/archive/refs/tags/${release.tag_name}.tar.gz`
+        },
+        {
+          name: `${release.tag_name}-source.zip`,
+          size: 0,
+          original_url: `https://github.com/${OWNER}/${REPO}/archive/refs/tags/${release.tag_name}.zip`
+        }
+      ];
+
       output.release = {
         tag_name: release.tag_name,
         name: release.name,
         published_at: release.published_at,
         prerelease: release.prerelease,
-        assets: transformAssets(release.assets)
+        assets: transformAssets(release.assets).concat(sourceAssets)
       };
     } else {
       output.release = null;
@@ -58,6 +71,9 @@ async function main() {
       release.assets.forEach(asset => {
         console.log(`   - ${asset.name}`);
       });
+      console.log('Source code URLs added:');
+      console.log(`   - ${release.tag_name}-source.tar.gz`);
+      console.log(`   - ${release.tag_name}-source.zip`);
     }
   } catch (err) {
     console.error('Error:', err.message);

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-28T06:07:05.898Z",
+  "lastUpdated": "2026-03-28T06:20:24.902Z",
   "hasRelease": true,
   "release": {
     "tag_name": "v1.1.4",
@@ -10,176 +10,147 @@
       {
         "name": "AstraEditor-Legacy-10.13-10.14-Setup-1.1.4.dmg",
         "size": 168290681,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-10.13-10.14-Setup-1.1.4.dmg",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-10.13-10.14-Setup-1.1.4.dmg"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-10.13-10.14-Setup-1.1.4.dmg"
       },
       {
         "name": "AstraEditor-Legacy-10.15-Setup-1.1.4.dmg",
         "size": 177393011,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-10.15-Setup-1.1.4.dmg",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-10.15-Setup-1.1.4.dmg"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-10.15-Setup-1.1.4.dmg"
       },
       {
         "name": "AstraEditor-Legacy-11-Setup-1.1.4.dmg",
         "size": 275171307,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-11-Setup-1.1.4.dmg",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-11-Setup-1.1.4.dmg"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-11-Setup-1.1.4.dmg"
       },
       {
         "name": "AstraEditor-Legacy-Setup-1.1.4-ia32.exe",
         "size": 136021077,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-Setup-1.1.4-ia32.exe",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-Setup-1.1.4-ia32.exe"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-Setup-1.1.4-ia32.exe"
       },
       {
         "name": "AstraEditor-Legacy-Setup-1.1.4-x64.exe",
         "size": 139900493,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-Setup-1.1.4-x64.exe",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-Setup-1.1.4-x64.exe"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Legacy-Setup-1.1.4-x64.exe"
       },
       {
         "name": "AstraEditor-linux-aarch64-1.1.4.pkg.tar.zst",
         "size": 138804548,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-aarch64-1.1.4.pkg.tar.zst",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-aarch64-1.1.4.pkg.tar.zst"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-aarch64-1.1.4.pkg.tar.zst"
       },
       {
         "name": "AstraEditor-linux-aarch64-1.1.4.rpm",
         "size": 136556509,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-aarch64-1.1.4.rpm",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-aarch64-1.1.4.rpm"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-aarch64-1.1.4.rpm"
       },
       {
         "name": "AstraEditor-linux-amd64-1.1.4.deb",
         "size": 153952044,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-amd64-1.1.4.deb",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-amd64-1.1.4.deb"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-amd64-1.1.4.deb"
       },
       {
         "name": "AstraEditor-linux-amd64-1.1.4.snap",
         "size": 164302848,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-amd64-1.1.4.snap",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-amd64-1.1.4.snap"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-amd64-1.1.4.snap"
       },
       {
         "name": "AstraEditor-linux-arm64-1.1.4.AppImage",
         "size": 185072577,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.AppImage",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.AppImage"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.AppImage"
       },
       {
         "name": "AstraEditor-linux-arm64-1.1.4.deb",
         "size": 148835220,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.deb",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.deb"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.deb"
       },
       {
         "name": "AstraEditor-linux-arm64-1.1.4.tar.gz",
         "size": 177240786,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.tar.gz",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.tar.gz"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-arm64-1.1.4.tar.gz"
       },
       {
         "name": "AstraEditor-linux-armv7l-1.1.4.AppImage",
         "size": 174069481,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.AppImage",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.AppImage"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.AppImage"
       },
       {
         "name": "AstraEditor-linux-armv7l-1.1.4.deb",
         "size": 146580492,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.deb",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.deb"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.deb"
       },
       {
         "name": "AstraEditor-linux-armv7l-1.1.4.pkg.tar.zst",
         "size": 138023596,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.pkg.tar.zst",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.pkg.tar.zst"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.pkg.tar.zst"
       },
       {
         "name": "AstraEditor-linux-armv7l-1.1.4.rpm",
         "size": 135236593,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.rpm",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.rpm"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.rpm"
       },
       {
         "name": "AstraEditor-linux-armv7l-1.1.4.tar.gz",
         "size": 168384075,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.tar.gz",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.tar.gz"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-armv7l-1.1.4.tar.gz"
       },
       {
         "name": "AstraEditor-linux-x64-1.1.4.pkg.tar.zst",
         "size": 143892500,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x64-1.1.4.pkg.tar.zst",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x64-1.1.4.pkg.tar.zst"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x64-1.1.4.pkg.tar.zst"
       },
       {
         "name": "AstraEditor-linux-x64-1.1.4.tar.gz",
         "size": 176953173,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x64-1.1.4.tar.gz",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x64-1.1.4.tar.gz"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x64-1.1.4.tar.gz"
       },
       {
         "name": "AstraEditor-linux-x86_64-1.1.4.AppImage",
         "size": 184472919,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x86_64-1.1.4.AppImage",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x86_64-1.1.4.AppImage"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x86_64-1.1.4.AppImage"
       },
       {
         "name": "AstraEditor-linux-x86_64-1.1.4.rpm",
         "size": 142625405,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x86_64-1.1.4.rpm",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x86_64-1.1.4.rpm"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-linux-x86_64-1.1.4.rpm"
       },
       {
         "name": "AstraEditor-MS-Store-1.1.4-arm64.appx",
         "size": 216745119,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-arm64.appx",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-arm64.appx"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-arm64.appx"
       },
       {
         "name": "AstraEditor-MS-Store-1.1.4-ia32.appx",
         "size": 196661235,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-ia32.appx",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-ia32.appx"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-ia32.appx"
       },
       {
         "name": "AstraEditor-MS-Store-1.1.4-x64.appx",
         "size": 216904400,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-x64.appx",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-x64.appx"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-MS-Store-1.1.4-x64.appx"
       },
       {
         "name": "AstraEditor-Setup-1.1.4-arm64.exe",
         "size": 169093910,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-arm64.exe",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-arm64.exe"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-arm64.exe"
       },
       {
         "name": "AstraEditor-Setup-1.1.4-ia32.exe",
         "size": 153962222,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-ia32.exe",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-ia32.exe"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-ia32.exe"
       },
       {
         "name": "AstraEditor-Setup-1.1.4-x64.exe",
         "size": 166790998,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-x64.exe",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-x64.exe"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4-x64.exe"
       },
       {
         "name": "AstraEditor-Setup-1.1.4.dmg",
         "size": 278756283,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4.dmg",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4.dmg"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor-Setup-1.1.4.dmg"
       },
       {
         "name": "AstraEditor.Portable.1.1.4.x64.exe",
         "size": 154740063,
-        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor.Portable.1.1.4.x64.exe",
-        "proxied_url": "https://api.allorigins.win/raw?url=https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor.Portable.1.1.4.x64.exe"
+        "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.1.4/AstraEditor.Portable.1.1.4.x64.exe"
       }
     ]
   }

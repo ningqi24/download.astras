@@ -1,0 +1,6 @@
+# 域名级重定向：将 astras.eu.cc 永久重定向到 editor.astras.top
+https://astras.eu.cc/* https://editor.astras.top/:splat 301
+http://astras.eu.cc/* https://editor.astras.top/:splat 301
+# 域名级重定向：将 www.astras.eu.cc 永久重定向到 astras.eu.cc
+https://www.astras.eu.cc/* https://astras.eu.cc/:splat 301
+http://www.astras.eu.cc/* https://astras.eu.cc/:splat 301

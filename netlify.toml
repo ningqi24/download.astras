@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+
+# 重定向 astras.eu.cc
+[[redirects]]
+  from = "https://astras.eu.cc/*"
+  to = "https://editors.astras.top/"
+  status = 301
+  force = true
+
+# 重定向 www.astras.eu.cc
+[[redirects]]
+  from = "https://www.astras.eu.cc/*"
+  to = "https://editors.astras.top/"
+  status = 301
+  force = true

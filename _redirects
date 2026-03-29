@@ -1,3 +1,2 @@
-# 将 astras.eu.cc 重定向
-astras.eu.cc https://editors.astras.top 301
+astras.eu.cc/* https://editors.astras.top 301
 www.astras.eu.cc/* https://astras.eu.cc 301

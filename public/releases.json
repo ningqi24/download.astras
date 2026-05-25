@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-24T03:50:59.153Z",
+  "lastUpdated": "2026-05-25T04:02:30.104Z",
   "hasRelease": true,
   "releases": [
     {
@@ -8,6 +8,11 @@
       "published_at": "2026-05-07T14:18:24Z",
       "prerelease": false,
       "assets": [
+        {
+          "name": "AstraEditor-FreeBSD-amd64-1.2.3.pkg",
+          "size": 64953862,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.3/AstraEditor-FreeBSD-amd64-1.2.3.pkg"
+        },
         {
           "name": "AstraEditor-Legacy-10.13-10.14-Setup-1.2.3.dmg",
           "size": 171210532,

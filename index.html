@@ -399,94 +399,6 @@
       margin: 6px 16px;
     }
 
-    .more-selector {
-      position: relative;
-      display: inline-block;
-      height: 100%;
-      display: none;
-    }
-
-    .more-btn {
-      background-color: #00000000;
-      color: #eee;
-      border: 0;
-      height: 100%;
-      padding: 0 8px;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .more-btn:hover {
-      background-color: #333;
-    }
-
-    .daylight-mode .more-btn:hover {
-      background-color: var(--bg-secondary);
-    }
-
-    .more-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      min-width: 160px;
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--scrollbar-thumb);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.25s ease;
-      z-index: 1000;
-      padding: 6px 0;
-    }
-
-    .more-menu.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .daylight-mode .more-menu {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-
-    .more-menu-item {
-      padding: 11px 16px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      color: #ddd;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-    }
-
-    .more-menu-item:hover {
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-    }
-
-    .daylight-mode .more-menu-item {
-      color: #666;
-    }
-
-    .daylight-mode .more-menu-item:hover {
-      background: rgba(0,0,0,0.04);
-      color: #333;
-    }
-
-    .more-menu-divider {
-      height: 1px;
-      background: var(--text-secondary);
-      opacity: 0.2;
-      margin: 6px 16px;
-    }
-
     .daylight-mode {
       --bg-color: #f8f8f8;
       --bg-secondary: #f0f0f0;
@@ -2481,12 +2393,6 @@
       <button type="button" class="tabButton" id="lang-toggle-btn" onclick="toggleLang()">
         <a href="javascript:void(0)" class="tabButton">EN</a>
       </button>
-      <div class="more-selector" id="more-selector">
-        <button type="button" class="more-btn" onclick="toggleMoreMenu()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-        </button>
-        <div class="more-menu" id="more-menu"></div>
-      </div>
     </div>
   </div>
   <div class="content">
@@ -2528,19 +2434,20 @@
               <p class="tips-text" data-i18n="建议开启Chrome和Edge的多线程下载功能">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>
               <div class="tips-item">
                 <strong data-i18n="Chrome浏览器">Chrome 浏览器：</strong>
-                <code>chrome://flags/#enable-parallel-downloading</code>
+                <code id="chrome-flags-link" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code>
               </div>
               <div class="tips-item">
                 <strong data-i18n="Edge新版浏览器">Edge 新版浏览器：</strong>
-                <code>edge://flags/#enable-parallel-downloading</code>
+                <code id="edge-flags-link" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code>
               </div>
               <p class="tips-text" data-i18n="在下方里找到Parallel downloading">在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。</p>
               <div class="tips-item">
-                <strong>中国内地各省份代理分配方案：</strong>
+                <strong data-i18n="中国内地各省份代理分配方案">中国内地各省份代理分配方案：</strong>
                 <div style="margin-top:8px;font-size:12.5px;line-height:1.9;color:#ccc">
-                  <div><span style="color:#66ccff">● ghproxy.net</span> — 北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</div>
-                  <div><span style="color:#66ccff">● gh-proxy.com</span> — 上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</div>
-                  <div><span style="color:#66ccff">● gh-proxy.org</span> — 河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</div>
+                  <div><span style="color:#66ccff">● ghproxy.net</span> — <span data-i18n="华北东北">北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</span></div>
+                  <div><span style="color:#66ccff">● gh-proxy.com</span> — <span data-i18n="华东西南">上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</span></div>
+                  <div><span style="color:#66ccff">● gh-proxy.org</span> — <span data-i18n="华中华南西北">河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</span></div>
+                  <div><span style="color:#66ccff">● github</span> — <span data-i18n="港澳台海外">港澳台地区及海外所有国家</span></div>
                 </div>
               </div>
             </div>
@@ -2725,45 +2632,40 @@
     if (!filterTabs || !items) return;
 
     const assets = downloadData[key] || [];
+    const archSet = new Set(['all']);
+    const suffixSet = new Set();
+
+    assets.forEach(asset => {
+      const arch = detectArch(asset.name, key);
+      const suffix = detectSuffix(asset.name, key);
+      if (arch && arch !== 'unknown' && arch !== 'other') archSet.add(arch);
+      if (suffix && suffix !== 'unknown' && suffix !== 'other') suffixSet.add(suffix);
+    });
+
+    const archOrder = {
+      'x64': 1, 'x86': 2, 'arm64': 3, 'arm': 4, 'amd': 5, 'arm32': 6, 'all': 0
+    };
+    const suffixOrder = {
+      'exe': 1, 'msi': 2, 'appx': 3, 'dmg': 4, 'pkg': 5,
+      'deb': 6, 'rpm': 7, 'appimage': 8, 'snap': 9, 'tar': 10, 'tarxz': 11,
+      'pkgzst': 12, 'tarzst': 13, 'zip': 14
+    };
+
+    const arches = Array.from(archSet).sort((a, b) => (archOrder[a] || 99) - (archOrder[b] || 99));
+    const suffixes = Array.from(suffixSet).sort((a, b) => (suffixOrder[a] || 99) - (suffixOrder[b] || 99));
+
     let filterTabsHtml = '';
-    if (key === 'linux') {
-      filterTabsHtml = `
-        <button class="filter-tab active" onclick="selectFilter('all', '${key}')" data-i18n="全部">全部</button>
-        <button class="filter-tab" onclick="selectFilter('amd', '${key}')" data-i18n="amd">AMD64</button>
-        <button class="filter-tab" onclick="selectFilter('arm', '${key}')" data-i18n="arm">ARM64</button>
-        <button class="filter-tab" onclick="selectFilter('arm32', '${key}')" data-i18n="arm32">armv7</button>
-        <span style="color:var(--text-secondary);font-size:12px;margin:0 8px">|</span>
-        <button class="filter-tab" onclick="selectFilter('deb', '${key}')" data-i18n="deb">.deb</button>
-        <button class="filter-tab" onclick="selectFilter('rpm', '${key}')" data-i18n="rpm">.rpm</button>
-        <button class="filter-tab" onclick="selectFilter('appimage', '${key}')" data-i18n="appimage">AppImage</button>
-        <button class="filter-tab" onclick="selectFilter('tar', '${key}')" data-i18n="tar">.tar.gz</button>
-        <button class="filter-tab" onclick="selectFilter('tarxz', '${key}')" data-i18n="tarxz">.tar.xz</button>
-        <button class="filter-tab" onclick="selectFilter('pkgzst', '${key}')" data-i18n="pkgzst">.pkg.tar.zst</button>
-        <button class="filter-tab" onclick="selectFilter('tarzst', '${key}')" data-i18n="tarzst">.tar.zst</button>
-        <button class="filter-tab" onclick="selectFilter('zip', '${key}')" data-i18n="zip">.zip</button>
-      `;
-    } else if (key === 'windows') {
-      filterTabsHtml = `
-        <button class="filter-tab active" onclick="selectFilter('all', '${key}')" data-i18n="全部">全部</button>
-        <button class="filter-tab" onclick="selectFilter('x64', '${key}')" data-i18n="x64">x64</button>
-        <button class="filter-tab" onclick="selectFilter('x86', '${key}')" data-i18n="x86">x86</button>
-        <button class="filter-tab" onclick="selectFilter('arm64', '${key}')" data-i18n="arm64">ARM64</button>
-        <span style="color:var(--text-secondary);font-size:12px;margin:0 8px">|</span>
-        <button class="filter-tab" onclick="selectFilter('exe', '${key}')" data-i18n="exe">.exe</button>
-        <button class="filter-tab" onclick="selectFilter('msi', '${key}')" data-i18n="msi">.msi</button>
-        <button class="filter-tab" onclick="selectFilter('appx', '${key}')" data-i18n="appx">.appx</button>
-        <button class="filter-tab" onclick="selectFilter('zip', '${key}')" data-i18n="zip">.zip</button>
-      `;
-    } else if (key === 'macos') {
-      filterTabsHtml = `
-        <button class="filter-tab active" onclick="selectFilter('all', '${key}')" data-i18n="全部">全部</button>
-        <button class="filter-tab" onclick="selectFilter('x64', '${key}')" data-i18n="x64">x64</button>
-        <button class="filter-tab" onclick="selectFilter('arm', '${key}')" data-i18n="arm">ARM64</button>
-        <span style="color:var(--text-secondary);font-size:12px;margin:0 8px">|</span>
-        <button class="filter-tab" onclick="selectFilter('dmg', '${key}')" data-i18n="dmg">.dmg</button>
-        <button class="filter-tab" onclick="selectFilter('pkg', '${key}')" data-i18n="pkg">.pkg</button>
-        <button class="filter-tab" onclick="selectFilter('zip', '${key}')" data-i18n="zip">.zip</button>
-      `;
+    arches.forEach(arch => {
+      const i18nKey = getFilterI18nKey(arch);
+      filterTabsHtml += `<button class="filter-tab ${arch === 'all' ? 'active' : ''}" onclick="selectFilter('${arch}', '${key}')" data-i18n="${i18nKey}">${translations[currentLang][i18nKey] || arch}</button>`;
+    });
+
+    if (suffixes.length > 0) {
+      filterTabsHtml += `<span style="color:var(--text-secondary);font-size:12px;margin:0 8px">|</span>`;
+      suffixes.forEach(suffix => {
+        const i18nKey = getFilterI18nKey(suffix);
+        filterTabsHtml += `<button class="filter-tab" onclick="selectFilter('${suffix}', '${key}')" data-i18n="${i18nKey}">${translations[currentLang][i18nKey] || '.' + suffix}</button>`;
+      });
     }
 
     let itemsHtml = '';
@@ -2780,6 +2682,16 @@
     pointer.bind_targets_events();
     applyLang();
     selectFilter('all', key);
+  }
+
+  function getFilterI18nKey(val) {
+    const map = {
+      'x64': 'x64', 'x86': 'x86', 'arm64': 'arm64', 'arm': 'arm', 'amd': 'amd', 'arm32': 'arm32', 'all': '全部',
+      'exe': 'exe', 'msi': 'msi', 'appx': 'appx', 'dmg': 'dmg', 'pkg': 'pkg',
+      'deb': 'deb', 'rpm': 'rpm', 'appimage': 'appimage', 'snap': 'snap', 'tar': 'tar', 'tarxz': 'tarxz',
+      'pkgzst': 'pkgzst', 'tarzst': 'tarzst', 'zip': 'zip'
+    };
+    return map[val] || val;
   }
 
   function switchPlatform(key) {
@@ -2825,6 +2737,7 @@
       if (name.endsWith('.deb')) return 'deb';
       if (name.endsWith('.rpm')) return 'rpm';
       if (name.endsWith('.appimage') || name.includes('appimage')) return 'appimage';
+      if (name.endsWith('.snap')) return 'snap';
       if (name.endsWith('.tar.gz') || name.endsWith('.tgz')) return 'tar';
       if (name.endsWith('.tar.xz') || name.endsWith('.txz')) return 'tarxz';
       if (name.endsWith('.pkg.tar.zst')) return 'pkgzst';
@@ -2836,7 +2749,7 @@
 
   function selectFilter(value, platform) {
     const archValues = ['amd', 'arm', 'arm32', 'x64', 'x86', 'arm64'];
-    const suffixValues = ['deb', 'rpm', 'appimage', 'tar', 'tarxz', 'pkgzst', 'tarzst', 'zip', 'exe', 'msi', 'dmg', 'pkg', 'appx'];
+    const suffixValues = ['deb', 'rpm', 'appimage', 'snap', 'tar', 'tarxz', 'pkgzst', 'tarzst', 'zip', 'exe', 'msi', 'dmg', 'pkg', 'appx'];
     const targetPlatform = platform || currentPlatform;
     const filterTabsEl = document.getElementById(`filter-tabs-${targetPlatform}`);
     if (!filterTabsEl) return;
@@ -3122,28 +3035,7 @@
             optimalProxy = 'ghproxy.net';
           }
         } else {
-          switch (geo.country) {
-            case 'US':
-              optimalProxy = 'github';
-              break;
-            case 'JP':
-              optimalProxy = 'gh-proxy.org';
-              break;
-            case 'KR':
-              optimalProxy = 'gh-proxy.org';
-              break;
-            case 'SG':
-              optimalProxy = 'gh-proxy.org';
-              break;
-            case 'HK':
-              optimalProxy = 'github';
-              break;
-            case 'TW':
-              optimalProxy = 'github';
-              break;
-            default:
-              optimalProxy = 'ghproxy.net';
-          }
+          optimalProxy = 'github';
         }
       }
 
@@ -3241,93 +3133,46 @@
     if (menu) menu.classList.toggle('show');
   }
 
-  function toggleMoreMenu() {
-    const menu = document.getElementById('more-menu');
-    if (menu) menu.classList.toggle('show');
-  }
-
-  const navItemsOrder = ['官网', '代理', '其它', 'theme-toggle-btn', 'lang-toggle-btn'];
-  let collapsedNavItems = [];
-
-  function checkNavOverflow() {
-    const tabButtonTab = document.querySelector('.tabButtonTab');
-    const moreSelector = document.getElementById('more-selector');
-    if (!tabButtonTab || !moreSelector) return;
-
-    const windowWidth = window.innerWidth;
-    const items = Array.from(tabButtonTab.children).filter(el => el.id !== 'more-selector' && el.style.display !== 'none');
-
-    if (windowWidth < 520 && items.length > 1) {
-      const lastItem = items[items.length - 1];
-      if (!collapsedNavItems.includes(lastItem)) {
-        lastItem.style.display = 'none';
-        collapsedNavItems.push(lastItem);
-        updateMoreMenu();
-        moreSelector.style.display = 'inline-block';
-      }
-    } else if (windowWidth >= 520 && collapsedNavItems.length > 0) {
-      const restoreItem = collapsedNavItems.pop();
-      restoreItem.style.display = '';
-      updateMoreMenu();
-      if (collapsedNavItems.length === 0) {
-        moreSelector.style.display = 'none';
-      }
+  function copyToClipboard(text, elem) {
+    const originalText = elem.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        elem.textContent = '已复制 ✓';
+        elem.style.color = '#99ff99';
+        setTimeout(() => {
+          elem.textContent = originalText;
+          elem.style.color = '#66ccff';
+        }, 1500);
+      }).catch(() => {
+        fallbackCopy(text, elem, originalText);
+      });
+    } else {
+      fallbackCopy(text, elem, originalText);
     }
   }
 
-  function updateMoreMenu() {
-    const moreMenu = document.getElementById('more-menu');
-    if (!moreMenu) return;
-    moreMenu.innerHTML = '';
-    collapsedNavItems.forEach((item, index) => {
-      const clonedItem = item.cloneNode(true);
-      clonedItem.style.display = '';
-      clonedItem.classList.add('more-menu-item');
-
-      if (item.id === 'theme-toggle-btn') {
-        const menuItem = document.createElement('div');
-        menuItem.className = 'more-menu-item';
-        menuItem.textContent = document.body.classList.contains('daylight-mode') ? '夜间' : '日间';
-        menuItem.onclick = () => { toggleTheme(); toggleMoreMenu(); };
-        moreMenu.appendChild(menuItem);
-      } else if (item.id === 'lang-toggle-btn') {
-        const menuItem = document.createElement('div');
-        menuItem.className = 'more-menu-item';
-        menuItem.textContent = currentLang === 'zh' ? 'EN' : '中文';
-        menuItem.onclick = () => { toggleLang(); toggleMoreMenu(); };
-        moreMenu.appendChild(menuItem);
-      } else if (item.querySelector('.tabButton[data-i18n="官网"]')) {
-        const menuItem = document.createElement('div');
-        menuItem.className = 'more-menu-item';
-        menuItem.textContent = translations[currentLang]['官网'] || '官网';
-        menuItem.onclick = () => { animateToPage('https://astras.cc/'); toggleMoreMenu(); };
-        moreMenu.appendChild(menuItem);
-      } else if (item.querySelector('.proxy-selector')) {
-        const menuItem = document.createElement('div');
-        menuItem.className = 'more-menu-item';
-        menuItem.textContent = translations[currentLang]['代理'] || '代理';
-        menuItem.onclick = () => { toggleProxyMenu(); toggleMoreMenu(); };
-        moreMenu.appendChild(menuItem);
-      } else if (item.querySelector('.other-selector')) {
-        const menuItem = document.createElement('div');
-        menuItem.className = 'more-menu-item';
-        menuItem.textContent = translations[currentLang]['其它'] || '其它';
-        menuItem.onclick = () => { toggleOtherMenu(); toggleMoreMenu(); };
-        moreMenu.appendChild(menuItem);
-      } else {
-        moreMenu.appendChild(clonedItem);
-      }
-    });
+  function fallbackCopy(text, elem, originalText) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      elem.textContent = '已复制 ✓';
+      elem.style.color = '#99ff99';
+      setTimeout(() => {
+        elem.textContent = originalText;
+        elem.style.color = '#66ccff';
+      }, 1500);
+    } catch (e) {
+      alert('请手动复制: ' + text);
+    } finally {
+      document.body.removeChild(textarea);
+    }
   }
-
-  window.addEventListener('resize', () => {
-    clearTimeout(window.navResizeTimeout);
-    window.navResizeTimeout = setTimeout(checkNavOverflow, 100);
-  });
-
-  window.addEventListener('load', () => {
-    setTimeout(checkNavOverflow, 500);
-  });
 
   function toggleReleaseDropdown() {
     const menu = document.getElementById('release-dropdown-menu');
@@ -3406,6 +3251,7 @@
       'deb': '.deb',
       'rpm': '.rpm',
       'appimage': 'AppImage',
+      'snap': '.snap',
       'tar': '.tar.gz',
       'tarxz': '.tar.xz',
       'pkgzst': '.pkg.tar.zst',
@@ -3433,7 +3279,12 @@
       '建议开启Chrome和Edge的多线程下载功能': '建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率',
       'Chrome浏览器': 'Chrome 浏览器：',
       'Edge新版浏览器': 'Edge 新版浏览器：',
-      '在下方里找到Parallel downloading': '在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。'
+      '在下方里找到Parallel downloading': '在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。',
+      '中国内地各省份代理分配方案': '中国内地各省份代理分配方案：',
+      '华北东北': '北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江',
+      '华东西南': '上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏',
+      '华中华南西北': '河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆',
+      '港澳台海外': '港澳台地区及海外所有国家'
     },
     en: {
       '官网': 'Official Website',
@@ -3466,6 +3317,7 @@
       'deb': '.deb',
       'rpm': '.rpm',
       'appimage': 'AppImage',
+      'snap': '.snap',
       'tar': '.tar.gz',
       'tarxz': '.tar.xz',
       'pkgzst': '.pkg.tar.zst',
@@ -3493,7 +3345,12 @@
       '建议开启Chrome和Edge的多线程下载功能': 'Enable Parallel downloading in Chrome and Edge to improve download speed',
       'Chrome浏览器': 'Chrome Browser:',
       'Edge新版浏览器': 'Edge Browser (New):',
-      '在下方里找到Parallel downloading': 'Find "Parallel downloading", change "Default" to "Enabled", then click the "Relaunch" button at bottom right.'
+      '在下方里找到Parallel downloading': 'Find "Parallel downloading", change "Default" to "Enabled", then click the "Relaunch" button at bottom right.',
+      '中国内地各省份代理分配方案': 'Proxy Allocation for Mainland China:',
+      '华北东北': 'Beijing, Tianjin, Hebei, Shanxi, Inner Mongolia, Liaoning, Jilin, Heilongjiang',
+      '华东西南': 'Shanghai, Jiangsu, Zhejiang, Anhui, Fujian, Jiangxi, Shandong, Chongqing, Sichuan, Guizhou, Yunnan, Tibet',
+      '华中华南西北': 'Henan, Hubei, Hunan, Guangdong, Guangxi, Hainan, Shaanxi, Gansu, Qinghai, Ningxia, Xinjiang',
+      '港澳台海外': 'Hong Kong, Macau, Taiwan & All Overseas Regions'
     }
   };
 
@@ -3523,9 +3380,6 @@
     document.querySelectorAll('#theme-toggle-btn a.tabButton').forEach(el => {
       el.textContent = currentTheme === 'dark' ? translations[currentLang]['夜间'] : translations[currentLang]['日间'];
     });
-    if (collapsedNavItems.length > 0) {
-      updateMoreMenu();
-    }
   }
 
   function applyTheme() {
@@ -3730,9 +3584,6 @@
     }
     if (!event.target.closest('.other-selector')) {
       document.querySelectorAll('.other-menu.show').forEach(el => el.classList.remove('show'));
-    }
-    if (!event.target.closest('.more-selector')) {
-      document.querySelectorAll('.more-menu.show').forEach(el => el.classList.remove('show'));
     }
     if (!event.target.closest('.custom-dropdown')) {
       document.querySelectorAll('.custom-dropdown-menu.show').forEach(el => el.classList.remove('show'));

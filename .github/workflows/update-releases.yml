@@ -27,9 +27,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Generate releases.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,20 +38,14 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-
           git reset --hard HEAD
           git clean -fd
-
           git pull origin ${{ github.ref_name }} --rebase || true
-
           cp /tmp/releases.json public/releases.json
-
           git add public/releases.json
-
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-
           git commit -m "Auto update releases.json $(date +'%Y-%m-%d %H:%M:%S')"
           git push --force origin HEAD:${{ github.ref_name }}

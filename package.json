@@ -1,0 +1,9 @@
+{
+  "name": "astras",
+  "version": "1.2.3",
+  "description": "AstraEditor Download Site",
+  "main": "generate-release-json.js",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,7 +1,165 @@
 {
-  "lastUpdated": "2026-06-28T04:01:44.698Z",
+  "lastUpdated": "2026-06-28T11:44:44.833Z",
   "hasRelease": true,
   "releases": [
+    {
+      "tag_name": "v1.2.5",
+      "name": "v1.2.5",
+      "published_at": "2026-06-28T10:37:00Z",
+      "prerelease": false,
+      "assets": [
+        {
+          "name": "AstraEditor-Legacy-10.13-10.14-Setup-1.2.5.dmg",
+          "size": 173659248,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Legacy-10.13-10.14-Setup-1.2.5.dmg"
+        },
+        {
+          "name": "AstraEditor-Legacy-10.15-Setup-1.2.5.dmg",
+          "size": 182755092,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Legacy-10.15-Setup-1.2.5.dmg"
+        },
+        {
+          "name": "AstraEditor-Legacy-11-Setup-1.2.5.dmg",
+          "size": 278895663,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Legacy-11-Setup-1.2.5.dmg"
+        },
+        {
+          "name": "AstraEditor-Legacy-Setup-1.2.5-ia32.exe",
+          "size": 140259229,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Legacy-Setup-1.2.5-ia32.exe"
+        },
+        {
+          "name": "AstraEditor-Legacy-Setup-1.2.5-x64.exe",
+          "size": 143873777,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Legacy-Setup-1.2.5-x64.exe"
+        },
+        {
+          "name": "AstraEditor-linux-aarch64-1.2.5.pkg.tar.zst",
+          "size": 149904784,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-aarch64-1.2.5.pkg.tar.zst"
+        },
+        {
+          "name": "AstraEditor-linux-aarch64-1.2.5.rpm",
+          "size": 146451009,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-aarch64-1.2.5.rpm"
+        },
+        {
+          "name": "AstraEditor-linux-amd64-1.2.5.deb",
+          "size": 165115416,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-amd64-1.2.5.deb"
+        },
+        {
+          "name": "AstraEditor-linux-arm64-1.2.5.AppImage",
+          "size": 196126006,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-arm64-1.2.5.AppImage"
+        },
+        {
+          "name": "AstraEditor-linux-arm64-1.2.5.deb",
+          "size": 159998688,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-arm64-1.2.5.deb"
+        },
+        {
+          "name": "AstraEditor-linux-arm64-1.2.5.tar.gz",
+          "size": 188098511,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-arm64-1.2.5.tar.gz"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.5.AppImage",
+          "size": 185124082,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-armv7l-1.2.5.AppImage"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.5.deb",
+          "size": 157744684,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-armv7l-1.2.5.deb"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.5.pkg.tar.zst",
+          "size": 149132864,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-armv7l-1.2.5.pkg.tar.zst"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.5.rpm",
+          "size": 145243733,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-armv7l-1.2.5.rpm"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.5.tar.gz",
+          "size": 179199683,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-armv7l-1.2.5.tar.gz"
+        },
+        {
+          "name": "AstraEditor-linux-x64-1.2.5.pkg.tar.zst",
+          "size": 155055184,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-x64-1.2.5.pkg.tar.zst"
+        },
+        {
+          "name": "AstraEditor-linux-x64-1.2.5.tar.gz",
+          "size": 187786396,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-x64-1.2.5.tar.gz"
+        },
+        {
+          "name": "AstraEditor-linux-x86_64-1.2.5.AppImage",
+          "size": 195527206,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-x86_64-1.2.5.AppImage"
+        },
+        {
+          "name": "AstraEditor-linux-x86_64-1.2.5.rpm",
+          "size": 151345981,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-linux-x86_64-1.2.5.rpm"
+        },
+        {
+          "name": "AstraEditor-MS-Store-1.2.5-arm64.appx",
+          "size": 222229652,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-MS-Store-1.2.5-arm64.appx"
+        },
+        {
+          "name": "AstraEditor-MS-Store-1.2.5-ia32.appx",
+          "size": 202147285,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-MS-Store-1.2.5-ia32.appx"
+        },
+        {
+          "name": "AstraEditor-MS-Store-1.2.5-x64.appx",
+          "size": 222388937,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-MS-Store-1.2.5-x64.appx"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.5-arm64.exe",
+          "size": 163776738,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Setup-1.2.5-arm64.exe"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.5-ia32.exe",
+          "size": 156985446,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Setup-1.2.5-ia32.exe"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.5-x64.exe",
+          "size": 169118833,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Setup-1.2.5-x64.exe"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.5.dmg",
+          "size": 282521461,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor-Setup-1.2.5.dmg"
+        },
+        {
+          "name": "AstraEditor.Portable.1.2.5.x64.exe",
+          "size": 156797401,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.5/AstraEditor.Portable.1.2.5.x64.exe"
+        },
+        {
+          "name": "v1.2.5-source.tar.gz",
+          "size": 0,
+          "original_url": "https://github.com/astraeditor/desktop/archive/refs/tags/v1.2.5.tar.gz"
+        },
+        {
+          "name": "v1.2.5-source.zip",
+          "size": 0,
+          "original_url": "https://github.com/astraeditor/desktop/archive/refs/tags/v1.2.5.zip"
+        }
+      ]
+    },
     {
       "tag_name": "v1.2.4",
       "name": "v1.2.4",

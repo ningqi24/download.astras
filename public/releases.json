@@ -1,7 +1,25 @@
 {
-  "lastUpdated": "2026-08-03T20:44:17.508Z",
+  "lastUpdated": "2026-08-04T11:40:20.434Z",
   "hasRelease": true,
   "releases": [
+    {
+      "tag_name": "v1.2.7",
+      "name": "v1.2.7",
+      "published_at": "2026-08-04T11:32:54Z",
+      "prerelease": false,
+      "assets": [
+        {
+          "name": "v1.2.7-source.tar.gz",
+          "size": 0,
+          "original_url": "https://github.com/astraeditor/desktop/archive/refs/tags/v1.2.7.tar.gz"
+        },
+        {
+          "name": "v1.2.7-source.zip",
+          "size": 0,
+          "original_url": "https://github.com/astraeditor/desktop/archive/refs/tags/v1.2.7.zip"
+        }
+      ]
+    },
     {
       "tag_name": "v1.2.6",
       "name": "v1.2.6",

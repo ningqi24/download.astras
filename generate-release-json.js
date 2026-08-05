@@ -39,7 +39,15 @@ function extractSHA256FromBody(body, filename) {
 function transformAssets(assets, releaseBody) {
   if (!assets || assets.length === 0) return [];
   return assets.map(asset => {
-    const sha256 = extractSHA256FromBody(releaseBody, asset.name);
+    // Prefer GitHub API digest (format: "sha256:abc...") - available since 2025-06
+    let sha256 = null;
+    if (asset.digest && asset.digest.startsWith('sha256:')) {
+      sha256 = asset.digest.slice(7);
+    }
+    // Fallback: try parsing release body
+    if (!sha256) {
+      sha256 = extractSHA256FromBody(releaseBody, asset.name);
+    }
     const result = {
       name: asset.name,
       size: asset.size,

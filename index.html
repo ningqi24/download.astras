@@ -587,37 +587,21 @@
     }
 
     .daylight-mode .platform-btn {
-      background: rgba(102, 204, 255, 0.06);
-      border-color: rgba(102, 204, 255, 0.3);
+      background: rgba(102, 204, 255, 0.04);
+      border-color: rgba(102, 204, 255, 0.25);
       color: #333;
     }
 
     .daylight-mode .platform-btn:hover {
-      background: rgba(102, 204, 255, 0.12);
+      background: rgba(102, 204, 255, 0.1);
       border-color: var(--accent-color);
     }
 
     .daylight-mode .platform-btn.active {
-      background: var(--accent-color);
-      border-color: var(--accent-color);
+      background: linear-gradient(135deg, #3399ff 0%, #66ccff 100%);
+      border-color: transparent;
       color: #fff;
-      box-shadow: 0 8px 30px rgba(0, 153, 255, 0.35);
-    }
-
-    .daylight-mode .platform-btn-icon svg {
-      stroke: #333;
-    }
-
-    .daylight-mode .platform-btn.active .platform-btn-icon svg {
-      stroke: #fff;
-    }
-
-    .daylight-mode .platform-btn-cert {
-      color: #2e7d32;
-    }
-
-    .daylight-mode .platform-btn.active .platform-btn-cert {
-      color: rgba(255,255,255,0.9);
+      box-shadow: 0 8px 30px rgba(51, 153, 255, 0.4);
     }
 
     .daylight-mode .download-item {
@@ -647,7 +631,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px 80px;
+      padding: 30px 20px 80px;
       min-height: calc(100vh - 60px);
       z-index: -1;
     }
@@ -688,7 +672,7 @@
     .download-files-panel {
       width: 100%;
       max-width: 760px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       animation: fadeInUp 0.5s ease-out 0.25s both;
     }
 
@@ -728,15 +712,16 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      align-items: stretch;
     }
 
     .download-item {
-      flex: 1 1 calc(33.333% - 10px);
-      min-width: 220px;
+      flex: 0 0 calc(33.333% - 7px);
+      min-width: 200px;
       background: var(--bg-secondary);
       border: 1px solid transparent;
       border-radius: 10px;
-      padding: 15px 20px;
+      padding: 14px 16px;
       cursor: pointer;
       transition: all 0.25s ease;
       display: flex;
@@ -844,14 +829,14 @@
 
       .platform-btn {
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 12px;
-        min-height: 56px;
-        padding: 14px 20px;
+        min-height: 52px;
+        padding: 12px 18px;
       }
 
       .platform-btn-label {
-        flex: 1;
+        flex: 0 1 auto;
         text-align: left;
       }
 
@@ -1322,12 +1307,12 @@
     /* ========== Version Bar ========== */
     .version-bar {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       animation: fadeInUp 0.5s ease-out 0.1s both;
     }
 
     .version-title {
-      font-size: 2.2rem;
+      font-size: 1.6rem;
       font-weight: 800;
       color: var(--text-primary);
       font-family: "Mi Sans", "Segoe UI", "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1370,24 +1355,24 @@
       gap: 16px;
       width: 100%;
       max-width: 760px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       animation: fadeInUp 0.5s ease-out 0.2s both;
     }
 
     .platform-btn {
       flex: 1;
-      min-height: 56px;
-      padding: 16px 12px;
+      min-height: 52px;
+      padding: 12px 18px;
       background: rgba(102, 204, 255, 0.06);
       border: 2px solid rgba(102, 204, 255, 0.18);
       border-radius: 14px;
       color: var(--text-primary);
       cursor: pointer;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 10px;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: var(--font-family);
       position: relative;
@@ -1427,41 +1412,38 @@
     }
 
     .platform-btn-icon {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
-    .platform-btn-icon svg {
+    .platform-btn-icon img {
       width: 100%;
       height: 100%;
-      stroke: var(--accent-color);
-      stroke-width: 1.5;
-      fill: none;
+      display: block;
+      filter: invert(1);
+      transition: filter 0.25s ease;
     }
 
-    .platform-btn.active .platform-btn-icon svg {
-      stroke: #fff;
+    .daylight-mode .platform-btn-icon img {
+      filter: none;
+    }
+
+    .platform-btn.active .platform-btn-icon img,
+    .daylight-mode .platform-btn.active .platform-btn-icon img {
+      filter: invert(1);
     }
 
     .platform-btn-label {
       font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.5px;
+      white-space: nowrap;
     }
 
-    .platform-btn-cert {
-      font-size: 11px;
-      font-weight: 500;
-      color: #4caf50;
-      opacity: 0.85;
-    }
-
-    .platform-btn.active .platform-btn-cert {
-      color: rgba(255, 255, 255, 0.9);
-    }
 
     /* ========== Accordion ========== */
     .accordion {
@@ -3751,10 +3733,10 @@
       });
     });
 
-    const platformIconsSvg = {
-      windows: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="8" rx="1"/><rect x="13" y="4" width="8" height="8" rx="1"/><rect x="3" y="14" width="8" height="6" rx="1"/><rect x="13" y="14" width="8" height="6" rx="1"/></svg>`,
-      macos: `<svg viewBox="0 0 24 24"><path d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42z"/><path d="M18.5 8.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>`,
-      linux: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`
+    const platformIconsImg = {
+      windows: 'images/windows.svg',
+      macos: 'images/apple.svg',
+      linux: 'images/linux.svg'
     };
 
     let html = '';
@@ -3779,10 +3761,8 @@
     html += `<div class="platform-buttons" id="platform-buttons">`;
     platformCards.forEach(card => {
       html += `<button class="platform-btn ${card.key === 'windows' ? 'active' : ''}" data-platform="${card.key}" onclick="switchPlatform('${card.key}')">`;
-      html += `<span class="platform-btn-icon">${platformIconsSvg[card.key]}</span>`;
-      html += `<span class="platform-btn-label">下载 ${card.name} 版</span>`;
-      html += `<span class="platform-btn-cert">✓ 官方正版</span>`;
-      html += `<span class="platform-btn-cert">✓ 安全认证</span>`;
+      html += `<span class="platform-btn-icon"><img src="${platformIconsImg[card.key]}" alt="${card.name}"></span>`;
+      html += `<span class="platform-btn-label">${card.name}</span>`;
       html += `</button>`;
     });
     html += `</div>`;

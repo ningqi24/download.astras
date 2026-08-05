@@ -19,13 +19,35 @@ async function fetchAllReleases() {
   return await res.json();
 }
 
-function transformAssets(assets) {
+function extractSHA256FromBody(body, filename) {
+  if (!body) return null;
+  // Pattern 1: filename: <sha256>
+  const escaped = filename.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const patterns = [
+    new RegExp(`${escaped}\\s*[:：]\\s*([a-fA-F0-9]{64})`, 'i'),
+    new RegExp(`SHA256\\s*\\(${escaped}\\)\\s*[:：=]\\s*([a-fA-F0-9]{64})`, 'i'),
+    new RegExp(`\\b([a-fA-F0-9]{64})\\s+${escaped}`, 'i'),
+    new RegExp(`\\*\\*${escaped}\\*\\*\\s*[:：]\\s*([a-fA-F0-9]{64})`, 'i'),
+  ];
+  for (const pattern of patterns) {
+    const match = body.match(pattern);
+    if (match) return match[1].toLowerCase();
+  }
+  return null;
+}
+
+function transformAssets(assets, releaseBody) {
   if (!assets || assets.length === 0) return [];
-  return assets.map(asset => ({
-    name: asset.name,
-    size: asset.size,
-    original_url: asset.browser_download_url
-  }));
+  return assets.map(asset => {
+    const sha256 = extractSHA256FromBody(releaseBody, asset.name);
+    const result = {
+      name: asset.name,
+      size: asset.size,
+      original_url: asset.browser_download_url
+    };
+    if (sha256) result.sha256 = sha256;
+    return result;
+  });
 }
 
 async function main() {
@@ -57,7 +79,7 @@ async function main() {
         name: release.name,
         published_at: release.published_at,
         prerelease: release.prerelease,
-        assets: transformAssets(release.assets).concat(sourceAssets)
+        assets: transformAssets(release.assets, release.body).concat(sourceAssets)
       });
     });
 

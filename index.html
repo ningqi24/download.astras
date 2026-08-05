@@ -439,16 +439,6 @@
       background-color: var(--bg-color);
     }
 
-    .daylight-mode .download-title {
-      color: var(--text-primary);
-    }
-
-    .daylight-mode .download-main-panel {
-      background-color: #fff;
-      border-color: #e0e0e0;
-      box-shadow: none;
-    }
-
     .daylight-mode .end {
       background-color: var(--bg-color);
       opacity: 0.75;
@@ -596,26 +586,38 @@
       color: #333;
     }
 
-    .daylight-mode .download-card {
-      background-color: rgba(102, 204, 255, 0.04);
-      border-color: rgba(102, 204, 255, 0.2);
-    }
-
-    .daylight-mode .download-card:hover {
-      background-color: rgba(102, 204, 255, 0.08);
-      border-color: var(--accent-color);
-    }
-
-    .daylight-mode .download-card-title {
+    .daylight-mode .platform-btn {
+      background: rgba(102, 204, 255, 0.06);
+      border-color: rgba(102, 204, 255, 0.3);
       color: #333;
     }
 
-    .daylight-mode .download-card-icon img {
-      filter: none;
+    .daylight-mode .platform-btn:hover {
+      background: rgba(102, 204, 255, 0.12);
+      border-color: var(--accent-color);
     }
 
-    .daylight-mode .download-panel {
-      background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+    .daylight-mode .platform-btn.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(0, 153, 255, 0.35);
+    }
+
+    .daylight-mode .platform-btn-icon svg {
+      stroke: #333;
+    }
+
+    .daylight-mode .platform-btn.active .platform-btn-icon svg {
+      stroke: #fff;
+    }
+
+    .daylight-mode .platform-btn-cert {
+      color: #2e7d32;
+    }
+
+    .daylight-mode .platform-btn.active .platform-btn-cert {
+      color: rgba(255,255,255,0.9);
     }
 
     .daylight-mode .download-item {
@@ -630,7 +632,11 @@
       color: #666;
     }
 
-    .daylight-mode .download-panel-title {
+    .daylight-mode .version-title {
+      color: #333;
+    }
+
+    .daylight-mode .version-meta {
       color: #666;
     }
 
@@ -641,24 +647,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 80px 20px;
+      padding: 40px 20px 80px;
       min-height: calc(100vh - 60px);
       z-index: -1;
     }
 
-    .download-title {
-      color: var(--text-primary);
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 30px;
-      text-align: center;
-      font-family: "Mi Sans", "Segoe UI", "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
-      letter-spacing: 1px;
+    .download-cards {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .tools-panel {
       width: 100%;
-      max-width: 800px;
+      max-width: 760px;
       margin: 0 auto 24px auto;
       padding: 28px 32px;
       background-color: rgba(34, 34, 34, 0.4);
@@ -666,22 +671,6 @@
       border-radius: 16px;
       backdrop-filter: blur(10px);
       animation: fadeInUp 0.6s ease-out 0.2s both;
-    }
-
-    .download-main-panel {
-      background-color: rgba(34, 34, 34, 0.4);
-      border: 1px solid var(--scrollbar-thumb);
-      box-shadow: none;
-    }
-
-    .download-cards {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      max-width: 100%;
-      z-index: 1;
     }
 
     .github-proxy-section {
@@ -693,6 +682,193 @@
       flex-direction: column;
       align-items: center;
       animation: none;
+    }
+
+    /* ========== Download Files Panel ========== */
+    .download-files-panel {
+      width: 100%;
+      max-width: 760px;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.5s ease-out 0.25s both;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-tab {
+      background: var(--bg-secondary);
+      border: 1px solid var(--scrollbar-thumb);
+      border-radius: 6px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      font-family: var(--font-family);
+    }
+
+    .filter-tab:hover {
+      background: var(--bg-color);
+      color: var(--text-primary);
+      border-color: var(--accent-color);
+    }
+
+    .filter-tab.active {
+      background: var(--accent-color);
+      color: #fff;
+      border-color: var(--accent-color);
+    }
+
+    .download-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .download-item {
+      flex: 1 1 calc(33.333% - 10px);
+      min-width: 220px;
+      background: var(--bg-secondary);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .download-item:hover {
+      background: rgba(0,153,255,0.12);
+      border-color: #0099ff;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0,153,255,0.1);
+    }
+
+    .download-item-name {
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .download-item-size {
+      color: var(--text-secondary);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .download-item:hover .download-item-size {
+      color: #0099ff;
+    }
+
+    .download-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .download-item-hash {
+      color: #FF6B6B;
+      font-size: 11px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      word-break: break-all;
+      line-height: 1.5;
+      user-select: text;
+      cursor: text;
+    }
+
+    .download-item-hash span {
+      font-weight: 600;
+    }
+
+    .download-item-cmd-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .download-item-cmd {
+      background-color: rgba(0, 0, 0, 0.25);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 11px;
+      color: #66ccff;
+      cursor: pointer;
+      user-select: all;
+      border: 1px solid rgba(102, 204, 255, 0.2);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .download-item-cmd:hover {
+      background-color: rgba(102, 204, 255, 0.15);
+      border-color: var(--accent-color);
+      color: #fff;
+    }
+
+    .daylight-mode .download-item-cmd {
+      background-color: #f5f5f5;
+      color: #0066cc;
+      border-color: rgba(0, 102, 204, 0.15);
+    }
+
+    .daylight-mode .download-item-cmd:hover {
+      background-color: rgba(0, 153, 255, 0.1);
+      border-color: #0099ff;
+      color: #004499;
+    }
+
+    .daylight-mode .download-item-hash span {
+      color: #CC3333;
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 768px) {
+      .platform-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .platform-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        min-height: 56px;
+        padding: 14px 20px;
+      }
+
+      .platform-btn-label {
+        flex: 1;
+        text-align: left;
+      }
+
+      .version-title {
+        font-size: 1.8rem;
+      }
+
+      .download-item {
+        flex: 1 1 100%;
+        min-width: 100%;
+      }
+
+      .download-item-cmd {
+        white-space: normal;
+        word-break: break-all;
+        font-size: 10.5px;
+      }
     }
 
     @keyframes fadeInUp {
@@ -1143,290 +1319,261 @@
       background: var(--scrollbar-thumb-hover);
     }
 
-    .download-card {
-      width: 100%;
-      max-width: 100%;
-      background-color: rgba(102, 204, 255, 0.05);
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(102, 204, 255, 0.15);
-      transition: all 0.3s ease;
+    /* ========== Version Bar ========== */
+    .version-bar {
+      text-align: center;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.5s ease-out 0.1s both;
     }
 
-    .download-card:hover {
-      border-color: var(--accent-color);
-      background-color: rgba(102, 204, 255, 0.08);
-    }
-
-    .download-card-header {
-      display: flex;
-      align-items: center;
-      padding: 16px 20px;
-      cursor: pointer;
-      user-select: none;
-      gap: 12px;
-      transition: background-color 0.2s ease;
-    }
-
-    .download-card-header:hover {
-      background-color: rgba(102, 204, 255, 0.08);
-    }
-
-    .download-card-icon {
-      color: var(--accent-color);
-      flex-shrink: 0;
-    }
-
-    .download-card-icon img {
-      filter: brightness(0) invert(1);
-    }
-
-    .download-card-title {
-      flex: 1;
-      font-size: 15px;
-      font-weight: 600;
+    .version-title {
+      font-size: 2.2rem;
+      font-weight: 800;
       color: var(--text-primary);
+      font-family: "Mi Sans", "Segoe UI", "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 1px;
+      margin: 0 0 8px 0;
+    }
+
+    .version-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--text-secondary);
       font-family: var(--font-family);
     }
 
-    .download-card-arrow {
+    .version-tag {
+      background: rgba(102, 204, 255, 0.15);
+      color: var(--accent-color);
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+    }
+
+    .version-date {
       color: var(--text-secondary);
+    }
+
+    .version-size-info {
+      color: var(--text-secondary);
+    }
+
+    /* ========== Platform Buttons ========== */
+    .platform-buttons {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      max-width: 760px;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.5s ease-out 0.2s both;
+    }
+
+    .platform-btn {
+      flex: 1;
+      min-height: 56px;
+      padding: 16px 12px;
+      background: rgba(102, 204, 255, 0.06);
+      border: 2px solid rgba(102, 204, 255, 0.18);
+      border-radius: 14px;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: var(--font-family);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .platform-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(102, 204, 255, 0.06) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .platform-btn:hover {
+      background: rgba(102, 204, 255, 0.12);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(102, 204, 255, 0.15);
+    }
+
+    .platform-btn:hover::after {
+      opacity: 1;
+    }
+
+    .platform-btn.active {
+      background: linear-gradient(135deg, #3399ff 0%, #66ccff 100%);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(51, 153, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .platform-btn.active::after {
+      opacity: 0;
+    }
+
+    .platform-btn-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .platform-btn-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--accent-color);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .platform-btn.active .platform-btn-icon svg {
+      stroke: #fff;
+    }
+
+    .platform-btn-label {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .platform-btn-cert {
+      font-size: 11px;
+      font-weight: 500;
+      color: #4caf50;
+      opacity: 0.85;
+    }
+
+    .platform-btn.active .platform-btn-cert {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ========== Accordion ========== */
+    .accordion {
+      width: 100%;
+      max-width: 760px;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeInUp 0.5s ease-out 0.3s both;
+    }
+
+    .accordion-item {
+      background-color: rgba(34, 34, 34, 0.4);
+      border: 1px solid var(--scrollbar-thumb);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .accordion-item:hover {
+      border-color: rgba(102, 204, 255, 0.3);
+    }
+
+    .accordion-header {
+      width: 100%;
+      padding: 16px 20px;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-family);
+      transition: background 0.2s ease;
+    }
+
+    .accordion-header:hover {
+      background: rgba(102, 204, 255, 0.06);
+    }
+
+    .accordion-header::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center no-repeat;
       transition: transform 0.3s ease;
       flex-shrink: 0;
     }
 
-    .download-card.expanded .download-card-arrow {
+    .accordion-item.open .accordion-header::after {
       transform: rotate(180deg);
     }
 
-    .download-card-content {
+    .accordion-body {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
-      padding: 0 20px;
-      opacity: 0;
     }
 
-    .download-card.expanded .download-card-content {
-      max-height: 600px;
+    .accordion-item.open .accordion-body {
+      max-height: 2000px;
+    }
+
+    .accordion-body-inner {
       padding: 0 20px 20px;
-      opacity: 1;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: var(--scrollbar-thumb) transparent;
-    }
-
-    .download-card.expanded .download-card-content::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .download-card.expanded .download-card-content::-webkit-scrollbar-track {
-      background: transparent;
-      border-radius: 3px;
-    }
-
-    .download-card.expanded .download-card-content::-webkit-scrollbar-thumb {
-      background-color: var(--scrollbar-thumb);
-      border-radius: 3px;
-    }
-
-    .download-card.expanded .download-card-content::-webkit-scrollbar-thumb:hover {
-      background-color: var(--scrollbar-thumb-hover);
-    }
-
-    .download-panel {
-      visibility: hidden;
-      opacity: 0;
-      max-height: 0;
-      width: 100%;
-      background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
-      backdrop-filter: blur(20px);
-      padding: 0 0;
-      margin-top: 15px;
-      border-radius: 10px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-      overflow: hidden;
-      transition: visibility 0.25s ease, opacity 0.25s ease, max-height 0.25s ease, padding 0.25s ease;
-      z-index: 2;
-    }
-
-    .download-panel.show {
-      visibility: visible;
-      opacity: 1;
-      max-height: 500px;
-      padding: 15px 0;
-      z-index: 2;
-    }
-
-    .download-panel-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      z-index: 2;
-    }
-
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-      align-items: center;
-      width: 100%;
-    }
-
-    .filter-tab {
-      background: var(--bg-secondary);
-      border: none;
-      border-radius: 6px;
-      padding: 6px 14px;
-      cursor: pointer;
-      font-size: 13px;
       color: var(--text-secondary);
-      transition: all 0.2s ease;
-    }
-
-    .filter-tab:hover {
-      background: var(--bg-color);
-      color: var(--text-primary);
-    }
-
-    .filter-tab.active {
-      background: var(--accent-color, #0099ff);
-      color: #fff;
-      border-color: var(--accent-color, #0099ff);
-    }
-
-    .download-panel-title {
-      color: var(--text-secondary);
-      font-size: 12px;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      z-index: 2;
-    }
-
-    .download-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      z-index: 2;
-    }
-
-    .download-item {
-      flex: 1 1 calc(33.333% - 10px);
-      min-width: 280px;
-      background: var(--bg-secondary);
-      border-radius: 8px;
-      padding: 15px 20px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 2;
-    }
-
-    .download-item:hover {
-      background: rgba(0,153,255,0.15);
-      border-color: #0099ff;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(0,153,255,0.1);
-    }
-
-    .download-item-name {
-      color: var(--text-primary);
       font-size: 14px;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      z-index: 2;
+      line-height: 1.8;
+      font-family: var(--font-family);
     }
 
-    .download-item-size {
-      color: var(--text-secondary);
-      font-size: 12px;
-      white-space: nowrap;
-      z-index: 2;
-    }
-
-    .download-item:hover .download-item-size {
-      color: #0099ff;
-    }
-
-    .download-item-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 0;
-      flex: 1;
-    }
-
-    .download-item-hash {
-      color: var(--text-secondary);
-      font-size: 11px;
-      font-family: "Consolas", "Monaco", "Courier New", monospace;
-      word-break: break-all;
-      line-height: 1.5;
-      user-select: text;
-      cursor: text;
-    }
-
-    .download-item-hash span {
+    .accordion-body-inner h3 {
+      color: var(--text-primary);
+      font-size: 15px;
+      margin: 16px 0 8px;
       font-weight: 600;
     }
 
-    .download-item-cmd-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 2px;
+    .accordion-body-inner h3:first-child {
+      margin-top: 0;
     }
 
-    .download-item-cmd {
-      background-color: rgba(0, 0, 0, 0.25);
-      padding: 4px 8px;
+    .accordion-body-inner code {
+      background: rgba(0,0,0,0.25);
+      padding: 2px 8px;
       border-radius: 4px;
       font-family: "Consolas", "Monaco", "Courier New", monospace;
-      font-size: 11px;
+      font-size: 13px;
       color: #66ccff;
-      cursor: pointer;
-      user-select: all;
-      border: 1px solid rgba(102, 204, 255, 0.2);
-      transition: all 0.2s ease;
-      white-space: nowrap;
     }
 
-    .download-item-cmd:hover {
-      background-color: rgba(102, 204, 255, 0.15);
-      border-color: var(--accent-color);
-      color: #fff;
+    .accordion-body-inner ul {
+      padding-left: 20px;
+      margin: 6px 0;
     }
 
-    .daylight-mode .download-item-cmd {
-      background-color: #f5f5f5;
+    .accordion-body-inner li {
+      margin-bottom: 4px;
+    }
+
+    .daylight-mode .accordion-item {
+      background-color: rgba(255, 255, 255, 0.6);
+      border-color: #e0e0e0;
+    }
+
+    .daylight-mode .accordion-body-inner code {
+      background: #f0f0f0;
       color: #0066cc;
-      border-color: rgba(0, 102, 204, 0.15);
-    }
-
-    .daylight-mode .download-item-cmd:hover {
-      background-color: rgba(0, 153, 255, 0.1);
-      border-color: #0099ff;
-      color: #004499;
-    }
-
-    .daylight-mode .download-item-hash span {
-      color: #CC3333;
-    }
-
-    
-
-    @media (max-width: 768px) {
-      .download-cards {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
     }
 
     .titleShow {
@@ -1964,10 +2111,6 @@
         gap: 15px;
       }
 
-      .download-panel-inner {
-        padding: 0 10px;
-      }
-
       .filter-tabs {
         justify-content: center;
       }
@@ -2131,23 +2274,16 @@
       }
 
       .download-cards {
-        gap: 12px;
+        gap: 8px;
       }
 
-      .download-card-title {
-        font-size: 14px;
-      }
-
-      .download-panel {
-        max-height: 400px;
-      }
-
-      .download-panel.show {
-        max-height: 400px;
-        padding: 10px 0;
+      .platform-btn-label {
+        font-size: 13px;
       }
 
       .download-item {
+        flex: 1 1 100%;
+        min-width: 100%;
         padding: 14px 8px;
         flex-direction: column;
         gap: 5px;
@@ -2166,12 +2302,6 @@
 
       .download-item-size {
         font-size: 11px;
-      }
-
-      .download-btn {
-        width: 100%;
-        padding: 10px;
-        font-size: 13px;
       }
 
       .download-item-cmd {
@@ -2250,7 +2380,13 @@
         font-size: 11px;
       }
 
-      .download-card-title {
+      .platform-btn {
+        flex-direction: row;
+        padding: 14px 16px;
+        gap: 10px;
+      }
+
+      .platform-btn-label {
         font-size: 13px;
       }
 
@@ -2469,11 +2605,7 @@
   <div class="content">
     <div class="page" id="page-home" data-page="home" style="display:block;animation:0.4s ease-out 0s 1 normal none running fadeIn">
       <div class="download-section">
-        <div class="tools-panel download-main-panel">
-          <h2 class="download-title" data-i18n="Download AstraEditor">Download AstraEditor</h2>
-          <div id="download-cards" class="download-cards">
-          </div>
-        </div>
+        <div id="download-cards" class="download-cards"></div>
         <div class="tools-panel">
           <div class="github-proxy-section">
             <h3 class="github-proxy-title" data-i18n="Github下载-代理">Github下载-代理</h3>
@@ -2646,7 +2778,7 @@
       this.updatePosition();
     },
     bind_targets_events() {
-      const targets = document.querySelectorAll("a, button, select, .featureCard, .OnlineButton, .DesktopButton, .tabButton, .download-card-header, .download-item, .proxy-option, .other-menu-item, .custom-dropdown-button, .custom-dropdown-option, .tips-header, .github-proxy-btn");
+      const targets = document.querySelectorAll("a, button, select, .featureCard, .OnlineButton, .DesktopButton, .tabButton, .platform-btn, .download-item, .proxy-option, .other-menu-item, .custom-dropdown-button, .custom-dropdown-option, .tips-header, .github-proxy-btn");
       targets.forEach(ele => {
         ele.classList.add("magnetic-target");
         ele.onmouseenter = () => {
@@ -2676,26 +2808,6 @@
   };
 
   let currentPlatform = '';
-
-  function toggleDownloadCard(key) {
-    const card = document.getElementById(`download-card-${key}`);
-    const content = document.getElementById(`download-content-${key}`);
-    if (!card || !content) return;
-
-    const isExpanded = card.classList.contains('expanded');
-
-    document.querySelectorAll('.download-card.expanded').forEach(el => {
-      el.classList.remove('expanded');
-    });
-
-    if (!isExpanded) {
-      loadCardContent(key);
-      card.classList.add('expanded');
-      currentPlatform = key;
-    } else {
-      currentPlatform = '';
-    }
-  }
 
   function loadCardContent(key) {
     const filterTabs = document.getElementById(`filter-tabs-${key}`);
@@ -2779,7 +2891,60 @@
   }
 
   function switchPlatform(key) {
-    toggleDownloadCard(key);
+    // Update active button
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    const activeBtn = document.querySelector(`.platform-btn[data-platform="${key}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Update filter tabs and download items container IDs for loadCardContent
+    const filePanel = document.getElementById('download-files-panel');
+    if (filePanel) {
+      const filterTabs = filePanel.querySelector('.filter-tabs');
+      const downloadItems = filePanel.querySelector('.download-items');
+      if (filterTabs) filterTabs.id = `filter-tabs-${key}`;
+      if (downloadItems) downloadItems.id = `download-items-${key}`;
+    }
+
+    currentPlatform = key;
+    loadCardContent(key);
+  }
+
+  function toggleAccordion(header) {
+    const item = header.closest('.accordion-item');
+    if (!item) return;
+    item.classList.toggle('open');
+  }
+
+  function formatSize(bytes) {
+    if (!bytes || bytes === 0) return '0 B';
+    const units = ['B', 'KB', 'MB', 'GB'];
+    let i = 0;
+    let size = bytes;
+    while (size >= 1024 && i < units.length - 1) {
+      size /= 1024;
+      i++;
+    }
+    return size.toFixed(i > 0 ? 1 : 0) + ' ' + units[i];
+  }
+
+  function mdToHtml(md) {
+    if (!md) return '';
+    let html = md
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/### (.+)/g, '<h3>$1</h3>')
+      .replace(/## (.+)/g, '<h3>$1</h3>')
+      .replace(/# (.+)/g, '<h3>$1</h3>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`(.+?)`/g, '<code>$1</code>')
+      .replace(/- (.+)/g, '<li>$1</li>')
+      .replace(/\n/g, '<br>');
+    html = html.replace(/(<li>.*?<\/li>(?:<br>)?)+/g, '<ul>$&</ul>');
+    return html;
   }
 
   let currentArch = 'all';
@@ -2934,8 +3099,7 @@
   }
 
   function hideDownloadPanel() {
-    document.querySelectorAll('.download-card.expanded').forEach(el => el.classList.remove('expanded'));
-    currentPlatform = '';
+    // No-op in new layout - download items are always visible for selected platform
   }
 
   function isValidGithubUrl(url) {
@@ -3449,8 +3613,8 @@
         el.textContent = translations[currentLang][key];
       }
     });
-    document.querySelectorAll('h2.download-title').forEach(el => {
-      el.textContent = translations[currentLang]['Download AstraEditor'];
+    document.querySelectorAll('h1.version-title').forEach(el => {
+      el.textContent = translations[currentLang]['AstraEditor'] || 'AstraEditor';
     });
     document.querySelectorAll('.endby').forEach(el => {
       el.textContent = translations[currentLang]['AstraEditor 下载站'];
@@ -3578,8 +3742,54 @@
 
     downloadData = categorized;
 
-    let html = '<div class="release-selector">';
-    html += '<div class="custom-dropdown">';
+    let totalSize = 0;
+    let assetCount = 0;
+    Object.values(categorized).forEach(arr => {
+      arr.forEach(a => {
+        if (a.size) totalSize += a.size;
+        assetCount++;
+      });
+    });
+
+    const platformIconsSvg = {
+      windows: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="8" rx="1"/><rect x="13" y="4" width="8" height="8" rx="1"/><rect x="3" y="14" width="8" height="6" rx="1"/><rect x="13" y="14" width="8" height="6" rx="1"/></svg>`,
+      macos: `<svg viewBox="0 0 24 24"><path d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42z"/><path d="M18.5 8.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>`,
+      linux: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`
+    };
+
+    let html = '';
+
+    // Version bar
+    html += `<div class="version-bar">`;
+    html += `<h1 class="version-title">AstraEditor</h1>`;
+    html += `<div class="version-meta">`;
+    html += `<span class="version-tag">${release.tag_name}</span>`;
+    html += `<span class="version-date">${new Date(release.published_at).toLocaleDateString('zh-CN')}</span>`;
+    html += `<span class="version-size-info">${assetCount} 个文件 · ${formatSize(totalSize)}</span>`;
+    html += `</div>`;
+    html += `</div>`;
+
+    // Platform buttons
+    const platformCards = [
+      { key: 'windows', name: 'Windows', assets: categorized.windows },
+      { key: 'macos', name: 'macOS', assets: categorized.macos },
+      { key: 'linux', name: 'Linux', assets: categorized.linux }
+    ];
+
+    html += `<div class="platform-buttons" id="platform-buttons">`;
+    platformCards.forEach(card => {
+      html += `<button class="platform-btn ${card.key === 'windows' ? 'active' : ''}" data-platform="${card.key}" onclick="switchPlatform('${card.key}')">`;
+      html += `<span class="platform-btn-icon">${platformIconsSvg[card.key]}</span>`;
+      html += `<span class="platform-btn-label">下载 ${card.name} 版</span>`;
+      html += `<span class="platform-btn-cert">✓ 官方正版</span>`;
+      html += `<span class="platform-btn-cert">✓ 安全认证</span>`;
+      html += `</button>`;
+    });
+    html += `</div>`;
+
+    // Release selector
+    html += `<div class="release-selector">`;
+    html += `<div class="custom-dropdown">`;
     html += `<button class="custom-dropdown-button" onclick="toggleReleaseDropdown()">`;
     html += `<span>${allReleases[releaseIndex].tag_name} (${new Date(allReleases[releaseIndex].published_at).toLocaleDateString()})</span>`;
     html += `<span class="custom-dropdown-arrow">▼</span>`;
@@ -3594,39 +3804,39 @@
     html += `</div>`;
     html += `</div>`;
 
-    const cards = [
-      { key: 'windows', name: translations[currentLang]['Windows 下载'], assets: categorized.windows },
-      { key: 'macos', name: translations[currentLang]['macOS 下载'], assets: categorized.macos },
-      { key: 'linux', name: translations[currentLang]['Linux 下载'], assets: categorized.linux },
-      { key: 'source', name: translations[currentLang]['源码'], assets: categorized.source }
-    ];
+    // Download files panel
+    html += `<div class="download-files-panel" id="download-files-panel">`;
+    html += `<div class="filter-tabs" id="filter-tabs-windows"></div>`;
+    html += `<div class="download-items" id="download-items-windows"></div>`;
+    html += `</div>`;
 
-    const cardIcons = {
-      windows: '<img src="images/windows.svg" width="18" height="18" alt="Windows">',
-      macos: '<img src="images/apple.svg" width="18" height="18" alt="macOS">',
-      linux: '<img src="images/linux.svg" width="18" height="18" alt="Linux">',
-      source: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 4 12 8 7"></polyline><polyline points="16 17 20 12 16 7"></polyline><line x1="12" y1="4" x2="12" y2="20"></line></svg>'
-    };
-
-    let delay = 0.1;
-    cards.forEach(card => {
-      if (card.assets.length > 0 || card.key === 'source') {
-        html += `<div class="download-card fade-in-up magnetic-target" style="animation-delay: ${delay}s" data-platform="${card.key}" id="download-card-${card.key}">`;
-        html += `<div class="download-card-header magnetic-target" onclick="toggleDownloadCard('${card.key}')">`;
-        html += `<span class="download-card-icon">${cardIcons[card.key] || cardIcons.source}</span>`;
-        html += `<span class="download-card-title" data-i18n="${card.key === 'source' ? '源码' : ''}">${card.name}</span>`;
-        html += `<svg class="download-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
-        html += `</div>`;
-        html += `<div class="download-card-content" id="download-content-${card.key}">`;
-        html += `<div class="filter-tabs" id="filter-tabs-${card.key}"></div>`;
-        html += `<div class="download-items" id="download-items-${card.key}"></div>`;
-        html += `</div>`;
-        html += `</div>`;
-        delay += 0.15;
-      }
-    });
+    // Accordion
+    html += `<div class="accordion">`;
+    html += `<div class="accordion-item">`;
+    html += `<button class="accordion-header" onclick="toggleAccordion(this)">${translations[currentLang]['更新日志'] || '更新日志'}</button>`;
+    html += `<div class="accordion-body"><div class="accordion-body-inner">`;
+    html += release.body ? mdToHtml(release.body) : `<p>无更新说明</p>`;
+    html += `</div></div>`;
+    html += `</div>`;
+    html += `<div class="accordion-item">`;
+    html += `<button class="accordion-header" onclick="toggleAccordion(this)">${translations[currentLang]['安装指南'] || '安装指南 / 常见问题'}</button>`;
+    html += `<div class="accordion-body"><div class="accordion-body-inner">`;
+    html += `<h3>Windows</h3><p>下载 <code>.exe</code> 或 <code>.msi</code> 文件，双击运行安装即可。</p>`;
+    html += `<h3>macOS</h3><p>下载 <code>.dmg</code> 文件，打开后将应用拖入 <code>应用程序</code> 文件夹。若提示"无法验证开发者"，请前往 <code>系统设置 → 隐私与安全性</code> 点击"仍要打开"。</p>`;
+    html += `<h3>Linux</h3>`;
+    html += `<ul><li><strong>AppImage</strong>：下载后右键属性设为可执行，双击运行。</li>`;
+    html += `<li><strong>.deb</strong>：<code>sudo dpkg -i 文件名.deb</code></li>`;
+    html += `<li><strong>.rpm</strong>：<code>sudo rpm -i 文件名.rpm</code></li></ul>`;
+    html += `<h3>SHA256 校验</h3><p>下载后请使用上述校验命令验证文件完整性，确保文件未被篡改。</p>`;
+    html += `</div></div>`;
+    html += `</div>`;
+    html += `</div>`;
 
     document.getElementById('download-cards').innerHTML = html;
+
+    // Load Windows content by default
+    currentPlatform = 'windows';
+    loadCardContent('windows');
 
     if (typeof pointer !== 'undefined') {
       pointer.bind_targets_events();
@@ -3672,8 +3882,8 @@
     if (!event.target.closest('.custom-dropdown')) {
       document.querySelectorAll('.custom-dropdown-menu.show').forEach(el => el.classList.remove('show'));
     }
-    if (!event.target.closest('.download-card') && !event.target.closest('.download-card-content')) {
-      hideDownloadPanel();
+    if (!event.target.closest('.download-item') && !event.target.closest('.download-files-panel')) {
+      // Keep panel open in new layout
     }
   });
 

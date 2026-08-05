@@ -1253,6 +1253,59 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* 友好模式 下载按钮列表 */
+    .friendly-btn-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 340px;
+      overflow-y: auto;
+    }
+    .friendly-btn-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--card-bg);
+      transition: border-color 0.2s;
+    }
+    .friendly-btn-item:hover {
+      border-color: var(--accent-color);
+    }
+    .friendly-btn-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .friendly-btn-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      word-break: break-all;
+      margin-bottom: 2px;
+    }
+    .friendly-btn-tip {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .friendly-btn-dl {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .friendly-btn-dl:hover {
+      opacity: 0.85;
+    }
+
     /* ========== Responsive ========== */
     @media (max-width: 768px) {
       .platform-buttons {
@@ -3307,15 +3360,10 @@
           <div class="friendly-modal-label" data-i18n="友好模式_版本">版本</div>
           <select class="friendly-modal-select" id="friendly-modal-version"></select>
         </div>
-        <div class="friendly-modal-section" id="friendly-arch-section">
-          <div class="friendly-modal-label" data-i18n="友好模式_处理器架构">处理器架构</div>
-          <select class="friendly-modal-select" id="friendly-modal-arch" onchange="onFriendlyArchChange()"></select>
+        <div class="friendly-modal-section">
+          <div class="friendly-modal-label" data-i18n="友好模式_选择下载文件">选择下载文件</div>
+          <div class="friendly-btn-list" id="friendly-btn-list"></div>
         </div>
-        <div class="friendly-modal-section" id="friendly-pkg-section">
-          <div class="friendly-modal-label" data-i18n="友好模式_包类型">包类型</div>
-          <select class="friendly-modal-select" id="friendly-modal-pkg"></select>
-        </div>
-        <button class="friendly-modal-download" id="friendly-modal-confirm" onclick="triggerFriendlyDownload()" data-i18n="友好模式_确认下载">确认下载</button>
       </div>
     </div>
   </div>
@@ -4282,7 +4330,8 @@
       'Windows安装指南': '<h3>Windows</h3><p>下载 <code>.exe</code> 或 <code>.msi</code> 文件，双击运行安装即可。</p>',
       'macOS安装指南': '<h3>macOS</h3><p>下载 <code>.dmg</code> 文件，打开后将应用拖入 <code>应用程序</code> 文件夹。若提示"无法验证开发者"，请前往 <code>系统设置 → 隐私与安全性</code> 点击"仍要打开"。</p>',
       'Linux安装指南': '<h3>Linux</h3><ul><li><strong>AppImage</strong>：下载后右键属性设为可执行，双击运行。</li><li><strong>.deb</strong>：<code>sudo dpkg -i 文件名.deb</code></li><li><strong>.rpm</strong>：<code>sudo rpm -i 文件名.rpm</code></li></ul>',
-      'SHA256校验说明': '<h3>SHA256 校验</h3><p>下载后请使用上述校验命令验证文件完整性，确保文件未被篡改。</p>'
+      'SHA256校验说明': '<h3>SHA256 校验</h3><p>下载后请使用上述校验命令验证文件完整性，确保文件未被篡改。</p>',
+      '友好模式_选择下载文件': '选择下载文件'
     },
     en: {
       '官网': 'Official Website',
@@ -4403,7 +4452,8 @@
       '下载提速_省份组1': 'Beijing, Tianjin, Hebei, Shanxi, Inner Mongolia, Liaoning, Jilin, Heilongjiang',
       '下载提速_省份组2': 'Shanghai, Jiangsu, Zhejiang, Anhui, Fujian, Jiangxi, Shandong, Chongqing, Sichuan, Guizhou, Yunnan, Tibet',
       '下载提速_省份组3': 'Henan, Hubei, Hunan, Guangdong, Guangxi, Hainan, Shaanxi, Gansu, Qinghai, Ningxia, Xinjiang',
-      '下载提速_省份组4': 'Hong Kong, Macau, Taiwan & Overseas'
+      '下载提速_省份组4': 'Hong Kong, Macau, Taiwan & Overseas',
+      '友好模式_选择下载文件': 'Select Download File'
     }
   };
 
@@ -5010,117 +5060,95 @@
       versionSelect.appendChild(opt);
     }
 
-    // Arch options
-    renderFriendlyArchOptions(platform, platformAssets);
-
-    // Package type options (initial, all)
-    renderFriendlyPkgOptions(platform, platformAssets);
+    // Render download button list
+    renderFriendlyBtnList(platform, platformAssets);
 
     document.getElementById('friendly-modal-loading').style.display = 'none';
     document.getElementById('friendly-modal-content').style.display = '';
   }
 
-  function renderFriendlyArchOptions(platform, assets) {
-    const archSection = document.getElementById('friendly-arch-section');
-    const archSelect = document.getElementById('friendly-modal-arch');
-    const archs = new Set();
-    assets.forEach(a => {
-      const arch = detectArch(a.name, platform);
-      archs.add(arch);
+  function getProxyDomainName(url) {
+    if (!url) return '';
+    try {
+      const u = new URL(url);
+      return u.hostname;
+    } catch (e) { return ''; }
+  }
+
+  function getFriendlyTip(platform, name) {
+    const lower = name.toLowerCase();
+    if (platform === 'windows') {
+      if (lower.includes('x86') || lower.includes('32') || lower.includes('legacy') || lower.includes('win7')) return '32位版本，适合 Windows 7 及老旧电脑';
+      if (lower.includes('arm') || lower.includes('aarch64')) return 'ARM64 版本，适合 ARM 架构 Windows (如 Surface Pro X)';
+      if (lower.includes('.exe')) return '标准 64位安装包，适合大多数 Windows 10/11 系统';
+      if (lower.includes('.msi')) return '企业级 MSI 安装包，适合批量部署与域管理';
+      if (lower.includes('.appx')) return 'Microsoft Store 封装格式，适合 Windows 10/11';
+      if (lower.includes('.zip') || lower.includes('portable')) return '绿色便携版，解压即用，无需安装';
+    }
+    if (platform === 'macos') {
+      if (lower.includes('arm') || lower.includes('silicon') || lower.includes('aarch64')) return 'Apple Silicon (M1/M2/M3/M4) 原生版本';
+      if (lower.includes('intel') || lower.includes('x64')) return 'Intel 处理器 Mac 版本';
+      if (lower.includes('.dmg')) return 'DMG 安装镜像，拖入应用程序文件夹即可';
+      if (lower.includes('.pkg')) return 'PKG 安装器，适合系统级或企业部署';
+      if (lower.includes('.zip')) return 'ZIP 压缩版，解压至应用程序文件夹即可';
+    }
+    if (platform === 'linux') {
+      if (lower.includes('.deb')) return 'Debian / Ubuntu / Mint 等 Debian 系发行版';
+      if (lower.includes('.rpm')) return 'Fedora / RHEL / CentOS / OpenSUSE 等 RPM 系发行版';
+      if (lower.includes('appimage')) return '通用格式，任何 Linux 发行版均可运行，无需安装';
+      if (lower.includes('.tar.gz') || lower.includes('.tar.xz') || lower.includes('.tar.zst')) return '预编译压缩包，解压即可运行';
+      if (lower.includes('.snap')) return 'Snap 通用包格式，沙盒环境运行';
+    }
+    return '';
+  }
+
+  function renderFriendlyBtnList(platform, assets) {
+    const list = document.getElementById('friendly-btn-list');
+    list.innerHTML = '';
+
+    // Sort: by arch priority then by name
+    assets.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+
+    assets.forEach((a, idx) => {
+      const tip = getFriendlyTip(platform, a.name);
+      const proxyLabel = getProxyDomainName(a.proxied_url || '');
+
+      const item = document.createElement('div');
+      item.className = 'friendly-btn-item';
+
+      const info = document.createElement('div');
+      info.className = 'friendly-btn-info';
+
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'friendly-btn-name';
+      nameDiv.textContent = a.name;
+
+      const tipDiv = document.createElement('div');
+      tipDiv.className = 'friendly-btn-tip';
+      const parts = [];
+      if (proxyLabel) parts.push(proxyLabel);
+      if (tip) parts.push(tip);
+      tipDiv.textContent = parts.join('  ·  ');
+
+      info.appendChild(nameDiv);
+      info.appendChild(tipDiv);
+
+      const btn = document.createElement('button');
+      btn.className = 'friendly-btn-dl';
+      btn.setAttribute('data-i18n', '友好模式_选择下载');
+      btn.textContent = translations[currentLang]['友好模式_选择下载'] || '选择下载';
+      btn.onclick = function() { triggerFriendlyDownloadItem(a); };
+
+      item.appendChild(info);
+      item.appendChild(btn);
+      list.appendChild(item);
     });
-    const labels = { x64: 'x64 (64-bit)', x86: 'x86 (32-bit)', arm64: 'ARM64', arm: 'ARM (Apple Silicon)', amd: 'AMD64 (64-bit)', arm32: 'ARM 32-bit' };
-    archSelect.innerHTML = '';
-    if (archs.size <= 1) {
-      archSection.style.display = 'none';
-      // Still populate with the single option so archSelect.value is valid
-      const arr = Array.from(archs);
-      if (arr.length === 1) {
-        const opt = document.createElement('option');
-        opt.value = arr[0];
-        opt.textContent = labels[arr[0]] || arr[0];
-        archSelect.appendChild(opt);
-      }
-    } else {
-      archSection.style.display = '';
-      const sorted = Array.from(archs).sort();
-      sorted.forEach(val => {
-        const opt = document.createElement('option');
-        opt.value = val;
-        opt.textContent = labels[val] || val;
-        archSelect.appendChild(opt);
-      });
-    }
-    // Re-sync pkg options to current arch selection
-    onFriendlyArchChange();
   }
 
-  function renderFriendlyPkgOptions(platform, assets) {
-    const pkgSection = document.getElementById('friendly-pkg-section');
-    const pkgSelect = document.getElementById('friendly-modal-pkg');
-    const archSelect = document.getElementById('friendly-modal-arch');
-    const archSection = document.getElementById('friendly-arch-section');
-    const selectedArch = archSection.style.display !== 'none' ? archSelect.value : null;
-
-    const pkgLabels = {
-      windows: { exe: 'EXE', msi: 'MSI', appx: 'APPX', zip: 'Portable ZIP' },
-      macos: { dmg: 'DMG', pkg: 'PKG', zip: 'ZIP' },
-      linux: { deb: 'DEB', rpm: 'RPM', appimage: 'AppImage', tar: 'tar.gz', snap: 'Snap', tarxz: 'tar.xz', pkgzst: 'pkg.tar.zst', tarzst: 'tar.zst' }
-    };
-    pkgSelect.innerHTML = '';
-    assets.forEach(a => {
-      const arch = detectArch(a.name, platform);
-      // Filter by selected arch (if applicable)
-      if (selectedArch && arch !== selectedArch) return;
-      const suffix = detectSuffix(a.name, platform);
-      const label = (pkgLabels[platform] || {})[suffix] || ('.' + suffix);
-      const exists = Array.from(pkgSelect.options).find(o => o.value === suffix);
-      if (!exists) {
-        const opt = document.createElement('option');
-        opt.value = suffix;
-        opt.textContent = label;
-        pkgSelect.appendChild(opt);
-      }
-    });
-    if (pkgSelect.options.length <= 1) {
-      pkgSection.style.display = 'none';
-    } else {
-      pkgSection.style.display = '';
-    }
-  }
-
-  function onFriendlyArchChange() {
-    // Re-render pkg options filtered by current arch
-    renderFriendlyPkgOptions(friendlyPlatform, friendlyAssets);
-  }
-
-  function triggerFriendlyDownload() {
-    const archSelect = document.getElementById('friendly-modal-arch');
-    const pkgSelect = document.getElementById('friendly-modal-pkg');
-    const archSection = document.getElementById('friendly-arch-section');
-    const selectedPkg = pkgSelect.value;
-    const archHidden = archSection.style.display === 'none';
-    const targetArch = archHidden ? null : archSelect.value;
-
-    let match = null;
-    for (let i = 0; i < friendlyAssets.length; i++) {
-      const a = friendlyAssets[i];
-      const arch = detectArch(a.name, friendlyPlatform);
-      const suffix = detectSuffix(a.name, friendlyPlatform);
-      if (suffix === selectedPkg) {
-        if (!targetArch || arch === targetArch) {
-          match = a;
-          break;
-        }
-      }
-    }
-
-    if (!match && friendlyAssets.length > 0) {
-      match = friendlyAssets[0];
-    }
-
-    if (match && match.proxied_url) {
-      const safeName = match.name.replace(/"/g, '&quot;').replace(/'/g, '\\x27');
-      const encodedUrl = match.proxied_url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  function triggerFriendlyDownloadItem(asset) {
+    if (asset && asset.proxied_url) {
+      const safeName = asset.name.replace(/"/g, '&quot;').replace(/'/g, '\\x27');
+      const encodedUrl = asset.proxied_url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       showDownloadModal(safeName, encodedUrl);
       closeFriendlyModal();
     }

@@ -2854,7 +2854,7 @@
       <div class="download-section">
         <div id="download-cards" class="download-cards"></div>
         <div style="text-align:center;margin-top:24px">
-          <span class="endby" style="font-size:large">相关链接</span>
+          <span class="endby" style="font-size:large" data-fixed>相关链接</span>
         </div>
         <div class="accordion-item" style="margin:12px auto 0 auto">
           <button class="accordion-header proxy-page-btn" onclick="showPage('proxy')">
@@ -3967,7 +3967,7 @@
     document.querySelectorAll('h1.version-title').forEach(el => {
       el.textContent = translations[currentLang]['AstraEditor'] || 'AstraEditor';
     });
-    document.querySelectorAll('.endby').forEach(el => {
+    document.querySelectorAll('.endby:not([data-fixed])').forEach(el => {
       el.textContent = translations[currentLang]['AstraEditor 下载站'];
     });
     document.querySelectorAll('.introend').forEach(el => {

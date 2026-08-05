@@ -3027,7 +3027,7 @@
       const arch = detectArch(asset.name, key);
       const suffix = detectSuffix(asset.name, key);
       const sha256 = asset.sha256 || '';
-      const safeName = asset.name.replace(/"/g, '&quot;').replace(/'/g, "\\'");
+      const safeName = asset.name.replace(/"/g, '&quot;').replace(/'/g, '\\x27');
       const encodedUrl = asset.proxied_url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       const encodedSha = sha256.replace(/"/g, '&quot;');
       itemsHtml += `<div class="download-item" data-arch="${arch}" data-suffix="${suffix}" data-platform="${key}">`;
@@ -3038,7 +3038,7 @@
       if (sha256) {
         const winCmd = `certutil -hashfile "${safeName}" SHA256`;
         const macCmd = `shasum -a 256 "${safeName}"`;
-        itemsHtml += `<button class="download-item-action-btn" title="SHA256 校验" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}','${winCmd.replace(/'/g, '&#39;')}','${macCmd.replace(/'/g, '&#39;')}')" style="width:auto;padding:0 10px;font-size:11px;font-weight:700;">SHA256值</button>`;
+        itemsHtml += `<button class="download-item-action-btn" title="SHA256 校验" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}','${winCmd.replace(/'/g, '\\x27')}','${macCmd.replace(/'/g, '\\x27')}')" style="width:auto;padding:0 10px;font-size:11px;font-weight:700;">SHA256值</button>`;
       }
       itemsHtml += `<button class="download-item-action-btn dl-btn" title="下载" onclick="event.stopPropagation();showDownloadModal('${safeName}','${encodedUrl}')"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></button>`;
       itemsHtml += `</div>`;

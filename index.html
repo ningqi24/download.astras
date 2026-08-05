@@ -854,7 +854,15 @@
       margin-bottom: 6px;
     }
 
+    .modal-hash-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
     .modal-hash {
+      flex: 1;
       background: rgba(255, 107, 107, 0.08);
       border: 1px solid rgba(255, 107, 107, 0.25);
       border-radius: 8px;
@@ -863,7 +871,6 @@
       font-size: 12px;
       color: #FF6B6B;
       word-break: break-all;
-      margin-bottom: 16px;
       line-height: 1.5;
     }
 
@@ -2820,7 +2827,10 @@
         <button class="modal-close" onclick="closeModal('sha-modal')">&times;</button>
       </div>
       <div class="modal-section-label">SHA256 哈希值</div>
-      <div class="modal-hash" id="sha-modal-hash"></div>
+      <div class="modal-hash-row">
+        <div class="modal-hash" id="sha-modal-hash"></div>
+        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-hash', this)">复制</button>
+      </div>
       <div class="modal-section-label">终端校验命令</div>
       <div class="modal-cmd-row">
         <code class="modal-cmd" id="sha-modal-win-cmd"></code>

@@ -1354,6 +1354,71 @@
       color: #0099ff;
     }
 
+    .download-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .download-item-hash {
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      word-break: break-all;
+      line-height: 1.5;
+      user-select: text;
+      cursor: text;
+    }
+
+    .download-item-hash span {
+      font-weight: 600;
+    }
+
+    .download-item-cmd-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .download-item-cmd {
+      background-color: rgba(0, 0, 0, 0.25);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 11px;
+      color: #66ccff;
+      cursor: pointer;
+      user-select: all;
+      border: 1px solid rgba(102, 204, 255, 0.2);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .download-item-cmd:hover {
+      background-color: rgba(102, 204, 255, 0.15);
+      border-color: var(--accent-color);
+      color: #fff;
+    }
+
+    .daylight-mode .download-item-cmd {
+      background-color: #f5f5f5;
+      color: #0066cc;
+      border-color: rgba(0, 102, 204, 0.15);
+    }
+
+    .daylight-mode .download-item-cmd:hover {
+      background-color: rgba(0, 153, 255, 0.1);
+      border-color: #0099ff;
+      color: #004499;
+    }
+
+    .daylight-mode .download-item-hash span {
+      color: #CC3333;
+    }
+
     
 
     @media (max-width: 768px) {
@@ -2109,6 +2174,12 @@
         font-size: 13px;
       }
 
+      .download-item-cmd {
+        white-space: normal;
+        word-break: break-all;
+        font-size: 10.5px;
+      }
+
       .proxy-menu {
         min-width: 150px;
         right: -15px;
@@ -2672,8 +2743,21 @@
     assets.forEach(asset => {
       const arch = detectArch(asset.name, key);
       const suffix = detectSuffix(asset.name, key);
+      const sha256 = asset.sha256 || '';
       itemsHtml += `<div class="download-item" data-arch="${arch}" data-suffix="${suffix}" data-platform="${key}" onclick="animateToPage('${asset.proxied_url}')">`;
+      itemsHtml += `<div class="download-item-info">`;
       itemsHtml += `<span class="download-item-name">${asset.name}</span>`;
+      if (sha256) {
+        const safeName = asset.name.replace(/"/g, '&quot;');
+        const winCmd = `certutil -hashfile "${safeName}" SHA256`;
+        const macCmd = `shasum -a 256 "${safeName}"`;
+        itemsHtml += `<div class="download-item-hash" onclick="event.stopPropagation()">SHA256: <span style="color:#FF6B6B">${sha256}</span></div>`;
+        itemsHtml += `<div class="download-item-cmd-group" onclick="event.stopPropagation()">`;
+        itemsHtml += `<code class="download-item-cmd" onclick="event.stopPropagation();copyToClipboard('${winCmd.replace(/'/g, "\\'")}', this)" title="Windows">${winCmd.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`;
+        itemsHtml += `<code class="download-item-cmd" onclick="event.stopPropagation();copyToClipboard('${macCmd.replace(/'/g, "\\'")}', this)" title="macOS / Linux">${macCmd.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`;
+        itemsHtml += `</div>`;
+      }
+      itemsHtml += `</div>`;
       itemsHtml += '</div>';
     });
 

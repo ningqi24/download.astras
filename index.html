@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AstraEditor Download - 第三方下载站</title>
+  <title data-i18n="第三方下载站">AstraEditor Download - 第三方下载站</title>
   <link rel="icon" href="images/logo-white.svg" type="image/svg+xml">
   <style>
     :root {
@@ -3126,15 +3126,6 @@
     <div class="page" id="page-home" data-page="home" style="display:block;animation:0.4s ease-out 0s 1 normal none running fadeIn">
       <div class="download-section">
         <div id="download-cards" class="download-cards"></div>
-        <div style="text-align:center;margin-top:24px">
-          <span class="endby" style="font-size:large" data-fixed>相关链接</span>
-        </div>
-        <div class="accordion-item" style="width:100%;max-width:760px;margin:12px auto 0 auto">
-          <button class="accordion-header proxy-page-btn" onclick="showPage('proxy')" style="justify-content:flex-start;gap:6px">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            GitHub 下载代理
-          </button>
-        </div>
 
         <!-- 友好模式 -->
         <div class="mode-toggle-bar" id="mode-toggle-bar" style="display:none">
@@ -3162,13 +3153,23 @@
             <button class="platform-card-btn" data-i18n="友好模式_选择下载">选择下载</button>
           </div>
         </div>
+
+        <div style="text-align:center;margin-top:24px">
+          <span class="endby" style="font-size:large" data-fixed>相关链接</span>
+        </div>
+        <div class="accordion-item" style="width:100%;max-width:760px;margin:12px auto 0 auto">
+          <button class="accordion-header proxy-page-btn" onclick="showPage('proxy')" style="justify-content:flex-start;gap:6px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="GitHub 下载代理">GitHub 下载代理</span>
+          </button>
+        </div>
       </div>
     </div>
     <div class="page" id="page-proxy" data-page="proxy" style="display:none;animation:0.4s ease-out 0s 1 normal none running fadeIn">
       <div class="proxy-page-container">
         <div class="github-proxy-section">
-          <h3 class="github-proxy-title">GitHub 下载代理</h3>
-          <p style="text-align:center;color:var(--text-secondary);font-size:14px;margin-bottom:20px">输入 GitHub Release / 仓库 / 文件链接，通过代理加速下载</p>
+          <h3 class="github-proxy-title" data-i18n="GitHub 下载代理">GitHub 下载代理</h3>
+          <p style="text-align:center;color:var(--text-secondary);font-size:14px;margin-bottom:20px" data-i18n="输入GitHub链接描述">输入 GitHub Release / 仓库 / 文件链接，通过代理加速下载</p>
           <div class="github-proxy-container">
             <input type="text" id="github-url-input" class="github-url-input" placeholder="https://github.com/owner/repo/releases">
             <button id="github-proxy-btn" class="github-proxy-btn" onclick="proxyDownloadGithub()">
@@ -3182,11 +3183,11 @@
           <div id="github-proxy-message" class="github-proxy-message"></div>
         </div>
         <div class="proxy-back-row">
-          <a class="proxy-back-btn" onclick="showPage('home')">← 返回下载站</a>
+          <a class="proxy-back-btn" onclick="showPage('home')" data-i18n="返回下载站">← 返回下载站</a>
         </div>
         <div class="accordion" style="margin-top:20px">
           <div class="accordion-item">
-            <button class="accordion-header" onclick="toggleAccordion(this)">下载提速小贴士</button>
+            <button class="accordion-header" onclick="toggleAccordion(this)" data-i18n="下载提速小贴士">下载提速小贴士</button>
             <div class="accordion-body"><div class="accordion-body-inner">
               <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>
               <div class="tips-item"><strong>Chrome 浏览器：</strong><code id="chrome-flags-link2" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>
@@ -3231,22 +3232,22 @@
   <div class="modal-overlay" id="sha-modal">
     <div class="modal-box">
       <div class="modal-title">
-        SHA256 文件校验
+        <span data-i18n="SHA256 文件校验">SHA256 文件校验</span>
         <button class="modal-close" onclick="closeModal('sha-modal')">&times;</button>
       </div>
-      <div class="modal-section-label">SHA256 哈希值</div>
+      <div class="modal-section-label" data-i18n="SHA256 哈希值">SHA256 哈希值</div>
       <div class="modal-hash-row">
         <div class="modal-hash" id="sha-modal-hash"></div>
-        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-hash', this)">复制</button>
+        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-hash', this)" data-i18n="复制">复制</button>
       </div>
-      <div class="modal-section-label">终端校验命令</div>
+      <div class="modal-section-label" data-i18n="终端校验命令">终端校验命令</div>
       <div class="modal-cmd-row">
         <code class="modal-cmd" id="sha-modal-win-cmd"></code>
-        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-win-cmd', this)">复制</button>
+        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-win-cmd', this)" data-i18n="复制">复制</button>
       </div>
       <div class="modal-cmd-row">
         <code class="modal-cmd" id="sha-modal-mac-cmd"></code>
-        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-mac-cmd', this)">复制</button>
+        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-mac-cmd', this)" data-i18n="复制">复制</button>
       </div>
     </div>
   </div>
@@ -3255,16 +3256,16 @@
   <div class="modal-overlay" id="dl-modal">
     <div class="modal-box">
       <div class="modal-title">
-        下载文件
+        <span data-i18n="下载文件">下载文件</span>
         <button class="modal-close" onclick="closeModal('dl-modal')">&times;</button>
       </div>
-      <div class="modal-proxy-info">第三方代理为：<strong id="dl-modal-proxy">—</strong></div>
-      <div class="modal-section-label">下载链接</div>
+      <div class="modal-proxy-info"><span data-i18n="第三方代理为：">第三方代理为：</span><strong id="dl-modal-proxy">—</strong></div>
+      <div class="modal-section-label" data-i18n="下载链接">下载链接</div>
       <div class="modal-link-row">
         <code class="modal-link-input" id="dl-modal-link"></code>
-        <button class="modal-copy-btn" onclick="copyModalText('dl-modal-link', this)">复制</button>
+        <button class="modal-copy-btn" onclick="copyModalText('dl-modal-link', this)" data-i18n="复制">复制</button>
       </div>
-      <button class="modal-dl-confirm" id="dl-modal-confirm">确认下载</button>
+      <button class="modal-dl-confirm" id="dl-modal-confirm" data-i18n="确认下载_通用">确认下载</button>
     </div>
   </div>
 
@@ -3487,9 +3488,9 @@
       itemsHtml += `</div>`;
       itemsHtml += `<div class="download-item-actions">`;
       if (sha256) {
-        itemsHtml += `<button class="download-item-action-btn" title="SHA256 校验" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}')" style="width:auto;padding:0 10px;font-size:11px;font-weight:700;">SHA256值</button>`;
+        itemsHtml += `<button class="download-item-action-btn" title="${translations[currentLang]['SHA256 校验'] || 'SHA256 校验'}" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}')" style="width:auto;padding:0 10px;font-size:11px;font-weight:700;">SHA256值</button>`;
       }
-      itemsHtml += `<button class="download-item-action-btn dl-btn" title="下载" onclick="event.stopPropagation();showDownloadModal('${safeName}','${encodedUrl}')"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></button>`;
+      itemsHtml += `<button class="download-item-action-btn dl-btn" title="${translations[currentLang]['下载_按钮'] || '下载'}" onclick="event.stopPropagation();showDownloadModal('${safeName}','${encodedUrl}')"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></button>`;
       itemsHtml += `</div>`;
       itemsHtml += '</div>';
     });
@@ -3503,7 +3504,7 @@
 
   function getFilterI18nKey(val) {
     const map = {
-      'x64': 'x64', 'x86': 'x86', 'arm64': 'arm64', 'arm': 'arm', 'amd': 'amd', 'arm32': 'arm32', 'all': '全部',
+      'x64': 'x64', 'x86': 'x86', 'arm64': 'arm64', 'arm': 'arm', 'amd': 'amd', 'arm32': 'arm32', 'all': translations[currentLang]['全部'] || '全部',
       'exe': 'exe', 'msi': 'msi', 'appx': 'appx', 'dmg': 'dmg', 'pkg': 'pkg',
       'deb': 'deb', 'rpm': 'rpm', 'appimage': 'appimage', 'snap': 'snap', 'tar': 'tar', 'tarxz': 'tarxz',
       'pkgzst': 'pkgzst', 'tarzst': 'tarzst', 'zip': 'zip'
@@ -3616,7 +3617,7 @@
       }
       html += '</div>';
     });
-    return html || '<p>暂无更新日志</p>';
+    return html || `<p>${translations[currentLang]['暂无更新日志'] || '暂无更新日志'}</p>`;
   }
   // ──────────────────────────────────────────────────
 
@@ -4070,7 +4071,7 @@
     const originalText = elem.textContent;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
-        elem.textContent = '已复制 ✓';
+        elem.textContent = translations[currentLang]['已复制'] || '已复制 ✓';
         elem.style.color = '#99ff99';
         setTimeout(() => {
           elem.textContent = originalText;
@@ -4094,14 +4095,14 @@
     textarea.select();
     try {
       document.execCommand('copy');
-      elem.textContent = '已复制 ✓';
+      elem.textContent = translations[currentLang]['已复制'] || '已复制 ✓';
       elem.style.color = '#99ff99';
       setTimeout(() => {
         elem.textContent = originalText;
         elem.style.color = '#66ccff';
       }, 1500);
     } catch (e) {
-      alert('请手动复制: ' + text);
+      alert((translations[currentLang]['请手动复制: '] || '请手动复制: ') + text);
     } finally {
       document.body.removeChild(textarea);
     }
@@ -4233,7 +4234,35 @@
       '友好模式_当前平台暂无可下载的文件': '当前平台暂无可下载的文件',
       '友好模式_Windows描述': 'MSI / EXE / APPX / 便携版',
       '友好模式_macOS描述': 'DMG / PKG / ZIP 安装包',
-      '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz'
+      '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz',
+      '第三方下载站': '第三方下载站',
+      'GitHub 下载代理': 'GitHub 下载代理',
+      '输入GitHub链接描述': '输入 GitHub Release / 仓库 / 文件链接，通过代理加速下载',
+      '返回下载站': '← 返回下载站',
+      'SHA256 文件校验': 'SHA256 文件校验',
+      'SHA256 哈希值': 'SHA256 哈希值',
+      '复制': '复制',
+      '已复制': '已复制 ✓',
+      '请手动复制': '请手动复制',
+      '终端校验命令': '终端校验命令',
+      '下载文件': '下载文件',
+      '第三方代理为：': '第三方代理为：',
+      '下载链接': '下载链接',
+      '确认下载_通用': '确认下载',
+      '下载配置': '下载配置',
+      '关闭': '关闭',
+      'SHA256 校验': 'SHA256 校验',
+      '下载_按钮': '下载',
+      '全部': '全部',
+      '个文件': '个文件',
+      '暂无更新日志': '暂无更新日志',
+      '请手动复制: ': '请手动复制: ',
+      '未知代理': '未知代理',
+      '安装指南': '安装指南',
+      'Windows安装指南': '<h3>Windows</h3><p>下载 <code>.exe</code> 或 <code>.msi</code> 文件，双击运行安装即可。</p>',
+      'macOS安装指南': '<h3>macOS</h3><p>下载 <code>.dmg</code> 文件，打开后将应用拖入 <code>应用程序</code> 文件夹。若提示"无法验证开发者"，请前往 <code>系统设置 → 隐私与安全性</code> 点击"仍要打开"。</p>',
+      'Linux安装指南': '<h3>Linux</h3><ul><li><strong>AppImage</strong>：下载后右键属性设为可执行，双击运行。</li><li><strong>.deb</strong>：<code>sudo dpkg -i 文件名.deb</code></li><li><strong>.rpm</strong>：<code>sudo rpm -i 文件名.rpm</code></li></ul>',
+      'SHA256校验说明': '<h3>SHA256 校验</h3><p>下载后请使用上述校验命令验证文件完整性，确保文件未被篡改。</p>'
     },
     en: {
       '官网': 'Official Website',
@@ -4315,7 +4344,35 @@
       '友好模式_当前平台暂无可下载的文件': 'No downloadable files for this platform',
       '友好模式_Windows描述': 'MSI / EXE / APPX / Portable',
       '友好模式_macOS描述': 'DMG / PKG / ZIP Installer',
-      '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz'
+      '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz',
+      '第三方下载站': 'AstraEditor Download - Third-Party Download',
+      'GitHub 下载代理': 'GitHub Proxy',
+      '输入GitHub链接描述': 'Enter a GitHub Release / Repo / File URL to download via proxy',
+      '返回下载站': '← Back to Download',
+      'SHA256 文件校验': 'SHA256 Verification',
+      'SHA256 哈希值': 'SHA256 Hash',
+      '复制': 'Copy',
+      '已复制': 'Copied ✓',
+      '请手动复制': 'Please copy manually',
+      '终端校验命令': 'Terminal Verification',
+      '下载文件': 'Download File',
+      '第三方代理为：': 'Third-party proxy: ',
+      '下载链接': 'Download Link',
+      '确认下载_通用': 'Confirm Download',
+      '下载配置': 'Download Configuration',
+      '关闭': 'Close',
+      'SHA256 校验': 'SHA256 Verify',
+      '下载_按钮': 'Download',
+      '全部': 'All',
+      '个文件': ' files',
+      '暂无更新日志': 'No changelog available',
+      '请手动复制: ': 'Please copy manually: ',
+      '未知代理': 'Unknown Proxy',
+      '安装指南': 'Installation Guide',
+      'Windows安装指南': '<h3>Windows</h3><p>Download the <code>.exe</code> or <code>.msi</code> file and double-click to install.</p>',
+      'macOS安装指南': '<h3>macOS</h3><p>Download the <code>.dmg</code> file, open it, and drag the app into the <code>Applications</code> folder. If you see "developer cannot be verified", go to <code>System Settings → Privacy & Security</code> and click "Open Anyway".</p>',
+      'Linux安装指南': '<h3>Linux</h3><ul><li><strong>AppImage</strong>: Download, set as executable in properties, double-click to run.</li><li><strong>.deb</strong>: <code>sudo dpkg -i filename.deb</code></li><li><strong>.rpm</strong>: <code>sudo rpm -i filename.rpm</code></li></ul>',
+      'SHA256校验说明': '<h3>SHA256 Verification</h3><p>After downloading, use the above command to verify file integrity and ensure it has not been tampered with.</p>'
     }
   };
 
@@ -4482,7 +4539,7 @@
     html += `<div class="version-meta">`;
     html += `<span class="version-tag">${release.tag_name}</span>`;
     html += `<span class="version-date">${new Date(release.published_at).toLocaleDateString('zh-CN')}</span>`;
-    html += `<span class="version-size-info">${assetCount} 个文件 · ${formatSize(totalSize)}</span>`;
+    html += `<span class="version-size-info">${assetCount} ${translations[currentLang]['个文件'] || '个文件'} · ${formatSize(totalSize)}</span>`;
     html += `</div>`;
     html += `</div>`;
 
@@ -4534,13 +4591,10 @@
     html += `<div class="accordion-item">`;
     html += `<button class="accordion-header" onclick="toggleAccordion(this)">${translations[currentLang]['安装指南'] || '安装指南 / 常见问题'}</button>`;
     html += `<div class="accordion-body"><div class="accordion-body-inner">`;
-    html += `<h3>Windows</h3><p>下载 <code>.exe</code> 或 <code>.msi</code> 文件，双击运行安装即可。</p>`;
-    html += `<h3>macOS</h3><p>下载 <code>.dmg</code> 文件，打开后将应用拖入 <code>应用程序</code> 文件夹。若提示"无法验证开发者"，请前往 <code>系统设置 → 隐私与安全性</code> 点击"仍要打开"。</p>`;
-    html += `<h3>Linux</h3>`;
-    html += `<ul><li><strong>AppImage</strong>：下载后右键属性设为可执行，双击运行。</li>`;
-    html += `<li><strong>.deb</strong>：<code>sudo dpkg -i 文件名.deb</code></li>`;
-    html += `<li><strong>.rpm</strong>：<code>sudo rpm -i 文件名.rpm</code></li></ul>`;
-    html += `<h3>SHA256 校验</h3><p>下载后请使用上述校验命令验证文件完整性，确保文件未被篡改。</p>`;
+    html += translations[currentLang]['Windows安装指南'] || '<h3>Windows</h3><p>下载 <code>.exe</code> 或 <code>.msi</code> 文件，双击运行安装即可。</p>';
+    html += translations[currentLang]['macOS安装指南'] || '<h3>macOS</h3><p>下载 <code>.dmg</code> 文件，打开后将应用拖入 <code>应用程序</code> 文件夹。若提示"无法验证开发者"，请前往 <code>系统设置 → 隐私与安全性</code> 点击"仍要打开"。</p>';
+    html += translations[currentLang]['Linux安装指南'] || '<h3>Linux</h3><ul><li><strong>AppImage</strong>：下载后右键属性设为可执行，双击运行。</li><li><strong>.deb</strong>：<code>sudo dpkg -i 文件名.deb</code></li><li><strong>.rpm</strong>：<code>sudo rpm -i 文件名.rpm</code></li></ul>';
+    html += translations[currentLang]['SHA256校验说明'] || '<h3>SHA256 校验</h3><p>下载后请使用上述校验命令验证文件完整性，确保文件未被篡改。</p>';
     html += `</div></div>`;
     html += `</div>`;
     html += `<div class="accordion-item">`;
@@ -4657,10 +4711,10 @@
         'ghproxy.net': 'ghproxy.net',
         'gh-proxy.com': 'gh-proxy.com',
         'gh-proxy.org': 'gh-proxy.org',
-        'github.com': 'GitHub（直连）'
+        'github.com': translations[currentLang]['github'] || 'GitHub（直连）'
       };
       return map[host] || host;
-    } catch(e) { return '未知代理'; }
+    } catch(e) { return translations[currentLang]['未知代理'] || '未知代理'; }
   }
 
   function closeModal(id) {
@@ -4673,7 +4727,7 @@
     const originalText = btn.textContent;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = '已复制 ✓';
+        btn.textContent = translations[currentLang]['已复制'] || '已复制 ✓';
         btn.style.background = '#0099ff';
         btn.style.color = '#fff';
         setTimeout(() => {
@@ -4699,7 +4753,7 @@
     textarea.select();
     try {
       document.execCommand('copy');
-      btn.textContent = '已复制 ✓';
+      btn.textContent = translations[currentLang]['已复制'] || '已复制 ✓';
       btn.style.background = '#0099ff';
       btn.style.color = '#fff';
       setTimeout(() => {
@@ -4708,7 +4762,7 @@
         btn.style.color = '';
       }, 1500);
     } catch(e) {
-      alert('请手动复制');
+      alert(translations[currentLang]['请手动复制'] || '请手动复制');
     } finally {
       document.body.removeChild(textarea);
     }

@@ -2849,24 +2849,22 @@
     <div class="page" id="page-home" data-page="home" style="display:block;animation:0.4s ease-out 0s 1 normal none running fadeIn">
       <div class="download-section">
         <div id="download-cards" class="download-cards"></div>
-        <div class="accordion" style="max-width:760px;margin:0 auto 16px auto">
-            <div class="accordion-item">
-              <button class="accordion-header" onclick="toggleAccordion(this)">下载提速小贴士</button>
-              <div class="accordion-body"><div class="accordion-body-inner">
-                <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>
-                <div class="tips-item"><strong>Chrome 浏览器：</strong><code id="chrome-flags-link" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>
-                <div class="tips-item"><strong>Edge 新版浏览器：</strong><code id="edge-flags-link" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code></div>
-                <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。</p>
-                <div class="tips-item"><strong>中国内地各省份代理分配方案：</strong>
-                  <div style="margin-top:8px;font-size:12.5px;line-height:1.9;color:var(--text-secondary)">
-                    <div><span style="color:#66ccff">● ghproxy.net</span> — 北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</div>
-                    <div><span style="color:#66ccff">● gh-proxy.com</span> — 上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</div>
-                    <div><span style="color:#66ccff">● gh-proxy.org</span> — 河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</div>
-                    <div><span style="color:#66ccff">● github</span> — 港澳台地区及海外所有国家</div>
-                  </div>
+        <div class="accordion-item" style="max-width:760px;margin:0 auto;border-top-left-radius:0;border-top-right-radius:0;border-top:0">
+            <button class="accordion-header" onclick="toggleAccordion(this)">下载提速小贴士</button>
+            <div class="accordion-body"><div class="accordion-body-inner">
+              <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>
+              <div class="tips-item"><strong>Chrome 浏览器：</strong><code id="chrome-flags-link" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>
+              <div class="tips-item"><strong>Edge 新版浏览器：</strong><code id="edge-flags-link" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code></div>
+              <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。</p>
+              <div class="tips-item"><strong>中国内地各省份代理分配方案：</strong>
+                <div style="margin-top:8px;font-size:12.5px;line-height:1.9;color:var(--text-secondary)">
+                  <div><span style="color:#66ccff">● ghproxy.net</span> — 北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</div>
+                  <div><span style="color:#66ccff">● gh-proxy.com</span> — 上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</div>
+                  <div><span style="color:#66ccff">● gh-proxy.org</span> — 河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</div>
+                  <div><span style="color:#66ccff">● github</span> — 港澳台地区及海外所有国家</div>
                 </div>
-              </div></div>
-            </div>
+              </div>
+            </div></div>
           </div>
           <a class="proxy-nav-btn" onclick="showPage('proxy')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>GitHub 下载代理

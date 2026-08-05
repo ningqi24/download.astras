@@ -5354,6 +5354,23 @@
       return;
     }
 
+    // Auto-select defaults if nothing selected
+    if (friendlyPlatform === 'windows' && friendlySelectedSys === null) {
+      friendlySelectedSys = 'modern';
+    }
+    let archs = getAvailableArchs();
+    if (archs.length > 0 && friendlySelectedArch === null) {
+      friendlySelectedArch = archs[0];
+    } else if (archs.length === 0) {
+      friendlySelectedArch = null;
+    }
+    let pkgs = getAvailablePkgs();
+    if (pkgs.length > 0 && friendlySelectedPkg === null) {
+      friendlySelectedPkg = pkgs[0].key;
+    } else if (pkgs.length === 0) {
+      friendlySelectedPkg = null;
+    }
+
     // Step 2: System compatibility (Windows only)
     const sysSection = document.getElementById('friendly-system-section');
     const sysBtns = document.getElementById('friendly-system-btns');
@@ -5377,7 +5394,7 @@
     // Step 3: Architecture
     const archSection = document.getElementById('friendly-arch-section');
     const archBtns = document.getElementById('friendly-arch-btns');
-    const archs = getAvailableArchs();
+    archs = getAvailableArchs();
     if (archs.length > 0) {
       archSection.style.display = '';
       let archHTML = '';
@@ -5398,7 +5415,7 @@
     // Step 4: Package type
     const pkgSection = document.getElementById('friendly-pkg-section');
     const pkgBtns = document.getElementById('friendly-pkg-btns');
-    const pkgs = getAvailablePkgs();
+    pkgs = getAvailablePkgs();
     if (pkgs.length > 0) {
       pkgSection.style.display = '';
       let pkgHTML = '';
@@ -5438,16 +5455,18 @@
   }
 
   function getAvailableArchs() {
+    const archOrder = { 'x64': 1, 'x86': 2, 'arm64': 3, 'arm32': 4 };
     const set = new Set();
     friendlyAssets.forEach(a => {
-      const name = (a.name || '').toLowerCase();
-      if (name.includes('arm64') || name.includes('aarch64') || name.includes('arm')) set.add('arm64');
-      else if (name.includes('x86') || name.includes('32') || name.includes('legacy') || name.includes('win7')) set.add('x86');
-      else if (name.includes('x64') || name.includes('64') || name.includes('amd64')) set.add('x64');
-      else if (name.includes('.appimage')) set.add('x64'); // AppImage default
-      else set.add('x64'); // default
+      let arch = detectArch(a.name, friendlyPlatform);
+      // Normalize: macOS 'arm' → 'arm64', Linux 'amd' → 'x64', Linux 'arm' → 'arm64'
+      if (arch === 'arm') arch = 'arm64';
+      if (arch === 'amd') arch = 'x64';
+      if (arch && arch !== 'unknown' && arch !== 'other') set.add(arch);
     });
-    return Array.from(set);
+    const arches = Array.from(set);
+    arches.sort((a, b) => (archOrder[a] || 99) - (archOrder[b] || 99));
+    return arches;
   }
 
   function getAvailablePkgs() {
@@ -5557,7 +5576,7 @@
         if (sha) {
           const shaBtn = document.createElement('button');
           shaBtn.className = 'friendly-btn-dl';
-          shaBtn.style.cssText = 'background:#444;font-size:11px;padding:0 8px;min-width:auto';
+          shaBtn.style.cssText = 'font-size:11px;padding:0 8px;min-width:auto';
           shaBtn.setAttribute('data-i18n', 'SHA256 校验');
           shaBtn.textContent = translations[currentLang]['SHA256 校验'] || 'SHA256 校验';
           shaBtn.onclick = function(e) { e.stopPropagation(); showShaModal(safeName, encodedSha); };

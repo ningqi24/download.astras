@@ -4072,10 +4072,10 @@
 
   /* ========== 弹窗函数 ========== */
 
-  function showShaModal(name, sha256, winCmd, macCmd) {
+  function showShaModal(name, sha256) {
     document.getElementById('sha-modal-hash').textContent = sha256;
-    document.getElementById('sha-modal-win-cmd').textContent = winCmd;
-    document.getElementById('sha-modal-mac-cmd').textContent = macCmd;
+    document.getElementById('sha-modal-win-cmd').textContent = `certutil -hashfile "${name}" SHA256`;
+    document.getElementById('sha-modal-mac-cmd').textContent = `shasum -a 256 "${name}"`;
     document.getElementById('sha-modal').classList.add('show');
   }
 

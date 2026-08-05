@@ -1135,6 +1135,11 @@
       transition: color 0.2s;
     }
     .friendly-modal-close:hover { color: var(--text-primary); }
+    .friendly-modal-close:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
     .friendly-modal-header {
       display: flex;
       align-items: center;
@@ -3133,28 +3138,28 @@
 
         <!-- 友好模式 -->
         <div class="mode-toggle-bar" id="mode-toggle-bar" style="display:none">
-          <button class="mode-toggle-btn active" onclick="switchMode('normal')">普通模式</button>
-          <button class="mode-toggle-btn" onclick="switchMode('friendly')">友好模式</button>
+          <button class="mode-toggle-btn active" onclick="switchMode('normal')" data-i18n="友好模式_普通模式">普通模式</button>
+          <button class="mode-toggle-btn" onclick="switchMode('friendly')" data-i18n="友好模式_友好模式">友好模式</button>
         </div>
         <div class="platform-grid" id="platform-grid" style="display:none">
           <div class="platform-card" onclick="openFriendlyModal('windows')">
             <div class="platform-card-icon"><img src="images/windows.svg" alt="Windows"></div>
             <div class="platform-card-name">Windows</div>
-            <div class="platform-card-desc">MSI / EXE / 便携版</div>
-            <button class="platform-card-btn">选择下载</button>
+            <div class="platform-card-desc" data-i18n="友好模式_Windows描述">MSI / EXE / APPX / 便携版</div>
+            <button class="platform-card-btn" data-i18n="友好模式_选择下载">选择下载</button>
           </div>
           <div class="platform-card" onclick="openFriendlyModal('macos')">
             <div class="platform-card-icon"><img src="images/apple.svg" alt="macOS"></div>
             <div class="platform-card-name">macOS</div>
-            <div class="platform-card-desc">DMG 安装包</div>
-            <button class="platform-card-btn">选择下载</button>
+            <div class="platform-card-desc" data-i18n="友好模式_macOS描述">DMG / PKG / ZIP 安装包</div>
+            <button class="platform-card-btn" data-i18n="友好模式_选择下载">选择下载</button>
           </div>
           <div class="platform-card recommended" id="linux-card" onclick="openFriendlyModal('linux')">
-            <span class="recommended-badge">适合此设备</span>
+            <span class="recommended-badge" data-i18n="友好模式_适合此设备">适合此设备</span>
             <div class="platform-card-icon"><img src="images/linux.svg" alt="Linux"></div>
             <div class="platform-card-name">Linux</div>
-            <div class="platform-card-desc">DEB / RPM / AppImage</div>
-            <button class="platform-card-btn">选择下载</button>
+            <div class="platform-card-desc" data-i18n="友好模式_Linux描述">DEB / RPM / AppImage / tar.gz</div>
+            <button class="platform-card-btn" data-i18n="友好模式_选择下载">选择下载</button>
           </div>
         </div>
       </div>
@@ -3264,34 +3269,34 @@
   </div>
 
   <!-- 友好模式 下载配置对话框 -->
-  <div class="friendly-modal-overlay" id="friendly-modal">
+  <div class="friendly-modal-overlay" id="friendly-modal" role="dialog" aria-modal="true" aria-label="下载配置">
     <div class="friendly-modal-box">
-      <button class="friendly-modal-close" onclick="closeFriendlyModal()">&times;</button>
+      <button class="friendly-modal-close" onclick="closeFriendlyModal()" aria-label="关闭">&times;</button>
       <div class="friendly-modal-header">
         <div class="friendly-modal-icon"><img id="friendly-modal-icon-img" src="images/windows.svg" alt=""></div>
         <div>
           <div class="friendly-modal-title" id="friendly-modal-title">Windows</div>
-          <div class="friendly-modal-subtitle" id="friendly-modal-subtitle">选择版本与配置后开始下载</div>
+          <div class="friendly-modal-subtitle" id="friendly-modal-subtitle" data-i18n="友好模式_选择版本与配置后开始下载">选择版本与配置后开始下载</div>
         </div>
       </div>
       <div class="friendly-modal-loading" id="friendly-modal-loading">
         <div class="friendly-modal-loading-spinner"></div>
-        <span>正在获取版本列表...</span>
+        <span data-i18n="友好模式_正在获取版本列表">正在获取版本列表...</span>
       </div>
       <div id="friendly-modal-content" style="display:none">
         <div class="friendly-modal-section">
-          <div class="friendly-modal-label">版本</div>
+          <div class="friendly-modal-label" data-i18n="友好模式_版本">版本</div>
           <select class="friendly-modal-select" id="friendly-modal-version"></select>
         </div>
         <div class="friendly-modal-section" id="friendly-arch-section">
-          <div class="friendly-modal-label">处理器架构</div>
-          <select class="friendly-modal-select" id="friendly-modal-arch"></select>
+          <div class="friendly-modal-label" data-i18n="友好模式_处理器架构">处理器架构</div>
+          <select class="friendly-modal-select" id="friendly-modal-arch" onchange="onFriendlyArchChange()"></select>
         </div>
         <div class="friendly-modal-section" id="friendly-pkg-section">
-          <div class="friendly-modal-label">包类型</div>
+          <div class="friendly-modal-label" data-i18n="友好模式_包类型">包类型</div>
           <select class="friendly-modal-select" id="friendly-modal-pkg"></select>
         </div>
-        <button class="friendly-modal-download" id="friendly-modal-confirm" onclick="triggerFriendlyDownload()">确认下载</button>
+        <button class="friendly-modal-download" id="friendly-modal-confirm" onclick="triggerFriendlyDownload()" data-i18n="友好模式_确认下载">确认下载</button>
       </div>
     </div>
   </div>
@@ -4212,7 +4217,23 @@
       '华北东北': '北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江',
       '华东西南': '上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏',
       '华中华南西北': '河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆',
-      '港澳台海外': '港澳台地区及海外所有国家'
+      '港澳台海外': '港澳台地区及海外所有国家',
+      '友好模式_普通模式': '普通模式',
+      '友好模式_友好模式': '友好模式',
+      '友好模式_选择下载': '选择下载',
+      '友好模式_适合此设备': '适合此设备',
+      '友好模式_确认下载': '确认下载',
+      '友好模式_版本': '版本',
+      '友好模式_处理器架构': '处理器架构',
+      '友好模式_包类型': '包类型',
+      '友好模式_选择版本与配置后开始下载': '选择版本与配置后开始下载',
+      '友好模式_正在获取版本列表': '正在获取版本列表...',
+      '友好模式_暂无可用的下载版本': '暂无可用的下载版本',
+      '友好模式_加载版本列表失败': '加载版本列表失败',
+      '友好模式_当前平台暂无可下载的文件': '当前平台暂无可下载的文件',
+      '友好模式_Windows描述': 'MSI / EXE / APPX / 便携版',
+      '友好模式_macOS描述': 'DMG / PKG / ZIP 安装包',
+      '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz'
     },
     en: {
       '官网': 'Official Website',
@@ -4278,7 +4299,23 @@
       '华北东北': 'Beijing, Tianjin, Hebei, Shanxi, Inner Mongolia, Liaoning, Jilin, Heilongjiang',
       '华东西南': 'Shanghai, Jiangsu, Zhejiang, Anhui, Fujian, Jiangxi, Shandong, Chongqing, Sichuan, Guizhou, Yunnan, Tibet',
       '华中华南西北': 'Henan, Hubei, Hunan, Guangdong, Guangxi, Hainan, Shaanxi, Gansu, Qinghai, Ningxia, Xinjiang',
-      '港澳台海外': 'Hong Kong, Macau, Taiwan & All Overseas Regions'
+      '港澳台海外': 'Hong Kong, Macau, Taiwan & All Overseas Regions',
+      '友好模式_普通模式': 'Standard Mode',
+      '友好模式_友好模式': 'Friendly Mode',
+      '友好模式_选择下载': 'Select & Download',
+      '友好模式_适合此设备': 'Best for this device',
+      '友好模式_确认下载': 'Confirm Download',
+      '友好模式_版本': 'Version',
+      '友好模式_处理器架构': 'Architecture',
+      '友好模式_包类型': 'Package Type',
+      '友好模式_选择版本与配置后开始下载': 'Choose version and configuration to download',
+      '友好模式_正在获取版本列表': 'Fetching releases...',
+      '友好模式_暂无可用的下载版本': 'No releases available',
+      '友好模式_加载版本列表失败': 'Failed to load releases',
+      '友好模式_当前平台暂无可下载的文件': 'No downloadable files for this platform',
+      '友好模式_Windows描述': 'MSI / EXE / APPX / Portable',
+      '友好模式_macOS描述': 'DMG / PKG / ZIP Installer',
+      '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz'
     }
   };
 
@@ -4691,6 +4728,8 @@
   let friendlyMode = 'normal';
   let friendlyPlatform = '';
   let friendlyAssets = [];
+  let friendlyRelease = null;
+  let _friendlyInitialized = false;
 
   function switchMode(mode) {
     friendlyMode = mode;
@@ -4708,13 +4747,9 @@
   function updateModeVisibility() {
     const downloadCards = document.getElementById('download-cards');
     const platformGrid = document.getElementById('platform-grid');
-    const modeToggleBar = document.getElementById('mode-toggle-bar');
     if (friendlyMode === 'friendly') {
       downloadCards.style.display = 'none';
       platformGrid.style.display = 'grid';
-      if (typeof downloadData !== 'undefined' && Object.keys(downloadData).length > 0) {
-        // Data already loaded, refresh grid
-      }
     } else {
       downloadCards.style.display = '';
       platformGrid.style.display = 'none';
@@ -4722,23 +4757,44 @@
   }
 
   function initFriendlyMode() {
+    if (_friendlyInitialized) return;
+    _friendlyInitialized = true;
+
     const ua = navigator.userAgent.toLowerCase();
-    const linuxCard = document.getElementById('linux-card');
-    if (linuxCard) {
-      if (ua.includes('linux') && !ua.includes('android')) {
-        linuxCard.classList.add('recommended');
-        linuxCard.querySelector('.recommended-badge') || (function(){
+    const cards = document.querySelectorAll('.platform-card');
+    // UA-based highlighting: mark matching platform card
+    cards.forEach(card => {
+      const onclick = card.getAttribute('onclick') || '';
+      if (ua.includes('linux') && !ua.includes('android') && onclick.includes("'linux'")) {
+        card.classList.add('recommended');
+        if (!card.querySelector('.recommended-badge')) {
           const badge = document.createElement('span');
           badge.className = 'recommended-badge';
-          badge.textContent = '适合此设备';
-          linuxCard.insertBefore(badge, linuxCard.firstChild);
-        })();
-      } else if (ua.includes('mac')) {
-        // Highlight macOS
-      } else if (ua.includes('win')) {
-        // Highlight Windows
+          badge.setAttribute('data-i18n', '友好模式_适合此设备');
+          badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+          card.insertBefore(badge, card.firstChild);
+        }
+      } else if (ua.includes('mac') && !ua.includes('iphone') && !ua.includes('ipad') && onclick.includes("'macos'")) {
+        card.classList.add('recommended');
+        if (!card.querySelector('.recommended-badge')) {
+          const badge = document.createElement('span');
+          badge.className = 'recommended-badge';
+          badge.setAttribute('data-i18n', '友好模式_适合此设备');
+          badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+          card.insertBefore(badge, card.firstChild);
+        }
+      } else if (ua.includes('win') && onclick.includes("'windows'")) {
+        card.classList.add('recommended');
+        if (!card.querySelector('.recommended-badge')) {
+          const badge = document.createElement('span');
+          badge.className = 'recommended-badge';
+          badge.setAttribute('data-i18n', '友好模式_适合此设备');
+          badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+          card.insertBefore(badge, card.firstChild);
+        }
       }
-    }
+    });
+
     const saved = localStorage.getItem('downloadMode');
     if (saved === 'friendly') {
       switchMode('friendly');
@@ -4752,18 +4808,29 @@
   function openFriendlyModal(platform) {
     friendlyPlatform = platform;
     friendlyAssets = [];
+    friendlyRelease = null;
     const modal = document.getElementById('friendly-modal');
     const loading = document.getElementById('friendly-modal-loading');
     const content = document.getElementById('friendly-modal-content');
     const title = document.getElementById('friendly-modal-title');
     const icon = document.getElementById('friendly-modal-icon-img');
+    const subtitle = document.getElementById('friendly-modal-subtitle');
     const platformNames = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
     title.textContent = platformNames[platform] || platform;
     icon.src = 'images/' + ({windows:'windows',macos:'apple',linux:'linux'}[platform]) + '.svg';
+    subtitle.textContent = translations[currentLang]['友好模式_选择版本与配置后开始下载'] || '选择版本与配置后开始下载';
 
+    // Reset loading spinner HTML (in case showFriendlyError trashed it)
+    loading.innerHTML = '<div class="friendly-modal-loading-spinner"></div><span>' + (translations[currentLang]['友好模式_正在获取版本列表'] || '正在获取版本列表...') + '</span>';
     loading.style.display = 'flex';
     content.style.display = 'none';
     modal.classList.add('show');
+
+    // Focus trap: focus first focusable element in modal
+    setTimeout(() => {
+      const closeBtn = modal.querySelector('.friendly-modal-close');
+      if (closeBtn) closeBtn.focus();
+    }, 100);
 
     loadFriendlyVersions(platform);
   }
@@ -4773,22 +4840,24 @@
   }
 
   function loadFriendlyVersions(platform) {
-    if (typeof downloadData === 'undefined' || !downloadData) {
+    if (typeof downloadData === 'undefined' || !downloadData || Object.keys(downloadData).every(k => (downloadData[k]||[]).length === 0)) {
       fetch('public/releases.json').then(r => r.json()).then(data => {
         if (!data.hasRelease || !data.releases || data.releases.length === 0) {
-          showFriendlyError('暂无可用的下载版本');
+          showFriendlyError(translations[currentLang]['友好模式_暂无可用的下载版本'] || '暂无可用的下载版本');
           return;
         }
         const release = data.releases[0];
+        friendlyRelease = release;
         const proxyPrefix = getProxyPrefix();
         const assets = release.assets.map(a => ({
           ...a,
           proxied_url: proxyPrefix ? proxyPrefix + a.original_url : a.original_url
         }));
         categorizeAndRender(assets, release, platform);
-      }).catch(() => showFriendlyError('加载版本列表失败'));
+      }).catch(() => showFriendlyError(translations[currentLang]['友好模式_加载版本列表失败'] || '加载版本列表失败'));
     } else {
-      const release = allReleases ? allReleases[0] : null;
+      const release = (typeof allReleases !== 'undefined' && allReleases && allReleases.length > 0) ? allReleases[0] : null;
+      friendlyRelease = release;
       let assets = [];
       Object.entries(downloadData).forEach(([key, arr]) => {
         arr.forEach(a => assets.push({...a, _platform: key}));
@@ -4798,22 +4867,20 @@
   }
 
   function categorizeAndRender(assets, release, platform) {
-    const platformNames = ['windows', 'macos', 'linux'];
-    // Filter assets for current platform
     let platformAssets = [];
     assets.forEach(a => {
       const name = (a.name || '').toLowerCase();
-      if (platform === 'windows' && (name.includes('.exe') || name.includes('.msi') || name.includes('windows'))) {
+      if (platform === 'windows' && (name.includes('.exe') || name.includes('.msi') || name.includes('.appx') || name.includes('windows'))) {
         platformAssets.push(a);
-      } else if (platform === 'macos' && (name.includes('.dmg') || name.includes('macos'))) {
+      } else if (platform === 'macos' && (name.includes('.dmg') || name.includes('.pkg') || name.includes('macos'))) {
         platformAssets.push(a);
-      } else if (platform === 'linux' && (name.includes('.appimage') || name.includes('.deb') || name.includes('.rpm') || name.includes('.tar.gz') || name.includes('linux'))) {
+      } else if (platform === 'linux' && (name.includes('.appimage') || name.includes('.deb') || name.includes('.rpm') || name.includes('.tar.gz') || name.includes('.snap') || name.includes('linux'))) {
         platformAssets.push(a);
       }
     });
 
     if (platformAssets.length === 0) {
-      showFriendlyError('当前平台暂无可下载的文件');
+      showFriendlyError(translations[currentLang]['友好模式_当前平台暂无可下载的文件'] || '当前平台暂无可下载的文件');
       return;
     }
 
@@ -4832,7 +4899,7 @@
     // Arch options
     renderFriendlyArchOptions(platform, platformAssets);
 
-    // Package type options
+    // Package type options (initial, all)
     renderFriendlyPkgOptions(platform, platformAssets);
 
     document.getElementById('friendly-modal-loading').style.display = 'none';
@@ -4847,31 +4914,49 @@
       const arch = detectArch(a.name, platform);
       archs.add(arch);
     });
-    const labels = { x64: 'x64 (64 位)', x86: 'x86 (32 位)', arm64: 'ARM64', arm: 'ARM (Apple Silicon)', amd: 'AMD64 (64 位)', arm32: 'ARM 32 位' };
+    const labels = { x64: 'x64 (64-bit)', x86: 'x86 (32-bit)', arm64: 'ARM64', arm: 'ARM (Apple Silicon)', amd: 'AMD64 (64-bit)', arm32: 'ARM 32-bit' };
     archSelect.innerHTML = '';
     if (archs.size <= 1) {
       archSection.style.display = 'none';
+      // Still populate with the single option so archSelect.value is valid
+      const arr = Array.from(archs);
+      if (arr.length === 1) {
+        const opt = document.createElement('option');
+        opt.value = arr[0];
+        opt.textContent = labels[arr[0]] || arr[0];
+        archSelect.appendChild(opt);
+      }
     } else {
       archSection.style.display = '';
-      const all = Array.from(archs);
-      const val = all[0];
-      const opt = document.createElement('option');
-      opt.value = val;
-      opt.textContent = labels[val] || val;
-      archSelect.appendChild(opt);
+      const sorted = Array.from(archs).sort();
+      sorted.forEach(val => {
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = labels[val] || val;
+        archSelect.appendChild(opt);
+      });
     }
+    // Re-sync pkg options to current arch selection
+    onFriendlyArchChange();
   }
 
   function renderFriendlyPkgOptions(platform, assets) {
     const pkgSection = document.getElementById('friendly-pkg-section');
     const pkgSelect = document.getElementById('friendly-modal-pkg');
+    const archSelect = document.getElementById('friendly-modal-arch');
+    const archSection = document.getElementById('friendly-arch-section');
+    const selectedArch = archSection.style.display !== 'none' ? archSelect.value : null;
+
     const pkgLabels = {
-      windows: { exe: 'EXE 安装包', msi: 'MSI 安装包', appx: 'APPX 安装包', zip: '便携 ZIP' },
-      macos: { dmg: 'DMG 安装包', pkg: 'PKG 安装包', zip: 'ZIP 压缩包' },
-      linux: { deb: 'DEB 安装包', rpm: 'RPM 安装包', appimage: 'AppImage 便携版', tar: 'TAR.GZ 便携版' }
+      windows: { exe: 'EXE', msi: 'MSI', appx: 'APPX', zip: 'Portable ZIP' },
+      macos: { dmg: 'DMG', pkg: 'PKG', zip: 'ZIP' },
+      linux: { deb: 'DEB', rpm: 'RPM', appimage: 'AppImage', tar: 'tar.gz', snap: 'Snap', tarxz: 'tar.xz', pkgzst: 'pkg.tar.zst', tarzst: 'tar.zst' }
     };
     pkgSelect.innerHTML = '';
     assets.forEach(a => {
+      const arch = detectArch(a.name, platform);
+      // Filter by selected arch (if applicable)
+      if (selectedArch && arch !== selectedArch) return;
       const suffix = detectSuffix(a.name, platform);
       const label = (pkgLabels[platform] || {})[suffix] || ('.' + suffix);
       const exists = Array.from(pkgSelect.options).find(o => o.value === suffix);
@@ -4882,31 +4967,38 @@
         pkgSelect.appendChild(opt);
       }
     });
-    if (assets.length <= 1) {
+    if (pkgSelect.options.length <= 1) {
       pkgSection.style.display = 'none';
     } else {
       pkgSection.style.display = '';
     }
   }
 
+  function onFriendlyArchChange() {
+    // Re-render pkg options filtered by current arch
+    renderFriendlyPkgOptions(friendlyPlatform, friendlyAssets);
+  }
+
   function triggerFriendlyDownload() {
-    const versionSelect = document.getElementById('friendly-modal-version');
     const archSelect = document.getElementById('friendly-modal-arch');
     const pkgSelect = document.getElementById('friendly-modal-pkg');
-    const selectedPkg = pkgSelect.value;
-    let targetArch = archSelect.style.display !== 'none' ? archSelect.value : '';
     const archSection = document.getElementById('friendly-arch-section');
+    const selectedPkg = pkgSelect.value;
+    const archHidden = archSection.style.display === 'none';
+    const targetArch = archHidden ? null : archSelect.value;
 
     let match = null;
-    friendlyAssets.forEach(a => {
+    for (let i = 0; i < friendlyAssets.length; i++) {
+      const a = friendlyAssets[i];
       const arch = detectArch(a.name, friendlyPlatform);
       const suffix = detectSuffix(a.name, friendlyPlatform);
       if (suffix === selectedPkg) {
-        if (!targetArch || arch === targetArch || archSection.style.display === 'none') {
+        if (!targetArch || arch === targetArch) {
           match = a;
+          break;
         }
       }
-    });
+    }
 
     if (!match && friendlyAssets.length > 0) {
       match = friendlyAssets[0];
@@ -4922,21 +5014,55 @@
 
   function showFriendlyError(msg) {
     const loading = document.getElementById('friendly-modal-loading');
+    const content = document.getElementById('friendly-modal-content');
     loading.innerHTML = '<span style="color:#ff6b6b">' + msg + '</span>';
     loading.style.display = 'flex';
+    content.style.display = 'none';
   }
 
-  function renderFriendlyGrid() {
-    // Called when release data is already loaded and mode is friendly
-    // No-op for now; data is fetched on modal open
-  }
+  // ========== ESC key + focus trap ==========
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('friendly-modal');
+    if (!modal.classList.contains('show')) return;
+    if (e.key === 'Escape') {
+      closeFriendlyModal();
+      return;
+    }
+    // Focus trap
+    if (e.key === 'Tab') {
+      const focusable = modal.querySelectorAll(
+        'button, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  });
 
-  // Override loadDownloadsWithProxy to init friendly mode
-  const _originalLoadDownloads = loadDownloadsWithProxy;
-  loadDownloadsWithProxy = async function() {
-    await _originalLoadDownloads();
-    initFriendlyMode();
-  };
+  // ========== Init on page load (single-shot) ==========
+  if (typeof loadDownloadsWithProxy === 'function') {
+    const _orig = loadDownloadsWithProxy;
+    let _wrapped = false;
+    // Use a property on the function itself to prevent double-wrap
+    if (!loadDownloadsWithProxy._friendlyWrapped) {
+      loadDownloadsWithProxy = async function() {
+        await _orig();
+        initFriendlyMode();
+      };
+      loadDownloadsWithProxy._friendlyWrapped = true;
+    }
+  }
   // ==================================================
 </script>
 </body>

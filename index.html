@@ -3049,7 +3049,7 @@
       const arch = detectArch(asset.name, key);
       const suffix = detectSuffix(asset.name, key);
       const sha256 = asset.sha256 || '';
-      const safeName = asset.name.replace(/"/g, '&quot;');
+      const safeName = asset.name.replace(/"/g, '&quot;').replace(/'/g, "\\'");
       const encodedUrl = asset.proxied_url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       const encodedSha = sha256.replace(/"/g, '&quot;');
       itemsHtml += `<div class="download-item" data-arch="${arch}" data-suffix="${suffix}" data-platform="${key}">`;

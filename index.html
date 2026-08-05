@@ -987,6 +987,7 @@
       display: flex;
       justify-content: center;
       gap: 0;
+      margin-top: 24px;
       margin-bottom: 24px;
       animation: fadeInUp 0.5s ease-out 0.15s both;
     }
@@ -3189,16 +3190,16 @@
           <div class="accordion-item">
             <button class="accordion-header" onclick="toggleAccordion(this)" data-i18n="下载提速小贴士">下载提速小贴士</button>
             <div class="accordion-body"><div class="accordion-body-inner">
-              <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>
-              <div class="tips-item"><strong>Chrome 浏览器：</strong><code id="chrome-flags-link2" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>
-              <div class="tips-item"><strong>Edge 新版浏览器：</strong><code id="edge-flags-link2" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code></div>
-              <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。</p>
-              <div class="tips-item"><strong>中国内地各省份代理分配方案：</strong>
+              <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px" data-i18n="下载提速_建议开启">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>
+              <div class="tips-item"><span data-i18n="下载提速_Chrome浏览器">Chrome 浏览器：</span><code id="chrome-flags-link2" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>
+              <div class="tips-item"><span data-i18n="下载提速_Edge浏览器">Edge 新版浏览器：</span><code id="edge-flags-link2" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code></div>
+              <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px" data-i18n="下载提速_操作步骤">在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。</p>
+              <div class="tips-item"><strong><span data-i18n="下载提速_省份分配">中国内地各省份代理分配方案：</span></strong>
                 <div style="margin-top:8px;font-size:12.5px;line-height:1.9;color:var(--text-secondary)">
-                  <div><span style="color:#66ccff">● ghproxy.net</span> — 北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</div>
-                  <div><span style="color:#66ccff">● gh-proxy.com</span> — 上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</div>
-                  <div><span style="color:#66ccff">● gh-proxy.org</span> — 河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</div>
-                  <div><span style="color:#66ccff">● github</span> — 港澳台地区及海外所有国家</div>
+                  <div><span style="color:#66ccff">● ghproxy.net</span> — <span data-i18n="下载提速_省份组1">北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</span></div>
+                  <div><span style="color:#66ccff">● gh-proxy.com</span> — <span data-i18n="下载提速_省份组2">上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</span></div>
+                  <div><span style="color:#66ccff">● gh-proxy.org</span> — <span data-i18n="下载提速_省份组3">河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</span></div>
+                  <div><span style="color:#66ccff">● github</span> — <span data-i18n="下载提速_省份组4">港澳台地区及海外所有国家</span></div>
                 </div>
               </div>
             </div></div>
@@ -3488,7 +3489,7 @@
       itemsHtml += `</div>`;
       itemsHtml += `<div class="download-item-actions">`;
       if (sha256) {
-        itemsHtml += `<button class="download-item-action-btn" title="${translations[currentLang]['SHA256 校验'] || 'SHA256 校验'}" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}')" style="width:auto;padding:0 10px;font-size:11px;font-weight:700;">SHA256值</button>`;
+        itemsHtml += `<button class="download-item-action-btn" title="${translations[currentLang]['SHA256 校验'] || 'SHA256 校验'}" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}')" style="width:auto;padding:0 10px;font-size:11px;font-weight:700;">${translations[currentLang]['SHA256 校验'] || 'SHA256 校验'}</button>`;
       }
       itemsHtml += `<button class="download-item-action-btn dl-btn" title="${translations[currentLang]['下载_按钮'] || '下载'}" onclick="event.stopPropagation();showDownloadModal('${safeName}','${encodedUrl}')"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></button>`;
       itemsHtml += `</div>`;
@@ -3574,17 +3575,17 @@
   // const CHANGELOG_URL = 'https://editors.astras.top/desktop/docs/changelog.json';
 
   const CHANGELOG_FALLBACK = [
-    {"version":"1.2.7","date":"2026-8-4","note":["将模糊效果替换为云母效果","将大部分仓库合并到「AstraEditor」仓库","新增全屏（F11）后自动隐藏菜单栏","修复 README 的部分错误","修复查找积木插件的部分问题","修复编辑器无法在打包器使用的问题"]},
-    {"version":"1.2.6","date":"2026-7-4","note":["修复打包器无法使用的问题","修复窗口控制按钮的颜色问题(AstraEditor/scratch-gui#22)","修复布局的一堆问题(AstraEditor/scratch-gui#18)","修复「hide menubar」插件的一些问题(AstraEditor/scratch-gui#18)"]},
-    {"version":"1.2.5","date":"2026-6-28","note":["修复窗口控制按钮的诸多问题","修复TabList中插件的显示顺序问题","修复舞台区的宽度问题"]},
-    {"version":"1.2.4","date":"2026-6-25","notes":["修复当切换工作区时可能会卡顿非常久的问题","修复部分扩展没法在舞台上加东西的问题","重做「窗口控制按钮」","修复RTL时菜单栏的问题","修改壁纸插件","长按菜单栏600毫秒后可以拖拽整个菜单栏而不居于空白处","修复打包器无法使用的问题","修复扩展编辑器可能会溢出屏幕的问题","修复画板可能会顶出舞台的问题","新的扩展：逻辑运算——提供更多逻辑积木","新的扩展：ShangCloud——和其他人互动，比如多人游戏！"]},
-    {"version":"1.2.3","date":"2026-5-7","notes":["修复下拉栏图层的问题","修复全屏Modal的滚动条的问题","修复打包器部分项目会报错的问题"]},
-    {"version":"1.2.2","date":"2026-5-6","notes":["修复桌面端浅色模式的加载动画缺失问题","修复Windows的模糊效果无法在一开始应用","修复启用紧凑的编辑器插件后Tab的按钮没有隐藏","将版本过久的网站文本改为AE官网"]},
-    {"version":"1.2.1","date":"2026-5-5","notes":["优化模糊效果","修复扩展编辑器不存在问题","在扩展管理器中增加按钮来打开扩展编辑器","移位侧边栏","修复窗口控制的问题"]},
-    {"version":"1.2.0","date":"2026-5-5","notes":["增加扩展编辑器","增加「窗口背景模糊」","修改桌面端控制栏，和菜单栏融为一体","修改默认项目","更好的README,兼容了更多语法！","新的扩展编辑器","崩溃时保存项目","ToDo插件","背景插件","终端插件","插件不兼容提示","修复一堆bug","同步插件","可能还有更多？"]},
-    {"version":"1.1.4","date":"2026-3-18","notes":["修复打包器无法使用的问题","加入「sprite-folders」插件"]},
-    {"version":"1.1.3","date":"2026-2-24","notes":["调整「隐藏工具栏」插件的触发面积并改为默认禁用","修改「调试器」中收藏功能的图标","增加「AstraEditor特性」和「基础设置」","修复部分情况下的主题色错误","修复AstraEditor的默认设置为「undefined」的错误","修复对于过老版本的更新链接还是TurboWarp的问题","修复「循环计时器」默认关闭的问题","为README功能增加显示HTML支持，这需要启用「启用HTML支持」设置","修复关于布尔运算的一些问题","让扩展库加载失败的时候也能显示其它的扩展库","增加「AstraEditor」扩展库按钮","删除「扩展编辑器」功能，我们计划重新制作它","优化扩展删除&加载","来自AE扩展库的部分扩展可以显示扩展图了"]},
-    {"version":"1.1.2","date":"2026-2-14","notes":["修改部分功能的观感","修改CSP让桌面端能正确获取更新","修复画板会错误的拉伸问题","修复隐藏菜单栏插件不能正确更新blockly积木区","优化扩展编辑器","增加「Astras Copilot」插件（测试中）","同步更新扩展","修复积木拖动时的的图层问题"]}
+    {"version":"1.2.7","date":"2026-8-4","note":["将模糊效果替换为云母效果","将大部分仓库合并到「AstraEditor」仓库","新增全屏（F11）后自动隐藏菜单栏","修复 README 的部分错误","修复查找积木插件的部分问题","修复编辑器无法在打包器使用的问题"],"note_en":["Replaced blur with mica effect","Merged most repos into AstraEditor mono-repo","Auto-hide menubar after fullscreen (F11)","Fixed README errors","Fixed block search plugin issues","Fixed editor not working in packager"]},
+    {"version":"1.2.6","date":"2026-7-4","note":["修复打包器无法使用的问题","修复窗口控制按钮的颜色问题(AstraEditor/scratch-gui#22)","修复布局的一堆问题(AstraEditor/scratch-gui#18)","修复「hide menubar」插件的一些问题(AstraEditor/scratch-gui#18)"],"note_en":["Fixed packager not working","Fixed window control button colors (#22)","Fixed layout issues (#18)","Fixed hide-menubar plugin issues (#18)"]},
+    {"version":"1.2.5","date":"2026-6-28","note":["修复窗口控制按钮的诸多问题","修复TabList中插件的显示顺序问题","修复舞台区的宽度问题"],"note_en":["Fixed multiple window control button issues","Fixed plugin display order in TabList","Fixed stage area width"]},
+    {"version":"1.2.4","date":"2026-6-25","notes":["修复当切换工作区时可能会卡顿非常久的问题","修复部分扩展没法在舞台上加东西的问题","重做「窗口控制按钮」","修复RTL时菜单栏的问题","修改壁纸插件","长按菜单栏600毫秒后可以拖拽整个菜单栏而不居于空白处","修复打包器无法使用的问题","修复扩展编辑器可能会溢出屏幕的问题","修复画板可能会顶出舞台的问题","新的扩展：逻辑运算——提供更多逻辑积木","新的扩展：ShangCloud——和其他人互动，比如多人游戏！"],"notes_en":["Fixed long lag when switching workspace","Fixed extensions unable to add things on stage","Redesigned window control buttons","Fixed menubar issues in RTL mode","Updated wallpaper plugin","Long-press menubar 600ms to drag it anywhere","Fixed packager not working","Fixed extension editor overflow","Fixed paint canvas pushing stage out","New extension: Logic Ops — more logic blocks","New extension: ShangCloud — multiplayer interaction"]},
+    {"version":"1.2.3","date":"2026-5-7","notes":["修复下拉栏图层的问题","修复全屏Modal的滚动条的问题","修复打包器部分项目会报错的问题"],"notes_en":["Fixed dropdown layer issues","Fixed fullscreen modal scrollbar","Fixed packager errors on some projects"]},
+    {"version":"1.2.2","date":"2026-5-6","notes":["修复桌面端浅色模式的加载动画缺失问题","修复Windows的模糊效果无法在一开始应用","修复启用紧凑的编辑器插件后Tab的按钮没有隐藏","将版本过久的网站文本改为AE官网"],"notes_en":["Fixed loading animation missing in light mode","Fixed Windows blur not applying at start","Fixed Tab buttons not hiding with compact editor","Updated outdated website text to AE homepage"]},
+    {"version":"1.2.1","date":"2026-5-5","notes":["优化模糊效果","修复扩展编辑器不存在问题","在扩展管理器中增加按钮来打开扩展编辑器","移位侧边栏","修复窗口控制的问题"],"notes_en":["Optimized blur effect","Fixed missing extension editor","Added button to open extension editor from manager","Repositioned sidebar","Fixed window control issues"]},
+    {"version":"1.2.0","date":"2026-5-5","notes":["增加扩展编辑器","增加「窗口背景模糊」","修改桌面端控制栏，和菜单栏融为一体","修改默认项目","更好的README,兼容了更多语法！","新的扩展编辑器","崩溃时保存项目","ToDo插件","背景插件","终端插件","插件不兼容提示","修复一堆bug","同步插件","可能还有更多？"],"notes_en":["Added extension editor","Added window background blur","Merged desktop controls with menubar","Updated default project","Improved README with more syntax support","New extension editor","Auto-save on crash","ToDo plugin","Background plugin","Terminal plugin","Plugin incompatibility warning","Fixed various bugs","Sync plugin","And more?"]},
+    {"version":"1.1.4","date":"2026-3-18","notes":["修复打包器无法使用的问题","加入「sprite-folders」插件"],"notes_en":["Fixed packager not working","Added sprite-folders plugin"]},
+    {"version":"1.1.3","date":"2026-2-24","notes":["调整「隐藏工具栏」插件的触发面积并改为默认禁用","修改「调试器」中收藏功能的图标","增加「AstraEditor特性」和「基础设置」","修复部分情况下的主题色错误","修复AstraEditor的默认设置为「undefined」的错误","修复对于过老版本的更新链接还是TurboWarp的问题","修复「循环计时器」默认关闭的问题","为README功能增加显示HTML支持，这需要启用「启用HTML支持」设置","修复关于布尔运算的一些问题","让扩展库加载失败的时候也能显示其它的扩展库","增加「AstraEditor」扩展库按钮","删除「扩展编辑器」功能，我们计划重新制作它","优化扩展删除&加载","来自AE扩展库的部分扩展可以显示扩展图了"],"notes_en":["Adjusted hide-toolbar trigger area, now disabled by default","Changed bookmark icon in debugger","Added AstraEditor Features & Basic Settings","Fixed theme color errors in some cases","Fixed default setting showing undefined","Fixed outdated version link pointing to TurboWarp","Fixed loop timer defaulting to off","Added HTML display support for README (needs HTML support enabled)","Fixed boolean operation issues","Allow viewing other extensions when one library fails","Added AstraEditor extension library button","Removed extension editor (planned redesign)","Optimized extension delete & load","AE library extensions now show extension icons"]},
+    {"version":"1.1.2","date":"2026-2-14","notes":["修改部分功能的观感","修改CSP让桌面端能正确获取更新","修复画板会错误的拉伸问题","修复隐藏菜单栏插件不能正确更新blockly积木区","优化扩展编辑器","增加「Astras Copilot」插件（测试中）","同步更新扩展","修复积木拖动时的的图层问题"],"notes_en":["Updated visual style of some features","Updated CSP for desktop update checks","Fixed paint canvas stretching incorrectly","Fixed hide-menubar plugin not updating Blockly area","Optimized extension editor","Added Astras Copilot plugin (beta)","Synced extension updates","Fixed block drag layer issues"]}
   ];
 
   let changelogData = CHANGELOG_FALLBACK;
@@ -3607,7 +3608,7 @@
   function renderChangelogHtml(data) {
     let html = '';
     data.forEach(function(entry) {
-      const notes = entry.note || entry.notes || [];
+      const notes = (currentLang === 'zh' ? (entry.note || entry.notes) : (entry.note_en || entry.notes_en || entry.note || entry.notes)) || [];
       html += '<div class="cl-entry">';
       html += '<div class="cl-header"><span class="cl-version">v' + entry.version + '</span><span class="cl-date">' + entry.date + '</span></div>';
       if (notes.length > 0) {
@@ -4210,15 +4211,15 @@
       '无效的GitHub链接格式': '无效的GitHub链接格式，请检查后重试',
       '正在通过代理下载': '正在通过代理下载',
       '下载提速小贴士': '下载提速小贴士',
-      '建议开启Chrome和Edge的多线程下载功能': '建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率',
-      'Chrome浏览器': 'Chrome 浏览器：',
-      'Edge新版浏览器': 'Edge 新版浏览器：',
-      '在下方里找到Parallel downloading': '在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。',
-      '中国内地各省份代理分配方案': '中国内地各省份代理分配方案：',
-      '华北东北': '北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江',
-      '华东西南': '上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏',
-      '华中华南西北': '河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆',
-      '港澳台海外': '港澳台地区及海外所有国家',
+      '下载提速_建议开启': '建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率',
+      '下载提速_Chrome浏览器': 'Chrome 浏览器：',
+      '下载提速_Edge浏览器': 'Edge 新版浏览器：',
+      '下载提速_操作步骤': '在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。',
+      '下载提速_省份分配': '中国内地各省份代理分配方案：',
+      '下载提速_省份组1': '北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江',
+      '下载提速_省份组2': '上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏',
+      '下载提速_省份组3': '河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆',
+      '下载提速_省份组4': '港澳台地区及海外所有国家',
       '友好模式_普通模式': '普通模式',
       '友好模式_友好模式': '友好模式',
       '友好模式_选择下载': '选择下载',
@@ -4235,7 +4236,7 @@
       '友好模式_Windows描述': 'MSI / EXE / APPX / 便携版',
       '友好模式_macOS描述': 'DMG / PKG / ZIP 安装包',
       '友好模式_Linux描述': 'DEB / RPM / AppImage / tar.gz',
-      '第三方下载站': '第三方下载站',
+      '第三方下载站': 'AstraEditor Download - 第三方下载站',
       'GitHub 下载代理': 'GitHub 下载代理',
       '输入GitHub链接描述': '输入 GitHub Release / 仓库 / 文件链接，通过代理加速下载',
       '返回下载站': '← 返回下载站',
@@ -4372,7 +4373,16 @@
       'Windows安装指南': '<h3>Windows</h3><p>Download the <code>.exe</code> or <code>.msi</code> file and double-click to install.</p>',
       'macOS安装指南': '<h3>macOS</h3><p>Download the <code>.dmg</code> file, open it, and drag the app into the <code>Applications</code> folder. If you see "developer cannot be verified", go to <code>System Settings → Privacy & Security</code> and click "Open Anyway".</p>',
       'Linux安装指南': '<h3>Linux</h3><ul><li><strong>AppImage</strong>: Download, set as executable in properties, double-click to run.</li><li><strong>.deb</strong>: <code>sudo dpkg -i filename.deb</code></li><li><strong>.rpm</strong>: <code>sudo rpm -i filename.rpm</code></li></ul>',
-      'SHA256校验说明': '<h3>SHA256 Verification</h3><p>After downloading, use the above command to verify file integrity and ensure it has not been tampered with.</p>'
+      'SHA256校验说明': '<h3>SHA256 Verification</h3><p>After downloading, use the above command to verify file integrity and ensure it has not been tampered with.</p>',
+      '下载提速_建议开启': 'To speed up downloads, enable parallel downloading in Chrome / Edge.',
+      '下载提速_Chrome浏览器': 'Chrome: ',
+      '下载提速_Edge浏览器': 'Edge: ',
+      '下载提速_操作步骤': 'Find "Parallel downloading", change "Default" to "Enabled", then click the "Relaunch" button.',
+      '下载提速_省份分配': 'China Mainland Proxy Allocation:',
+      '下载提速_省份组1': 'Beijing, Tianjin, Hebei, Shanxi, Inner Mongolia, Liaoning, Jilin, Heilongjiang',
+      '下载提速_省份组2': 'Shanghai, Jiangsu, Zhejiang, Anhui, Fujian, Jiangxi, Shandong, Chongqing, Sichuan, Guizhou, Yunnan, Tibet',
+      '下载提速_省份组3': 'Henan, Hubei, Hunan, Guangdong, Guangxi, Hainan, Shaanxi, Gansu, Qinghai, Ningxia, Xinjiang',
+      '下载提速_省份组4': 'Hong Kong, Macau, Taiwan & Overseas'
     }
   };
 
@@ -4600,16 +4610,16 @@
     html += `<div class="accordion-item">`;
     html += `<button class="accordion-header" onclick="toggleAccordion(this)">${translations[currentLang]['下载提速小贴士'] || '下载提速小贴士'}</button>`;
     html += `<div class="accordion-body"><div class="accordion-body-inner">`;
-    html += `<p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率</p>`;
-    html += `<div class="tips-item"><strong>Chrome 浏览器：</strong><code id="chrome-flags-link" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>`;
-    html += `<div class="tips-item"><strong>Edge 新版浏览器：</strong><code id="edge-flags-link" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code></div>`;
-    html += `<p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。</p>`;
-    html += `<div class="tips-item"><strong>中国内地各省份代理分配方案：</strong>`;
+    html += `<p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">${translations[currentLang]['下载提速_建议开启'] || '建议开启 Chrome 和 Edge 的多线程下载功能（Parallel downloading）从而提高浏览器的下载效率'}</p>`;
+    html += `<div class="tips-item"><strong>${translations[currentLang]['下载提速_Chrome浏览器'] || 'Chrome 浏览器：'}</strong><code id="chrome-flags-link" onclick="copyToClipboard('chrome://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">chrome://flags/#enable-parallel-downloading</code></div>`;
+    html += `<div class="tips-item"><strong>${translations[currentLang]['下载提速_Edge浏览器'] || 'Edge 新版浏览器：'}</strong><code id="edge-flags-link" onclick="copyToClipboard('edge://flags/#enable-parallel-downloading', this)" style="color:#66ccff;text-decoration:underline;cursor:pointer">edge://flags/#enable-parallel-downloading</code></div>`;
+    html += `<p style="font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:12px">${translations[currentLang]['下载提速_操作步骤'] || '在下方里找到"Parallel downloading"，将默认的"Default"更改为"Enabled"，最后点击右下角弹出的"重启"按钮即可。'}</p>`;
+    html += `<div class="tips-item"><strong>${translations[currentLang]['下载提速_省份分配'] || '中国内地各省份代理分配方案：'}</strong>`;
     html += `<div style="margin-top:8px;font-size:12.5px;line-height:1.9;color:var(--text-secondary)">`;
-    html += `<div><span style="color:#66ccff">● ghproxy.net</span> — 北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江</div>`;
-    html += `<div><span style="color:#66ccff">● gh-proxy.com</span> — 上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏</div>`;
-    html += `<div><span style="color:#66ccff">● gh-proxy.org</span> — 河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆</div>`;
-    html += `<div><span style="color:#66ccff">● github</span> — 港澳台地区及海外所有国家</div>`;
+    html += `<div><span style="color:#66ccff">● ghproxy.net</span> — ${translations[currentLang]['下载提速_省份组1'] || '北京、天津、河北、山西、内蒙古、辽宁、吉林、黑龙江'}</div>`;
+    html += `<div><span style="color:#66ccff">● gh-proxy.com</span> — ${translations[currentLang]['下载提速_省份组2'] || '上海、江苏、浙江、安徽、福建、江西、山东、重庆、四川、贵州、云南、西藏'}</div>`;
+    html += `<div><span style="color:#66ccff">● gh-proxy.org</span> — ${translations[currentLang]['下载提速_省份组3'] || '河南、湖北、湖南、广东、广西、海南、陕西、甘肃、青海、宁夏、新疆'}</div>`;
+    html += `<div><span style="color:#66ccff">● github</span> — ${translations[currentLang]['下载提速_省份组4'] || '港澳台地区及海外所有国家'}</div>`;
     html += `</div></div>`;
     html += `</div></div>`;
     html += `</div>`;

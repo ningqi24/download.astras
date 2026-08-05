@@ -722,7 +722,7 @@
       border: 1px solid transparent;
       border-radius: 10px;
       padding: 14px 16px;
-      cursor: pointer;
+      cursor: default;
       transition: all 0.25s ease;
       display: flex;
       align-items: center;
@@ -763,57 +763,229 @@
       flex: 1;
     }
 
-    .download-item-hash {
-      color: #FF6B6B;
-      font-size: 11px;
-      font-family: "Consolas", "Monaco", "Courier New", monospace;
-      word-break: break-all;
-      line-height: 1.5;
-      user-select: text;
-      cursor: text;
-    }
-
-    .download-item-hash span {
-      font-weight: 600;
-    }
-
-    .download-item-cmd-group {
+    .download-item-actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 6px;
-      margin-top: 2px;
+      flex-shrink: 0;
+      margin-left: 8px;
     }
 
-    .download-item-cmd {
-      background-color: rgba(0, 0, 0, 0.25);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-family: "Consolas", "Monaco", "Courier New", monospace;
-      font-size: 11px;
-      color: #66ccff;
-      cursor: pointer;
-      user-select: all;
+    .download-item-action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
       border: 1px solid rgba(102, 204, 255, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--accent-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.2s ease;
-      white-space: nowrap;
+      font-size: 14px;
+      padding: 0;
+      flex-shrink: 0;
     }
 
-    .download-item-cmd:hover {
-      background-color: rgba(102, 204, 255, 0.15);
+    .download-item-action-btn:hover {
+      background: rgba(102, 204, 255, 0.2);
       border-color: var(--accent-color);
       color: #fff;
     }
 
-    .daylight-mode .download-item-cmd {
-      background-color: #f5f5f5;
-      color: #0066cc;
-      border-color: rgba(0, 102, 204, 0.15);
+    .download-item-action-btn.dl-btn {
+      color: #66ccff;
     }
 
-    .daylight-mode .download-item-cmd:hover {
-      background-color: rgba(0, 153, 255, 0.1);
+    .download-item-action-btn.dl-btn:hover {
+      background: rgba(0, 153, 255, 0.3);
       border-color: #0099ff;
-      color: #004499;
+      color: #fff;
+    }
+
+    /* ========== Modal ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--scrollbar-thumb);
+      border-radius: 14px;
+      padding: 24px 28px;
+      max-width: 520px;
+      width: 90%;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      transform: translateY(12px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.show .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-title {
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: var(--text-primary); }
+
+    .modal-section-label {
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .modal-hash {
+      background: rgba(255, 107, 107, 0.08);
+      border: 1px solid rgba(255, 107, 107, 0.25);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 12px;
+      color: #FF6B6B;
+      word-break: break-all;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .modal-cmd-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .modal-cmd {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(102, 204, 255, 0.15);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 12px;
+      color: #66ccff;
+      user-select: all;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .modal-copy-btn {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--accent-color);
+      background: rgba(102, 204, 255, 0.1);
+      color: var(--accent-color);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: var(--font-family);
+    }
+
+    .modal-copy-btn:hover {
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    .modal-link-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .modal-link-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(102, 204, 255, 0.15);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 12px;
+      color: var(--text-primary);
+      overflow-x: auto;
+      white-space: nowrap;
+      user-select: all;
+    }
+
+    .modal-dl-confirm {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(135deg, #0099ff, #66ccff);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-family);
+    }
+
+    .modal-dl-confirm:hover {
+      box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
+    }
+
+    .modal-proxy-info {
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .modal-proxy-info strong {
+      color: var(--accent-color);
+    }
+
+    .daylight-mode .modal-link-input,
+    .daylight-mode .modal-cmd {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .daylight-mode .modal-hash {
+      background: rgba(255, 107, 107, 0.05);
+    }
+
+    .daylight-mode .modal-copy-btn {
+      background: rgba(0, 153, 255, 0.08);
     }
 
     .daylight-mode .download-item-hash span {
@@ -2661,6 +2833,45 @@
       2026 Bilibili@ningqi 参与制作
     </div>
   </div>
+
+  <!-- SHA256 校验弹窗 -->
+  <div class="modal-overlay" id="sha-modal">
+    <div class="modal-box">
+      <div class="modal-title">
+        SHA256 文件校验
+        <button class="modal-close" onclick="closeModal('sha-modal')">&times;</button>
+      </div>
+      <div class="modal-section-label">SHA256 哈希值</div>
+      <div class="modal-hash" id="sha-modal-hash"></div>
+      <div class="modal-section-label">终端校验命令</div>
+      <div class="modal-cmd-row">
+        <code class="modal-cmd" id="sha-modal-win-cmd"></code>
+        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-win-cmd', this)">复制</button>
+      </div>
+      <div class="modal-cmd-row">
+        <code class="modal-cmd" id="sha-modal-mac-cmd"></code>
+        <button class="modal-copy-btn" onclick="copyModalText('sha-modal-mac-cmd', this)">复制</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下载弹窗 -->
+  <div class="modal-overlay" id="dl-modal">
+    <div class="modal-box">
+      <div class="modal-title">
+        下载文件
+        <button class="modal-close" onclick="closeModal('dl-modal')">&times;</button>
+      </div>
+      <div class="modal-proxy-info">第三方代理为：<strong id="dl-modal-proxy">—</strong></div>
+      <div class="modal-section-label">下载链接</div>
+      <div class="modal-link-row">
+        <code class="modal-link-input" id="dl-modal-link"></code>
+        <button class="modal-copy-btn" onclick="copyModalText('dl-modal-link', this)">复制</button>
+      </div>
+      <button class="modal-dl-confirm" id="dl-modal-confirm">确认下载</button>
+    </div>
+  </div>
+
 <script>
   const pointer = {
     container: document.querySelector(".pointer"),
@@ -2838,19 +3049,20 @@
       const arch = detectArch(asset.name, key);
       const suffix = detectSuffix(asset.name, key);
       const sha256 = asset.sha256 || '';
-      itemsHtml += `<div class="download-item" data-arch="${arch}" data-suffix="${suffix}" data-platform="${key}" onclick="animateToPage('${asset.proxied_url}')">`;
+      const safeName = asset.name.replace(/"/g, '&quot;');
+      const encodedUrl = asset.proxied_url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+      const encodedSha = sha256.replace(/"/g, '&quot;');
+      itemsHtml += `<div class="download-item" data-arch="${arch}" data-suffix="${suffix}" data-platform="${key}">`;
       itemsHtml += `<div class="download-item-info">`;
       itemsHtml += `<span class="download-item-name">${asset.name}</span>`;
+      itemsHtml += `</div>`;
+      itemsHtml += `<div class="download-item-actions">`;
       if (sha256) {
-        const safeName = asset.name.replace(/"/g, '&quot;');
         const winCmd = `certutil -hashfile "${safeName}" SHA256`;
         const macCmd = `shasum -a 256 "${safeName}"`;
-        itemsHtml += `<div class="download-item-hash" onclick="event.stopPropagation()">SHA256: <span style="color:#FF6B6B">${sha256}</span></div>`;
-        itemsHtml += `<div class="download-item-cmd-group" onclick="event.stopPropagation()">`;
-        itemsHtml += `<code class="download-item-cmd" onclick="event.stopPropagation();copyToClipboard('${winCmd.replace(/'/g, "\\'")}', this)" title="Windows">${winCmd.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`;
-        itemsHtml += `<code class="download-item-cmd" onclick="event.stopPropagation();copyToClipboard('${macCmd.replace(/'/g, "\\'")}', this)" title="macOS / Linux">${macCmd.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`;
-        itemsHtml += `</div>`;
+        itemsHtml += `<button class="download-item-action-btn" title="SHA256 校验" onclick="event.stopPropagation();showShaModal('${safeName}','${encodedSha}','${winCmd.replace(/'/g, "\\'")}','${macCmd.replace(/'/g, "\\'")}')">#</button>`;
       }
+      itemsHtml += `<button class="download-item-action-btn dl-btn" title="下载" onclick="event.stopPropagation();showDownloadModal('${safeName}','${encodedUrl}')">&darr;</button>`;
       itemsHtml += `</div>`;
       itemsHtml += '</div>';
     });
@@ -3908,6 +4120,98 @@
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-  }</script>
+  }
+
+  /* ========== 弹窗函数 ========== */
+
+  function showShaModal(name, sha256, winCmd, macCmd) {
+    document.getElementById('sha-modal-hash').textContent = sha256;
+    document.getElementById('sha-modal-win-cmd').textContent = winCmd;
+    document.getElementById('sha-modal-mac-cmd').textContent = macCmd;
+    document.getElementById('sha-modal').classList.add('show');
+  }
+
+  function showDownloadModal(name, url) {
+    const proxyName = currentProxy || getProxyNameFromUrl(url);
+    document.getElementById('dl-modal-proxy').textContent = proxyName;
+    document.getElementById('dl-modal-link').textContent = url;
+    document.getElementById('dl-modal-confirm').onclick = function() {
+      window.open(url, '_blank');
+      closeModal('dl-modal');
+    };
+    document.getElementById('dl-modal').classList.add('show');
+  }
+
+  function getProxyNameFromUrl(url) {
+    try {
+      const host = new URL(url).hostname;
+      const map = {
+        'ghproxy.net': 'ghproxy.net',
+        'gh-proxy.com': 'gh-proxy.com',
+        'gh-proxy.org': 'gh-proxy.org',
+        'github.com': 'GitHub（直连）'
+      };
+      return map[host] || host;
+    } catch(e) { return '未知代理'; }
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('show');
+  }
+
+  function copyModalText(elementId, btn) {
+    const el = document.getElementById(elementId);
+    const text = el.textContent;
+    const originalText = btn.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '已复制 ✓';
+        btn.style.background = '#0099ff';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 1500);
+      }).catch(() => {
+        fallbackCopyModal(text, btn, originalText);
+      });
+    } else {
+      fallbackCopyModal(text, btn, originalText);
+    }
+  }
+
+  function fallbackCopyModal(text, btn, originalText) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      btn.textContent = '已复制 ✓';
+      btn.style.background = '#0099ff';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1500);
+    } catch(e) {
+      alert('请手动复制');
+    } finally {
+      document.body.removeChild(textarea);
+    }
+  }
+
+  // 点击弹窗遮罩关闭
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay') && e.target.classList.contains('show')) {
+      e.target.classList.remove('show');
+    }
+  });
+</script>
 </body>
 </html>

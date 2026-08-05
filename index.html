@@ -1217,6 +1217,75 @@
       outline: none;
       border-color: #66ccff;
     }
+    /* ========== Friendly Modal Custom Version Select ========== */
+    .friendly-version-select {
+      position: relative;
+      width: 100%;
+    }
+    .friendly-version-btn {
+      width: 100%;
+      padding: 12px 36px 12px 16px;
+      background: rgba(102,204,255,0.06);
+      border: 2px solid rgba(102,204,255,0.2);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: var(--font-family);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+    .friendly-version-btn:hover {
+      border-color: rgba(102,204,255,0.5);
+    }
+    .friendly-version-btn::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--text-secondary);
+      border-bottom: 2px solid var(--text-secondary);
+      transform: translateY(-70%) rotate(45deg);
+      transition: transform 0.2s;
+    }
+    .friendly-version-btn.open::after {
+      transform: translateY(-30%) rotate(-135deg);
+    }
+    .friendly-version-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      max-height: 240px;
+      overflow-y: auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--scrollbar-thumb);
+      border-radius: 10px;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .friendly-version-option {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .friendly-version-option:last-child {
+      border-bottom: none;
+    }
+    .friendly-version-option:hover {
+      background: rgba(102,204,255,0.1);
+    }
+    .friendly-version-option.selected {
+      background: rgba(102,204,255,0.15);
+      color: #66ccff;
+    }
     .friendly-modal-download {
       width: 100%;
       padding: 12px;
@@ -3470,7 +3539,10 @@
         <!-- Step 1: 版本 -->
         <div class="friendly-modal-section">
           <div class="friendly-modal-label" data-i18n="友好模式_版本">版本</div>
-          <select class="friendly-modal-select" id="friendly-modal-version" onchange="onFriendlyStepChange()"></select>
+          <div class="friendly-version-select" id="friendly-version-select-wrapper">
+            <button class="friendly-version-btn" id="friendly-version-btn" onclick="toggleVersionDropdown()"></button>
+            <div class="friendly-version-dropdown" id="friendly-version-dropdown" style="display:none"></div>
+          </div>
         </div>
         <!-- Step 2: 系统兼容（仅 Windows） -->
         <div class="friendly-modal-section" id="friendly-system-section" style="display:none">
@@ -5279,19 +5351,21 @@
   function finishLoadingVersions(platform, releases) {
 
     // Populate version dropdown with ALL releases
-    const versionSelect = document.getElementById('friendly-modal-version');
-    versionSelect.innerHTML = '';
+    const versionBtn = document.getElementById('friendly-version-btn');
+    const versionDropdown = document.getElementById('friendly-version-dropdown');
+    versionDropdown.innerHTML = '';
     if (releases.length > 0) {
       releases.forEach((rel, i) => {
-        const opt = document.createElement('option');
-        opt.value = i;
-        opt.textContent = rel.tag_name + ' (' + new Date(rel.published_at).toLocaleDateString() + ')';
-        if (i === 0) opt.selected = true;
-        versionSelect.appendChild(opt);
+        const div = document.createElement('div');
+        div.className = 'friendly-version-option' + (i === 0 ? ' selected' : '');
+        div.textContent = rel.tag_name + ' (' + new Date(rel.published_at).toLocaleDateString() + ')';
+        div.onclick = function() { selectVersion(i); };
+        versionDropdown.appendChild(div);
       });
-      friendlyRelease = releases[0];
+      selectVersion(0, /* silent */ true);
     } else {
       friendlyRelease = null;
+      versionBtn.textContent = '无可用版本';
     }
 
     // Build assets list for current platform from selected release
@@ -5335,18 +5409,56 @@
     });
   }
 
-  function onFriendlyStepChange() {
-    const versionSelect = document.getElementById('friendly-modal-version');
-    const idx = parseInt(versionSelect.value);
-    if (typeof allReleases !== 'undefined' && allReleases && allReleases[idx]) {
-      friendlyRelease = allReleases[idx];
+  function toggleVersionDropdown() {
+    const dropdown = document.getElementById('friendly-version-dropdown');
+    const btn = document.getElementById('friendly-version-btn');
+    const isOpen = dropdown.style.display !== 'none';
+    dropdown.style.display = isOpen ? 'none' : 'block';
+    if (!isOpen) {
+      btn.classList.add('open');
+    } else {
+      btn.classList.remove('open');
     }
-    friendlySelectedSys = null;
-    friendlySelectedArch = null;
-    friendlySelectedPkg = null;
-    buildFriendlyAssets();
-    renderFriendlySteps();
   }
+
+  function selectVersion(idx, silent) {
+    if (typeof allReleases === 'undefined' || !allReleases || !allReleases[idx]) return;
+    friendlyRelease = allReleases[idx];
+    const versionBtn = document.getElementById('friendly-version-btn');
+    const rel = allReleases[idx];
+    versionBtn.textContent = rel.tag_name + ' (' + new Date(rel.published_at).toLocaleDateString() + ')';
+    // Update dropdown selection marks
+    const dropdown = document.getElementById('friendly-version-dropdown');
+    Array.from(dropdown.children).forEach(function(c, i) {
+      if (i === idx) { c.classList.add('selected'); }
+      else { c.classList.remove('selected'); }
+    });
+    // Close dropdown
+    dropdown.style.display = 'none';
+    versionBtn.classList.remove('open');
+    if (!silent) {
+      friendlySelectedSys = null;
+      friendlySelectedArch = null;
+      friendlySelectedPkg = null;
+      buildFriendlyAssets();
+      renderFriendlySteps();
+    }
+  }
+
+  function onFriendlyStepChange() {
+    // Version change now handled by selectVersion(); this stub kept for backward compatibility.
+  }
+
+  // Close version dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    const wrapper = document.getElementById('friendly-version-select-wrapper');
+    const dropdown = document.getElementById('friendly-version-dropdown');
+    const btn = document.getElementById('friendly-version-btn');
+    if (wrapper && !wrapper.contains(e.target) && dropdown && dropdown.style.display !== 'none') {
+      dropdown.style.display = 'none';
+      if (btn) btn.classList.remove('open');
+    }
+  });
 
   function renderFriendlySteps() {
     if (friendlyAssets.length === 0) {
@@ -5451,7 +5563,7 @@
 
   function selectFriendlyPkg(pkg) {
     friendlySelectedPkg = pkg;
-    updateFriendlyResult();
+    renderFriendlySteps();
   }
 
   function getAvailableArchs() {
@@ -5576,8 +5688,6 @@
         if (sha) {
           const shaBtn = document.createElement('button');
           shaBtn.className = 'friendly-btn-dl';
-          shaBtn.style.cssText = 'font-size:11px;padding:0 8px;min-width:auto';
-          shaBtn.setAttribute('data-i18n', 'SHA256 校验');
           shaBtn.textContent = translations[currentLang]['SHA256 校验'] || 'SHA256 校验';
           shaBtn.onclick = function(e) { e.stopPropagation(); showShaModal(safeName, encodedSha); };
           btnGroup.appendChild(shaBtn);

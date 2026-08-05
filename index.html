@@ -1045,6 +1045,11 @@
       border-color: var(--accent-color);
       background: rgba(102, 204, 255, 0.06);
     }
+    .platform-card.not-suitable {
+      opacity: 0.55;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
     .platform-card-icon {
       width: 48px;
       height: 48px;
@@ -1091,6 +1096,19 @@
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(135deg, #3399ff, #66ccff);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .not-suitable-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ccc, #999);
       color: #fff;
       font-size: 11px;
       font-weight: 700;
@@ -3146,8 +3164,7 @@
             <div class="platform-card-desc" data-i18n="友好模式_macOS描述">DMG / PKG / ZIP 安装包</div>
             <button class="platform-card-btn" data-i18n="友好模式_选择下载">选择下载</button>
           </div>
-          <div class="platform-card recommended" id="linux-card" onclick="openFriendlyModal('linux')">
-            <span class="recommended-badge" data-i18n="友好模式_适合此设备">适合此设备</span>
+          <div class="platform-card" id="linux-card" onclick="openFriendlyModal('linux')">
             <div class="platform-card-icon"><img src="images/linux.svg" alt="Linux"></div>
             <div class="platform-card-name">Linux</div>
             <div class="platform-card-desc" data-i18n="友好模式_Linux描述">DEB / RPM / AppImage / tar.gz</div>
@@ -4225,6 +4242,7 @@
       '友好模式_友好模式': '友好模式',
       '友好模式_选择下载': '选择下载',
       '友好模式_适合此设备': '适合此设备',
+      '友好模式_不适合此设备': '不适合此设备',
       '友好模式_确认下载': '确认下载',
       '友好模式_版本': '版本',
       '友好模式_处理器架构': '处理器架构',
@@ -4336,6 +4354,7 @@
       '友好模式_友好模式': 'Friendly Mode',
       '友好模式_选择下载': 'Select & Download',
       '友好模式_适合此设备': 'Best for this device',
+      '友好模式_不适合此设备': 'Not for this device',
       '友好模式_确认下载': 'Confirm Download',
       '友好模式_版本': 'Version',
       '友好模式_处理器架构': 'Architecture',
@@ -4828,38 +4847,56 @@
 
     const ua = navigator.userAgent.toLowerCase();
     const cards = document.querySelectorAll('.platform-card');
-    // UA-based highlighting: mark matching platform card
-    cards.forEach(card => {
-      const onclick = card.getAttribute('onclick') || '';
-      if (ua.includes('linux') && !ua.includes('android') && onclick.includes("'linux'")) {
-        card.classList.add('recommended');
-        if (!card.querySelector('.recommended-badge')) {
+
+    // Detect mobile OS (Android / iOS / HarmonyOS)
+    const isMobile = ua.includes('android') || ua.includes('iphone') || ua.includes('ipad') || ua.includes('harmony') || ua.includes('openharmony');
+
+    if (isMobile) {
+      // Mobile device: all desktop platforms are not suitable
+      cards.forEach(card => {
+        card.classList.add('not-suitable');
+        if (!card.querySelector('.not-suitable-badge')) {
           const badge = document.createElement('span');
-          badge.className = 'recommended-badge';
-          badge.setAttribute('data-i18n', '友好模式_适合此设备');
-          badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+          badge.className = 'not-suitable-badge';
+          badge.setAttribute('data-i18n', '友好模式_不适合此设备');
+          badge.textContent = translations[currentLang]['友好模式_不适合此设备'] || '不适合此设备';
           card.insertBefore(badge, card.firstChild);
         }
-      } else if (ua.includes('mac') && !ua.includes('iphone') && !ua.includes('ipad') && onclick.includes("'macos'")) {
-        card.classList.add('recommended');
-        if (!card.querySelector('.recommended-badge')) {
-          const badge = document.createElement('span');
-          badge.className = 'recommended-badge';
-          badge.setAttribute('data-i18n', '友好模式_适合此设备');
-          badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
-          card.insertBefore(badge, card.firstChild);
+      });
+    } else {
+      // Desktop: highlight matching platform card
+      cards.forEach(card => {
+        const onclick = card.getAttribute('onclick') || '';
+        if (ua.includes('linux') && !ua.includes('android') && onclick.includes("'linux'")) {
+          card.classList.add('recommended');
+          if (!card.querySelector('.recommended-badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'recommended-badge';
+            badge.setAttribute('data-i18n', '友好模式_适合此设备');
+            badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+            card.insertBefore(badge, card.firstChild);
+          }
+        } else if (ua.includes('mac') && !ua.includes('iphone') && !ua.includes('ipad') && onclick.includes("'macos'")) {
+          card.classList.add('recommended');
+          if (!card.querySelector('.recommended-badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'recommended-badge';
+            badge.setAttribute('data-i18n', '友好模式_适合此设备');
+            badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+            card.insertBefore(badge, card.firstChild);
+          }
+        } else if (ua.includes('win') && onclick.includes("'windows'")) {
+          card.classList.add('recommended');
+          if (!card.querySelector('.recommended-badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'recommended-badge';
+            badge.setAttribute('data-i18n', '友好模式_适合此设备');
+            badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
+            card.insertBefore(badge, card.firstChild);
+          }
         }
-      } else if (ua.includes('win') && onclick.includes("'windows'")) {
-        card.classList.add('recommended');
-        if (!card.querySelector('.recommended-badge')) {
-          const badge = document.createElement('span');
-          badge.className = 'recommended-badge';
-          badge.setAttribute('data-i18n', '友好模式_适合此设备');
-          badge.textContent = translations[currentLang]['友好模式_适合此设备'] || '适合此设备';
-          card.insertBefore(badge, card.firstChild);
-        }
-      }
-    });
+      });
+    }
 
     const saved = localStorage.getItem('downloadMode');
     if (saved === 'friendly') {

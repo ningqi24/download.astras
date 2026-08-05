@@ -1720,6 +1720,49 @@
       color: #0066cc;
     }
 
+    /* 更新日志条目 */
+    .cl-entry {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 0;
+    }
+    .cl-entry:last-child {
+      border-bottom: none;
+    }
+    .daylight-mode .cl-entry {
+      border-bottom-color: rgba(0,0,0,0.08);
+    }
+    .cl-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .cl-version {
+      font-weight: 700;
+      font-size: 14px;
+      color: #64b5f6;
+    }
+    .daylight-mode .cl-version {
+      color: #1565c0;
+    }
+    .cl-date {
+      font-size: 12px;
+      color: #888;
+    }
+    .cl-notes {
+      margin: 0;
+      padding-left: 20px;
+      list-style: disc;
+    }
+    .cl-notes li {
+      font-size: 13px;
+      margin-bottom: 3px;
+      color: #ccc;
+    }
+    .daylight-mode .cl-notes li {
+      color: #555;
+    }
+
     .titleShow {
       width: 100%;
       display: flex;
@@ -3127,6 +3170,58 @@
     return html;
   }
 
+  // ├─ 更新日志 ──────────────────────────────────────
+  // 真实来源（目前挂了，使用下方回退数据）：
+  // const CHANGELOG_URL = 'https://editors.astras.top/desktop/docs/changelog.json';
+
+  const CHANGELOG_FALLBACK = [
+    {"version":"1.2.7","date":"2026-8-4","note":["将模糊效果替换为云母效果","将大部分仓库合并到"AstraEditor"仓库","新增全屏（F11）后自动隐藏菜单栏","修复 README 的部分错误","修复查找积木插件的部分问题","修复编辑器无法在打包器使用的问题"]},
+    {"version":"1.2.6","date":"2026-7-4","note":["修复打包器无法使用的问题","修复窗口控制按钮的颜色问题(AstraEditor/scratch-gui#22)","修复布局的一堆问题(AstraEditor/scratch-gui#18)","修复"hide menubar"插件的一些问题(AstraEditor/scratch-gui#18)"]},
+    {"version":"1.2.5","date":"2026-6-28","note":["修复窗口控制按钮的诸多问题","修复TabList中插件的显示顺序问题","修复舞台区的宽度问题"]},
+    {"version":"1.2.4","date":"2026-6-25","notes":["修复当切换工作区时可能会卡顿非常久的问题","修复部分扩展没法在舞台上加东西的问题","重做"窗口控制按钮"","修复RTL时菜单栏的问题","修改壁纸插件","长按菜单栏600毫秒后可以拖拽整个菜单栏而不居于空白处","修复打包器无法使用的问题","修复扩展编辑器可能会溢出屏幕的问题","修复画板可能会顶出舞台的问题","新的扩展：逻辑运算——提供更多逻辑积木","新的扩展：ShangCloud——和其他人互动，比如多人游戏！"]},
+    {"version":"1.2.3","date":"2026-5-7","notes":["修复下拉栏图层的问题","修复全屏Modal的滚动条的问题","修复打包器部分项目会报错的问题"]},
+    {"version":"1.2.2","date":"2026-5-6","notes":["修复桌面端浅色模式的加载动画缺失问题","修复Windows的模糊效果无法在一开始应用","修复启用紧凑的编辑器插件后Tab的按钮没有隐藏","将版本过久的网站文本改为AE官网"]},
+    {"version":"1.2.1","date":"2026-5-5","notes":["优化模糊效果","修复扩展编辑器不存在问题","在扩展管理器中增加按钮来打开扩展编辑器","移位侧边栏","修复窗口控制的问题"]},
+    {"version":"1.2.0","date":"2026-5-5","notes":["增加扩展编辑器","增加"窗口背景模糊"","修改桌面端控制栏，和菜单栏融为一体","修改默认项目","更好的README,兼容了更多语法！","新的扩展编辑器","崩溃时保存项目","ToDo插件","背景插件","终端插件","插件不兼容提示","修复一堆bug","同步插件","可能还有更多？"]},
+    {"version":"1.1.4","date":"2026-3-18","notes":["修复打包器无法使用的问题","加入"sprite-folders"插件"]},
+    {"version":"1.1.3","date":"2026-2-24","notes":["调整"隐藏工具栏"插件的触发面积并改为默认禁用","修改"调试器"中收藏功能的图标","增加"AstraEditor特性"和"基础设置"","修复部分情况下的主题色错误","修复AstraEditor的默认设置为"undefined"的错误","修复对于过老版本的更新链接还是TurboWarp的问题","修复"循环计时器"默认关闭的问题","为README功能增加显示HTML支持，这需要启用"启用HTML支持"设置","修复关于布尔运算的一些问题","让扩展库加载失败的时候也能显示其它的扩展库","增加"AstraEditor"扩展库按钮","删除"扩展编辑器"功能，我们计划重新制作它","优化扩展删除&加载","来自AE扩展库的部分扩展可以显示扩展图了"]},
+    {"version":"1.1.2","date":"2026-2-14","notes":["修改部分功能的观感","修改CSP让桌面端能正确获取更新","修复画板会错误的拉伸问题","修复隐藏菜单栏插件不能正确更新blockly积木区","优化扩展编辑器","增加"Astras Copilot"插件（测试中）","同步更新扩展","修复积木拖动时的的图层问题"]}
+  ];
+
+  let changelogData = CHANGELOG_FALLBACK;
+
+  async function fetchChangelog() {
+    try {
+      const resp = await fetch('https://editors.astras.top/desktop/docs/changelog.json');
+      if (resp.ok) {
+        const data = await resp.json();
+        if (Array.isArray(data) && data.length > 0) {
+          changelogData = data;
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('更新日志远程获取失败，使用回退数据');
+    }
+  }
+
+  function renderChangelogHtml(data) {
+    let html = '';
+    data.forEach(function(entry) {
+      const notes = entry.note || entry.notes || [];
+      html += '<div class="cl-entry">';
+      html += '<div class="cl-header"><span class="cl-version">v' + entry.version + '</span><span class="cl-date">' + entry.date + '</span></div>';
+      if (notes.length > 0) {
+        html += '<ul class="cl-notes">';
+        notes.forEach(function(n) { html += '<li>' + n + '</li>'; });
+        html += '</ul>';
+      }
+      html += '</div>';
+    });
+    return html || '<p>暂无更新日志</p>';
+  }
+  // ──────────────────────────────────────────────────
+
   let currentArch = 'all';
   let currentSuffix = 'all';
 
@@ -3992,9 +4087,7 @@
     html += `<div class="accordion">`;
     html += `<div class="accordion-item">`;
     html += `<button class="accordion-header" onclick="toggleAccordion(this)">${translations[currentLang]['更新日志'] || '更新日志'}</button>`;
-    html += `<div class="accordion-body"><div class="accordion-body-inner">`;
-    html += release.body ? mdToHtml(release.body) : `<p>无更新说明</p>`;
-    html += `</div></div>`;
+    html += `<div class="accordion-body"><div class="accordion-body-inner">${renderChangelogHtml(changelogData)}</div></div>`;
     html += `</div>`;
     html += `<div class="accordion-item">`;
     html += `<button class="accordion-header" onclick="toggleAccordion(this)">${translations[currentLang]['安装指南'] || '安装指南 / 常见问题'}</button>`;
@@ -4043,6 +4136,7 @@
       applyLang();
     }
     selectOptimalProxyByLocation();
+    fetchChangelog();
     loadDownloadsWithProxy();
   });
 

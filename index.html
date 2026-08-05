@@ -982,6 +982,253 @@
       color: #CC3333;
     }
 
+    /* ========== 友好模式 ========== */
+    .mode-toggle-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.5s ease-out 0.15s both;
+    }
+    .mode-toggle-btn {
+      padding: 8px 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--scrollbar-thumb);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 13px;
+      font-family: var(--font-family);
+      transition: all 0.2s;
+    }
+    .mode-toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+    .mode-toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+    .mode-toggle-btn.active {
+      background: var(--accent-color);
+      color: #fff;
+      border-color: var(--accent-color);
+    }
+    .mode-toggle-btn:hover:not(.active) {
+      color: var(--text-primary);
+      border-color: var(--accent-color);
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      animation: fadeInUp 0.5s ease-out 0.2s both;
+    }
+    .platform-card {
+      position: relative;
+      background: var(--bg-secondary);
+      border: 1px solid transparent;
+      border-radius: 14px;
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .platform-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(102, 204, 255, 0.18);
+    }
+    .platform-card.recommended {
+      border-color: var(--accent-color);
+      background: rgba(102, 204, 255, 0.06);
+    }
+    .platform-card-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .platform-card-icon img {
+      width: 100%;
+      height: 100%;
+      filter: invert(1);
+    }
+    .daylight-mode .platform-card-icon img { filter: none; }
+    .platform-card-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .platform-card-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .platform-card-btn {
+      margin-top: 4px;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #3399ff, #66ccff);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-family);
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .platform-card-btn:hover {
+      box-shadow: 0 4px 16px rgba(51, 153, 255, 0.4);
+    }
+    .recommended-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #3399ff, #66ccff);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    /* 友好模式 模态对话框 */
+    .friendly-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .friendly-modal-overlay.show { display: flex; animation: fadeIn 0.2s ease-out; }
+    .friendly-modal-box {
+      background: var(--bg-color);
+      border: 1px solid var(--scrollbar-thumb);
+      border-radius: 16px;
+      padding: 32px 28px 24px;
+      width: 90%;
+      max-width: 440px;
+      position: relative;
+      animation: fadeInUp 0.3s ease-out;
+    }
+    .friendly-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .friendly-modal-close:hover { color: var(--text-primary); }
+    .friendly-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .friendly-modal-icon {
+      width: 36px;
+      height: 36px;
+    }
+    .friendly-modal-icon img {
+      width: 100%;
+      height: 100%;
+      filter: invert(1);
+    }
+    .daylight-mode .friendly-modal-icon img { filter: none; }
+    .friendly-modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .friendly-modal-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .friendly-modal-section {
+      margin-bottom: 20px;
+    }
+    .friendly-modal-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .friendly-modal-select {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--scrollbar-thumb);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: var(--font-family);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color 0.2s;
+    }
+    .friendly-modal-select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+    .friendly-modal-download {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #3399ff, #66ccff);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-family);
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+    .friendly-modal-download:hover {
+      box-shadow: 0 6px 20px rgba(51, 153, 255, 0.4);
+    }
+    .friendly-modal-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    .friendly-modal-loading-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--scrollbar-thumb);
+      border-top-color: var(--accent-color);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     /* ========== Responsive ========== */
     @media (max-width: 768px) {
       .platform-buttons {
@@ -1015,6 +1262,27 @@
         white-space: normal;
         word-break: break-all;
         font-size: 10.5px;
+      }
+
+      /* 友好模式 响应式 */
+      .platform-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .platform-card {
+        flex-direction: row;
+        gap: 12px;
+        text-align: left;
+        padding: 16px;
+        align-items: center;
+      }
+      .platform-card-icon { width: 36px; height: 36px; }
+      .platform-card-btn { width: auto; margin-top: 0; margin-left: auto; padding: 6px 14px; font-size: 12px; }
+      .platform-card-name { font-size: 14px; }
+      .platform-card-desc { display: none; }
+      .friendly-modal-box {
+        width: 95%;
+        padding: 24px 18px 18px;
       }
     }
 
@@ -2862,6 +3130,33 @@
             GitHub 下载代理
           </button>
         </div>
+
+        <!-- 友好模式 -->
+        <div class="mode-toggle-bar" id="mode-toggle-bar" style="display:none">
+          <button class="mode-toggle-btn active" onclick="switchMode('normal')">普通模式</button>
+          <button class="mode-toggle-btn" onclick="switchMode('friendly')">友好模式</button>
+        </div>
+        <div class="platform-grid" id="platform-grid" style="display:none">
+          <div class="platform-card" onclick="openFriendlyModal('windows')">
+            <div class="platform-card-icon"><img src="images/windows.svg" alt="Windows"></div>
+            <div class="platform-card-name">Windows</div>
+            <div class="platform-card-desc">MSI / EXE / 便携版</div>
+            <button class="platform-card-btn">选择下载</button>
+          </div>
+          <div class="platform-card" onclick="openFriendlyModal('macos')">
+            <div class="platform-card-icon"><img src="images/apple.svg" alt="macOS"></div>
+            <div class="platform-card-name">macOS</div>
+            <div class="platform-card-desc">DMG 安装包</div>
+            <button class="platform-card-btn">选择下载</button>
+          </div>
+          <div class="platform-card recommended" id="linux-card" onclick="openFriendlyModal('linux')">
+            <span class="recommended-badge">适合此设备</span>
+            <div class="platform-card-icon"><img src="images/linux.svg" alt="Linux"></div>
+            <div class="platform-card-name">Linux</div>
+            <div class="platform-card-desc">DEB / RPM / AppImage</div>
+            <button class="platform-card-btn">选择下载</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="page" id="page-proxy" data-page="proxy" style="display:none;animation:0.4s ease-out 0s 1 normal none running fadeIn">
@@ -2965,6 +3260,39 @@
         <button class="modal-copy-btn" onclick="copyModalText('dl-modal-link', this)">复制</button>
       </div>
       <button class="modal-dl-confirm" id="dl-modal-confirm">确认下载</button>
+    </div>
+  </div>
+
+  <!-- 友好模式 下载配置对话框 -->
+  <div class="friendly-modal-overlay" id="friendly-modal">
+    <div class="friendly-modal-box">
+      <button class="friendly-modal-close" onclick="closeFriendlyModal()">&times;</button>
+      <div class="friendly-modal-header">
+        <div class="friendly-modal-icon"><img id="friendly-modal-icon-img" src="images/windows.svg" alt=""></div>
+        <div>
+          <div class="friendly-modal-title" id="friendly-modal-title">Windows</div>
+          <div class="friendly-modal-subtitle" id="friendly-modal-subtitle">选择版本与配置后开始下载</div>
+        </div>
+      </div>
+      <div class="friendly-modal-loading" id="friendly-modal-loading">
+        <div class="friendly-modal-loading-spinner"></div>
+        <span>正在获取版本列表...</span>
+      </div>
+      <div id="friendly-modal-content" style="display:none">
+        <div class="friendly-modal-section">
+          <div class="friendly-modal-label">版本</div>
+          <select class="friendly-modal-select" id="friendly-modal-version"></select>
+        </div>
+        <div class="friendly-modal-section" id="friendly-arch-section">
+          <div class="friendly-modal-label">处理器架构</div>
+          <select class="friendly-modal-select" id="friendly-modal-arch"></select>
+        </div>
+        <div class="friendly-modal-section" id="friendly-pkg-section">
+          <div class="friendly-modal-label">包类型</div>
+          <select class="friendly-modal-select" id="friendly-modal-pkg"></select>
+        </div>
+        <button class="friendly-modal-download" id="friendly-modal-confirm" onclick="triggerFriendlyDownload()">确认下载</button>
+      </div>
     </div>
   </div>
 
@@ -4354,7 +4682,262 @@
     if (e.target.classList.contains('modal-overlay') && e.target.classList.contains('show')) {
       e.target.classList.remove('show');
     }
+    if (e.target.classList.contains('friendly-modal-overlay') && e.target.classList.contains('show')) {
+      closeFriendlyModal();
+    }
   });
+
+  // ==================== 友好模式 ====================
+  let friendlyMode = 'normal';
+  let friendlyPlatform = '';
+  let friendlyAssets = [];
+
+  function switchMode(mode) {
+    friendlyMode = mode;
+    const toggleBtns = document.querySelectorAll('.mode-toggle-btn');
+    toggleBtns.forEach(b => b.classList.remove('active'));
+    if (mode === 'normal') {
+      toggleBtns[0].classList.add('active');
+    } else {
+      toggleBtns[1].classList.add('active');
+    }
+    updateModeVisibility();
+    localStorage.setItem('downloadMode', mode);
+  }
+
+  function updateModeVisibility() {
+    const downloadCards = document.getElementById('download-cards');
+    const platformGrid = document.getElementById('platform-grid');
+    const modeToggleBar = document.getElementById('mode-toggle-bar');
+    if (friendlyMode === 'friendly') {
+      downloadCards.style.display = 'none';
+      platformGrid.style.display = 'grid';
+      if (typeof downloadData !== 'undefined' && Object.keys(downloadData).length > 0) {
+        // Data already loaded, refresh grid
+      }
+    } else {
+      downloadCards.style.display = '';
+      platformGrid.style.display = 'none';
+    }
+  }
+
+  function initFriendlyMode() {
+    const ua = navigator.userAgent.toLowerCase();
+    const linuxCard = document.getElementById('linux-card');
+    if (linuxCard) {
+      if (ua.includes('linux') && !ua.includes('android')) {
+        linuxCard.classList.add('recommended');
+        linuxCard.querySelector('.recommended-badge') || (function(){
+          const badge = document.createElement('span');
+          badge.className = 'recommended-badge';
+          badge.textContent = '适合此设备';
+          linuxCard.insertBefore(badge, linuxCard.firstChild);
+        })();
+      } else if (ua.includes('mac')) {
+        // Highlight macOS
+      } else if (ua.includes('win')) {
+        // Highlight Windows
+      }
+    }
+    const saved = localStorage.getItem('downloadMode');
+    if (saved === 'friendly') {
+      switchMode('friendly');
+    } else {
+      switchMode('normal');
+    }
+    const modeToggleBar = document.getElementById('mode-toggle-bar');
+    if (modeToggleBar) modeToggleBar.style.display = 'flex';
+  }
+
+  function openFriendlyModal(platform) {
+    friendlyPlatform = platform;
+    friendlyAssets = [];
+    const modal = document.getElementById('friendly-modal');
+    const loading = document.getElementById('friendly-modal-loading');
+    const content = document.getElementById('friendly-modal-content');
+    const title = document.getElementById('friendly-modal-title');
+    const icon = document.getElementById('friendly-modal-icon-img');
+    const platformNames = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
+    title.textContent = platformNames[platform] || platform;
+    icon.src = 'images/' + ({windows:'windows',macos:'apple',linux:'linux'}[platform]) + '.svg';
+
+    loading.style.display = 'flex';
+    content.style.display = 'none';
+    modal.classList.add('show');
+
+    loadFriendlyVersions(platform);
+  }
+
+  function closeFriendlyModal() {
+    document.getElementById('friendly-modal').classList.remove('show');
+  }
+
+  function loadFriendlyVersions(platform) {
+    if (typeof downloadData === 'undefined' || !downloadData) {
+      fetch('public/releases.json').then(r => r.json()).then(data => {
+        if (!data.hasRelease || !data.releases || data.releases.length === 0) {
+          showFriendlyError('暂无可用的下载版本');
+          return;
+        }
+        const release = data.releases[0];
+        const proxyPrefix = getProxyPrefix();
+        const assets = release.assets.map(a => ({
+          ...a,
+          proxied_url: proxyPrefix ? proxyPrefix + a.original_url : a.original_url
+        }));
+        categorizeAndRender(assets, release, platform);
+      }).catch(() => showFriendlyError('加载版本列表失败'));
+    } else {
+      const release = allReleases ? allReleases[0] : null;
+      let assets = [];
+      Object.entries(downloadData).forEach(([key, arr]) => {
+        arr.forEach(a => assets.push({...a, _platform: key}));
+      });
+      categorizeAndRender(assets, release, platform);
+    }
+  }
+
+  function categorizeAndRender(assets, release, platform) {
+    const platformNames = ['windows', 'macos', 'linux'];
+    // Filter assets for current platform
+    let platformAssets = [];
+    assets.forEach(a => {
+      const name = (a.name || '').toLowerCase();
+      if (platform === 'windows' && (name.includes('.exe') || name.includes('.msi') || name.includes('windows'))) {
+        platformAssets.push(a);
+      } else if (platform === 'macos' && (name.includes('.dmg') || name.includes('macos'))) {
+        platformAssets.push(a);
+      } else if (platform === 'linux' && (name.includes('.appimage') || name.includes('.deb') || name.includes('.rpm') || name.includes('.tar.gz') || name.includes('linux'))) {
+        platformAssets.push(a);
+      }
+    });
+
+    if (platformAssets.length === 0) {
+      showFriendlyError('当前平台暂无可下载的文件');
+      return;
+    }
+
+    friendlyAssets = platformAssets;
+
+    // Populate version select
+    const versionSelect = document.getElementById('friendly-modal-version');
+    versionSelect.innerHTML = '';
+    if (release) {
+      const opt = document.createElement('option');
+      opt.value = release.tag_name;
+      opt.textContent = release.tag_name + ' (' + new Date(release.published_at).toLocaleDateString() + ')';
+      versionSelect.appendChild(opt);
+    }
+
+    // Arch options
+    renderFriendlyArchOptions(platform, platformAssets);
+
+    // Package type options
+    renderFriendlyPkgOptions(platform, platformAssets);
+
+    document.getElementById('friendly-modal-loading').style.display = 'none';
+    document.getElementById('friendly-modal-content').style.display = '';
+  }
+
+  function renderFriendlyArchOptions(platform, assets) {
+    const archSection = document.getElementById('friendly-arch-section');
+    const archSelect = document.getElementById('friendly-modal-arch');
+    const archs = new Set();
+    assets.forEach(a => {
+      const arch = detectArch(a.name, platform);
+      archs.add(arch);
+    });
+    const labels = { x64: 'x64 (64 位)', x86: 'x86 (32 位)', arm64: 'ARM64', arm: 'ARM (Apple Silicon)', amd: 'AMD64 (64 位)', arm32: 'ARM 32 位' };
+    archSelect.innerHTML = '';
+    if (archs.size <= 1) {
+      archSection.style.display = 'none';
+    } else {
+      archSection.style.display = '';
+      const all = Array.from(archs);
+      const val = all[0];
+      const opt = document.createElement('option');
+      opt.value = val;
+      opt.textContent = labels[val] || val;
+      archSelect.appendChild(opt);
+    }
+  }
+
+  function renderFriendlyPkgOptions(platform, assets) {
+    const pkgSection = document.getElementById('friendly-pkg-section');
+    const pkgSelect = document.getElementById('friendly-modal-pkg');
+    const pkgLabels = {
+      windows: { exe: 'EXE 安装包', msi: 'MSI 安装包', appx: 'APPX 安装包', zip: '便携 ZIP' },
+      macos: { dmg: 'DMG 安装包', pkg: 'PKG 安装包', zip: 'ZIP 压缩包' },
+      linux: { deb: 'DEB 安装包', rpm: 'RPM 安装包', appimage: 'AppImage 便携版', tar: 'TAR.GZ 便携版' }
+    };
+    pkgSelect.innerHTML = '';
+    assets.forEach(a => {
+      const suffix = detectSuffix(a.name, platform);
+      const label = (pkgLabels[platform] || {})[suffix] || ('.' + suffix);
+      const exists = Array.from(pkgSelect.options).find(o => o.value === suffix);
+      if (!exists) {
+        const opt = document.createElement('option');
+        opt.value = suffix;
+        opt.textContent = label;
+        pkgSelect.appendChild(opt);
+      }
+    });
+    if (assets.length <= 1) {
+      pkgSection.style.display = 'none';
+    } else {
+      pkgSection.style.display = '';
+    }
+  }
+
+  function triggerFriendlyDownload() {
+    const versionSelect = document.getElementById('friendly-modal-version');
+    const archSelect = document.getElementById('friendly-modal-arch');
+    const pkgSelect = document.getElementById('friendly-modal-pkg');
+    const selectedPkg = pkgSelect.value;
+    let targetArch = archSelect.style.display !== 'none' ? archSelect.value : '';
+    const archSection = document.getElementById('friendly-arch-section');
+
+    let match = null;
+    friendlyAssets.forEach(a => {
+      const arch = detectArch(a.name, friendlyPlatform);
+      const suffix = detectSuffix(a.name, friendlyPlatform);
+      if (suffix === selectedPkg) {
+        if (!targetArch || arch === targetArch || archSection.style.display === 'none') {
+          match = a;
+        }
+      }
+    });
+
+    if (!match && friendlyAssets.length > 0) {
+      match = friendlyAssets[0];
+    }
+
+    if (match && match.proxied_url) {
+      const safeName = match.name.replace(/"/g, '&quot;').replace(/'/g, '\\x27');
+      const encodedUrl = match.proxied_url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+      showDownloadModal(safeName, encodedUrl);
+      closeFriendlyModal();
+    }
+  }
+
+  function showFriendlyError(msg) {
+    const loading = document.getElementById('friendly-modal-loading');
+    loading.innerHTML = '<span style="color:#ff6b6b">' + msg + '</span>';
+    loading.style.display = 'flex';
+  }
+
+  function renderFriendlyGrid() {
+    // Called when release data is already loaded and mode is friendly
+    // No-op for now; data is fetched on modal open
+  }
+
+  // Override loadDownloadsWithProxy to init friendly mode
+  const _originalLoadDownloads = loadDownloadsWithProxy;
+  loadDownloadsWithProxy = async function() {
+    await _originalLoadDownloads();
+    initFriendlyMode();
+  };
+  // ==================================================
 </script>
 </body>
 </html>

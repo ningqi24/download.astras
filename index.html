@@ -4494,6 +4494,16 @@
   let allReleases = [];
   let currentReleaseIndex = 0;
 
+  function autoDetectPlatform() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.includes('android') || ua.includes('iphone') || ua.includes('ipad') || ua.includes('harmony') || ua.includes('openharmony')) {
+      return 'windows';
+    }
+    if (ua.includes('linux')) return 'linux';
+    if (ua.includes('mac')) return 'macos';
+    return 'windows';
+  }
+
   async function loadDownloadsWithProxy() {
     try {
       const response = await fetch('public/releases.json');
@@ -4575,6 +4585,7 @@
     html += `</div>`;
 
     // Platform buttons
+    const detectedPlatform = autoDetectPlatform();
     const platformCards = [
       { key: 'windows', name: 'Windows', assets: categorized.windows },
       { key: 'macos', name: 'macOS', assets: categorized.macos },
@@ -4583,7 +4594,7 @@
 
     html += `<div class="platform-buttons" id="platform-buttons">`;
     platformCards.forEach(card => {
-      html += `<button class="platform-btn ${card.key === 'windows' ? 'active' : ''}" data-platform="${card.key}" onclick="switchPlatform('${card.key}')">`;
+      html += `<button class="platform-btn ${card.key === detectedPlatform ? 'active' : ''}" data-platform="${card.key}" onclick="switchPlatform('${card.key}')">`;
       html += `<span class="platform-btn-icon"><img src="${platformIconsImg[card.key]}" alt="${card.name}"></span>`;
       html += `<span class="platform-btn-label">${card.name}</span>`;
       html += `</button>`;
@@ -4648,9 +4659,9 @@
 
     document.getElementById('download-cards').innerHTML = html;
 
-    // Load Windows content by default
-    currentPlatform = 'windows';
-    loadCardContent('windows');
+    // Auto-detect platform and show matching content
+    currentPlatform = detectedPlatform;
+    loadCardContent(detectedPlatform);
 
     if (typeof pointer !== 'undefined') {
       pointer.bind_targets_events();

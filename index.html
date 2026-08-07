@@ -1487,6 +1487,61 @@
       }
     }
 
+    /* ========== 友好模式 桌面端适配 ========== */
+    @media (min-width: 769px) {
+      .friendly-modal-box {
+        max-width: 560px;
+        padding: 40px 36px 32px;
+      }
+      .friendly-modal-header {
+        margin-bottom: 28px;
+      }
+      .friendly-modal-icon {
+        width: 42px;
+        height: 42px;
+      }
+      .friendly-modal-title {
+        font-size: 20px;
+      }
+      .friendly-modal-subtitle {
+        font-size: 13px;
+      }
+      .friendly-modal-label {
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+      .friendly-modal-section {
+        margin-bottom: 24px;
+      }
+      .friendly-version-btn {
+        padding: 14px 40px 14px 18px;
+        font-size: 15px;
+      }
+      .friendly-version-option {
+        padding: 12px 18px;
+        font-size: 14px;
+      }
+      .friendly-step-btn {
+        min-width: 140px;
+        padding: 14px 20px;
+      }
+      .friendly-modal-download {
+        padding: 14px;
+        font-size: 16px;
+        margin-top: 12px;
+      }
+      .friendly-btn-list {
+        max-height: 400px;
+      }
+      .friendly-btn-item {
+        padding: 14px 16px;
+      }
+      .friendly-btn-dl {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+    }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -4741,7 +4796,14 @@
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[currentLang][key]) {
-        el.textContent = translations[currentLang][key];
+        if (el.childElementCount > 0) {
+          const textNodes = Array.from(el.childNodes).filter(n => n.nodeType === Node.TEXT_NODE);
+          if (textNodes.length > 0) {
+            textNodes[textNodes.length - 1].textContent = translations[currentLang][key];
+          }
+        } else {
+          el.textContent = translations[currentLang][key];
+        }
       }
     });
     document.querySelectorAll('h1.version-title').forEach(el => {

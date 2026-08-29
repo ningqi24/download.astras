@@ -1051,6 +1051,21 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
+    .channel-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(245, 158, 11, 0.95);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      z-index: 99999;
+      animation: fadeInUp 0.3s ease-out;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
     .beta-badge {
       display: inline-block;
       padding: 2px 7px;
@@ -5024,8 +5039,11 @@
   function switchChannel(channel) {
     if (channel === currentChannel) return;
     const betaBtn = document.getElementById('channel-beta-btn');
-    // Don't switch to beta if no beta releases
-    if (channel === 'beta' && (allBetaReleases.length === 0 || betaBtn.classList.contains('disabled'))) return;
+    // Don't switch to beta if no beta releases — show toast instead
+    if (channel === 'beta' && (allBetaReleases.length === 0 || betaBtn.classList.contains('disabled'))) {
+      showChannelToast(translations[currentLang]['测试版暂无可用版本'] || '暂无可用测试版本');
+      return;
+    }
 
     currentChannel = channel;
     currentReleaseIndex = 0;
@@ -5044,6 +5062,22 @@
     } else {
       document.getElementById('download-cards').innerHTML = `<p style="color:#888;text-align:center;">${translations[currentLang]['测试版暂无可用版本'] || '暂无可用测试版本'}</p>`;
     }
+  }
+
+  function showChannelToast(msg) {
+    // Remove existing toast
+    const existing = document.getElementById('channel-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.id = 'channel-toast';
+    toast.className = 'channel-toast';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.3s';
+      setTimeout(() => toast.remove(), 300);
+    }, 2500);
   }
 
   async function loadReleaseData(releaseIndex) {

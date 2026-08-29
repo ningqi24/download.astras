@@ -58,46 +58,55 @@ function transformAssets(assets, releaseBody) {
   });
 }
 
+function buildReleaseEntry(release) {
+  const sourceAssets = [
+    {
+      name: `${release.tag_name}-source.tar.gz`,
+      size: 0,
+      original_url: `https://github.com/${OWNER}/${REPO}/archive/refs/tags/${release.tag_name}.tar.gz`
+    },
+    {
+      name: `${release.tag_name}-source.zip`,
+      size: 0,
+      original_url: `https://github.com/${OWNER}/${REPO}/archive/refs/tags/${release.tag_name}.zip`
+    }
+  ];
+
+  return {
+    tag_name: release.tag_name,
+    name: release.name,
+    published_at: release.published_at,
+    prerelease: release.prerelease,
+    assets: transformAssets(release.assets, release.body).concat(sourceAssets)
+  };
+}
+
 async function main() {
   try {
     const releases = await fetchAllReleases();
 
+    // Separate stable releases from beta/prerelease versions
+    const stableReleases = releases.filter(r => !r.prerelease);
+    const betaReleases = releases.filter(r => r.prerelease);
+
     let output = {
       lastUpdated: new Date().toISOString(),
-      hasRelease: releases.length > 0,
-      releases: []
+      hasRelease: stableReleases.length > 0,
+      hasBetaRelease: betaReleases.length > 0,
+      releases: stableReleases.map(buildReleaseEntry),
+      beta_releases: betaReleases.map(buildReleaseEntry)
     };
-
-    releases.forEach(release => {
-      const sourceAssets = [
-        {
-          name: `${release.tag_name}-source.tar.gz`,
-          size: 0,
-          original_url: `https://github.com/${OWNER}/${REPO}/archive/refs/tags/${release.tag_name}.tar.gz`
-        },
-        {
-          name: `${release.tag_name}-source.zip`,
-          size: 0,
-          original_url: `https://github.com/${OWNER}/${REPO}/archive/refs/tags/${release.tag_name}.zip`
-        }
-      ];
-
-      output.releases.push({
-        tag_name: release.tag_name,
-        name: release.name,
-        published_at: release.published_at,
-        prerelease: release.prerelease,
-        assets: transformAssets(release.assets, release.body).concat(sourceAssets)
-      });
-    });
 
     await fs.mkdir('public', { recursive: true });
     await fs.writeFile('public/releases.json', JSON.stringify(output, null, 2));
     console.log('releases.json generated successfully');
-    console.log(`Total releases: ${releases.length}`);
-    releases.forEach((release, index) => {
-      console.log(`Release ${index + 1}: ${release.tag_name}`);
-      console.log(`   Assets: ${release.assets.length}`);
+    console.log(`Stable releases: ${stableReleases.length}`);
+    stableReleases.forEach((release, index) => {
+      console.log(`  Stable ${index + 1}: ${release.tag_name} (${release.assets.length} assets)`);
+    });
+    console.log(`Beta releases: ${betaReleases.length}`);
+    betaReleases.forEach((release, index) => {
+      console.log(`  Beta ${index + 1}: ${release.tag_name} (${release.assets.length} assets)`);
     });
   } catch (err) {
     console.error('Error:', err.message);

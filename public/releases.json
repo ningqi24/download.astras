@@ -1,6 +1,7 @@
 {
   "lastUpdated": "2026-08-28T20:58:01.188Z",
   "hasRelease": true,
+  "hasBetaRelease": false,
   "releases": [
     {
       "tag_name": "v1.2.7",
@@ -1868,5 +1869,6 @@
         }
       ]
     }
-  ]
+  ],
+  "beta_releases": []
 }

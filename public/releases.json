@@ -1,8 +1,140 @@
 {
-  "lastUpdated": "2026-09-05T12:57:31.919Z",
+  "lastUpdated": "2026-09-05T21:34:56.699Z",
   "hasRelease": true,
   "hasBetaRelease": false,
   "releases": [
+    {
+      "tag_name": "v1.2.8",
+      "name": "v1.2.8",
+      "published_at": "2026-09-05T16:12:04Z",
+      "prerelease": false,
+      "assets": [
+        {
+          "name": "AstraEditor-Legacy-10.13-10.14-Setup-1.2.8.dmg",
+          "size": 174771263,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Legacy-10.13-10.14-Setup-1.2.8.dmg",
+          "sha256": "3cb1fe324bafb60e4d94d5bf2e9453878de277c2eda2fed18a95c2755da952ad"
+        },
+        {
+          "name": "AstraEditor-Legacy-10.15-Setup-1.2.8.dmg",
+          "size": 183891618,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Legacy-10.15-Setup-1.2.8.dmg",
+          "sha256": "e2001ee3798035be54cb3c445b1290c2db29513471306a85de5572853d2df9cd"
+        },
+        {
+          "name": "AstraEditor-Legacy-11-Setup-1.2.8.dmg",
+          "size": 280021547,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Legacy-11-Setup-1.2.8.dmg",
+          "sha256": "e65113b4b941ffb439b3d29e7a7c1947077a2adca1f7fbff8d2e3d8872f0af67"
+        },
+        {
+          "name": "AstraEditor-linux-aarch64-1.2.8.pkg.tar.zst",
+          "size": 150664948,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-aarch64-1.2.8.pkg.tar.zst",
+          "sha256": "719cecbce4e8542df526a423630a58c0cf3f36c7c3413a9039214e073164f0e5"
+        },
+        {
+          "name": "AstraEditor-linux-aarch64-1.2.8.rpm",
+          "size": 147126633,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-aarch64-1.2.8.rpm",
+          "sha256": "f4c2c8d729a941804bb895e1f317d2d93db86668f4dc24c734fcd7c8433dbe05"
+        },
+        {
+          "name": "AstraEditor-linux-amd64-1.2.8.deb",
+          "size": 165996204,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-amd64-1.2.8.deb",
+          "sha256": "033e766a58226745825c9579b6a8ec11bd3b65f6cb49306e66eba92dda48e38b"
+        },
+        {
+          "name": "AstraEditor-linux-arm64-1.2.8.AppImage",
+          "size": 197290349,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-arm64-1.2.8.AppImage",
+          "sha256": "54df2c16ef7fe5fd9f5145b111e10eef9e5719b9f37bb7bec289b9d30dd2c10f"
+        },
+        {
+          "name": "AstraEditor-linux-arm64-1.2.8.deb",
+          "size": 160872892,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-arm64-1.2.8.deb",
+          "sha256": "04bfdf7abac91c7c83fbc2137c94a5cf84a3a7d30f53446abd3ad523287edfd1"
+        },
+        {
+          "name": "AstraEditor-linux-arm64-1.2.8.tar.gz",
+          "size": 189187803,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-arm64-1.2.8.tar.gz",
+          "sha256": "76587d9f93569e9b45106e797f2efa9ecf8449d76756451b10a6e57637ae66f2"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.8.AppImage",
+          "size": 186284114,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-armv7l-1.2.8.AppImage",
+          "sha256": "84a286355290aafcca4f7553d029609ccddfe42d7c82474fad106b9520f98bea"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.8.deb",
+          "size": 158619944,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-armv7l-1.2.8.deb",
+          "sha256": "40776a088ae3d8aeefbf8476064ed5c045e2160d243256ce319ee2a0203a2a1e"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.8.pkg.tar.zst",
+          "size": 149941616,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-armv7l-1.2.8.pkg.tar.zst",
+          "sha256": "9372d5c7ce7672a1c2deaba10edc7e7eb32da9fafa0f792bc2475acafd6dc537"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.8.rpm",
+          "size": 145809793,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-armv7l-1.2.8.rpm",
+          "sha256": "aed175b680e9c2064fe0e704885e244c0bde89dfaa61985a6356e41a15e37768"
+        },
+        {
+          "name": "AstraEditor-linux-armv7l-1.2.8.tar.gz",
+          "size": 180293912,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-armv7l-1.2.8.tar.gz",
+          "sha256": "a7bfe727b11e5a79921ee1b560603a18d260d4f3249ab61a355e16110808f2cc"
+        },
+        {
+          "name": "AstraEditor-linux-x64-1.2.8.pkg.tar.zst",
+          "size": 155849784,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-x64-1.2.8.pkg.tar.zst",
+          "sha256": "cdd9afdf728f84d86c9b6853e064c228e432d638ff745c503b2cd1320fb74fb6"
+        },
+        {
+          "name": "AstraEditor-linux-x64-1.2.8.tar.gz",
+          "size": 188863621,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-x64-1.2.8.tar.gz",
+          "sha256": "bb9b39020f2dc63e0a5677dab7790216ba1810028a95ca5a459aca0668171288"
+        },
+        {
+          "name": "AstraEditor-linux-x86_64-1.2.8.AppImage",
+          "size": 196687552,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-x86_64-1.2.8.AppImage",
+          "sha256": "6491de8f4ec2415ad7a0e53e92dcb4a4a4325f98648f0cc335b1f0ea5b3718ec"
+        },
+        {
+          "name": "AstraEditor-linux-x86_64-1.2.8.rpm",
+          "size": 152005813,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-linux-x86_64-1.2.8.rpm",
+          "sha256": "b9df29ce76119a70f8e67596afa523f6c8eda4dddc53764630b3d81a6c26383d"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.8.dmg",
+          "size": 283613287,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Setup-1.2.8.dmg",
+          "sha256": "81d70ce94adaa6c850af247c4540876cb7ce09bac738d4260466229d59bccebf"
+        },
+        {
+          "name": "v1.2.8-source.tar.gz",
+          "size": 0,
+          "original_url": "https://github.com/astraeditor/desktop/archive/refs/tags/v1.2.8.tar.gz"
+        },
+        {
+          "name": "v1.2.8-source.zip",
+          "size": 0,
+          "original_url": "https://github.com/astraeditor/desktop/archive/refs/tags/v1.2.8.zip"
+        }
+      ]
+    },
     {
       "tag_name": "v1.2.7",
       "name": "v1.2.7",

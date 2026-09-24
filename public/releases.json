@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-23T22:25:30.398Z",
+  "lastUpdated": "2026-09-24T14:20:36.824Z",
   "hasRelease": true,
   "hasBetaRelease": false,
   "releases": [
@@ -26,6 +26,18 @@
           "size": 280021547,
           "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Legacy-11-Setup-1.2.8.dmg",
           "sha256": "e65113b4b941ffb439b3d29e7a7c1947077a2adca1f7fbff8d2e3d8872f0af67"
+        },
+        {
+          "name": "AstraEditor-Legacy-Setup-1.2.8-ia32.exe",
+          "size": 141245175,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Legacy-Setup-1.2.8-ia32.exe",
+          "sha256": "f3ee4b8d26816394035e5ae7905db06eee3c64d8acd04a6595b6d3c0e9e69e93"
+        },
+        {
+          "name": "AstraEditor-Legacy-Setup-1.2.8-x64.exe",
+          "size": 144859639,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Legacy-Setup-1.2.8-x64.exe",
+          "sha256": "8dca93b672d142f0211749c78ac09f459c7887a7bca4d9535f9021e6892d0031"
         },
         {
           "name": "AstraEditor-linux-aarch64-1.2.8.pkg.tar.zst",
@@ -118,10 +130,34 @@
           "sha256": "b9df29ce76119a70f8e67596afa523f6c8eda4dddc53764630b3d81a6c26383d"
         },
         {
+          "name": "AstraEditor-Setup-1.2.8-arm64.exe",
+          "size": 164762878,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Setup-1.2.8-arm64.exe",
+          "sha256": "17cb0a79dd556643404e7bd8889ae173ab352ffc425eb9bbb5c141342f2f310d"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.8-ia32.exe",
+          "size": 157971561,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Setup-1.2.8-ia32.exe",
+          "sha256": "ed3406ae9cc9795d3c7befdeeb881d1428b52f93fbd3c5b3cd661f5c329dc7d9"
+        },
+        {
+          "name": "AstraEditor-Setup-1.2.8-x64.exe",
+          "size": 170104824,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Setup-1.2.8-x64.exe",
+          "sha256": "ffdf9eac9673d6f8192bbfc71965feddfef8702ef5ece7a09e35d30094e58cf4"
+        },
+        {
           "name": "AstraEditor-Setup-1.2.8.dmg",
           "size": 283613287,
           "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor-Setup-1.2.8.dmg",
           "sha256": "81d70ce94adaa6c850af247c4540876cb7ce09bac738d4260466229d59bccebf"
+        },
+        {
+          "name": "AstraEditor.Portable.1.2.8.x64.exe",
+          "size": 157416283,
+          "original_url": "https://github.com/AstraEditor/Desktop/releases/download/v1.2.8/AstraEditor.Portable.1.2.8.x64.exe",
+          "sha256": "5253938496177083a096f70df1ae963d0d330659419edcfa6d2f0ea185ff79ca"
         },
         {
           "name": "v1.2.8-source.tar.gz",
